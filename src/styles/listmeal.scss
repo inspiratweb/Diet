@@ -1,0 +1,91 @@
+.listmeal {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+  
+  &-item {
+    position: relative;
+    border: solid 1px $basecolor-lighter;
+    border-radius: 2px;
+    margin: 5px;
+    padding: 10px 40px 10px 50px;
+    background-color: $white;
+    transition: background-color $fast $easing;
+
+    &.active {
+      background-color: rgba($maincolor, 0.2);
+      border-color: rgba($maincolor, 0.5);
+      &:after {
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -5px;
+        width: 10px;
+        height: 4px;
+        border: solid 2px $maincolor;
+        border-top: 0;
+        border-right: 0;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      background: red;
+    }
+
+    &:first-child:before {
+      background-color: $maincolor;
+    }
+    &:nth-child(2):before {
+      background-color: rgba($maincolor, 0.85);
+    }
+    &:nth-child(3):before {
+      background-color: rgba($maincolor, 0.7);
+    }
+    &:nth-child(4):before {
+      background-color: rgba($maincolor, 0.55);
+    }
+    &:nth-child(5):before {
+      background-color: rgba($maincolor, 0.4);
+    }
+    &:nth-child(6):before {
+      background-color: rgba($maincolor, 0.25);
+    }
+    &:nth-child(7):before {
+      background-color: rgba($maincolor, 0.1);
+    }
+
+
+  }
+
+  &-name {
+    font-size: 13px;
+    font-weight: $bold-weight;
+  }
+
+  &-food {
+    &-summary {
+
+    }
+
+    &-detail {
+      font-size: 0.95em;
+      color: $basecolor-light;
+      margin: 2px 0 0 10px;
+      >li {
+
+      }
+    }
+  }
+}

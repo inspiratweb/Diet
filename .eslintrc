@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+  },
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": ["off"],
+    "no-unused-vars": ["warn"],
+    "object-curly-spacing": ["off"],
+    "padded-blocks": ["off"],
+    "no-underscore-dangle": [ "error", { "allowAfterThis": true }],
+    "import/no-unresolved": ["error", {
+        "ignore": [
+          "images/"
+        ]
+    }]
+  }
+}

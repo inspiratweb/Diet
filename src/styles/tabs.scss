@@ -1,0 +1,19 @@
+.tabs {
+  margin-bottom: 10px;
+  padding: 0 8px;
+  font-weight: $bold-weight;
+  background-color: $white;
+  border-bottom: solid 1px $basecolor-lighter;
+  >li {
+    color: $basecolor-light;
+    padding: 15px 0;
+    width: 50%;
+    text-align: center;
+    font-size: 13px;
+    display: inline-block;
+    &.active {
+      color: $basecolor;
+      border-bottom: solid 2px $maincolor;
+    }    
+  }
+}

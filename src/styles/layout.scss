@@ -1,0 +1,32 @@
+::selection {
+  color: $basecolor;
+  background: $maincolor;
+}
+
+// common layout classes, used frequenly in some views
+body {
+  font-family: $mainfont;
+  font-size: 13px;
+  color: $basecolor;
+  line-height: 16px;
+  text-size-adjust: 100%;
+  background-color: $background;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px lighten($maincolor, 40%) inset;
+}
+
+a {
+  text-decoration: none;
+}
+
+.maincontent {
+  margin: 20px 0;
+  &-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+

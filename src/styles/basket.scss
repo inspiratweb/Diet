@@ -1,0 +1,40 @@
+.basket {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  &-item {
+    position: relative;
+    border: solid 1px $basecolor-lighter;
+    border-radius: 4px;
+    background-color: $white;
+    margin: 5px;
+    padding: 10px;
+    transition: background-color $fast $easing;
+
+    &.active {
+      background-color: rgba($maincolor, 0.2);
+      border-color: rgba($maincolor, 0.5);
+      &:after {
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        margin-top: -5px;
+        width: 10px;
+        height: 4px;
+        border: solid 2px $maincolor;
+        border-top: 0;
+        border-right: 0;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &-dontbuy {
+      color: rgba($basecolor, 0.2);
+      text-decoration: line-through;
+    }
+  }
+}
