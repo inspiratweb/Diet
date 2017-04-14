@@ -5,25 +5,21 @@ class Meal extends React.Component {
   constructor() {
     super();
 
-    const breakfast = {code: 8, desc: 'Desayuno'};
-    const lunch = {code: 11, desc: 'Almuerzo'};
-    const dinner = {code: 14, desc: 'Comida'};
-    const snack = {code: 17, desc: 'Merienda'};
-    const postTraining = {code: 20, desc: 'Post entreno'};
-    const supper = {code: 23, desc: 'Cena'};
+    this.state = {meals: []};
+  }
 
-    this.meals = [
-      breakfast,
-      lunch,
-      dinner,
-      snack,
-      postTraining,
-      supper
-    ];
+  componentWillMount() {
+    fetch('../data/meals.js')
+      .then((response) => {
+        return response.json()
+      })
+      .then((meals) => {
+        this.setState({ meals: meals })
+      })
   }
 
   renderMeal() {
-    return this.meals.map((meal) => {
+    return this.state.meals.map((meal) => {
       if (meal.code === this.props.mealTime) {
         return meal.desc;
       }

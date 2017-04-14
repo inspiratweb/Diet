@@ -46,8 +46,8 @@ class ListBasketItem extends React.Component {
         onTouchStart={this.handleTouchStart}
         onTouchEnd={this.handleTouchEnd}>
         <Food
-           food={this.props.food}
-           tab='basket' />
+            food={this.props.food}
+            tab='basket' />
       </li>
     )
   }

@@ -1,48 +1,48 @@
-{
-  "leche": {
+[
+  {
     "code": "Leche",
     "desc": "Leche desnatada"
   },
-  "avena": {
+  {
     "code": "Avena",
     "desc": "Copos de avena"
   },
-  "proteina": {
+  {
     "code": "Proteina",
     "desc": "Concentrado de proteina",
     "notbuy": true
   },
-  "piña": {
+  {
     "code": "Piña",
     "desc": "Piña en su jugo"
   },
-  "arroz": {
+  {
     "code": "Arroz",
     "desc": "Arroz integral"
   },
-  "pollo": {
+  {
     "code": "Pollo",
     "desc": "Pechuga de pollo"
   },
-  "almendra": {
+  {
     "code": "Almendras",
     "desc": "Almendra cruda"
   },
-  "ensalada": {
+  {
     "code": "Ensalada",
     "desc": "Ensalada variada"
   },
-  "tortitas": {
+  {
     "code": "Tortitas",
     "desc": "Tortitas de maiz/arroz"
     },
-  "batido": {
+  {
     "code": "Batido",
     "desc": "Batido P50+C30+B10+C8",
     "notbuy": true
   },
-  "brocoli": {
+  {
     "code": "Brocoli",
     "desc": "Brocoli"
   }
-}
+]
