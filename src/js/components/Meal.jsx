@@ -10,7 +10,8 @@ class Meal extends React.Component {
   }
 
   componentWillMount() {
-    fetch('../data/meals.js')
+    // fetch('../data/meals.js')
+    fetch('./data/meals.js')
       .then((response) => {
         return response.json()
       })
