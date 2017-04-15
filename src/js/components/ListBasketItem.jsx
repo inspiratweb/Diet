@@ -16,6 +16,13 @@ class ListBasketItem extends React.Component {
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
   }
 
+  componentDidMount() {
+    // Checking basket cookie and load initial list
+    if (cookie.load('basket') && cookie.load('basket').indexOf(this.props.food[0]) > -1) {
+      this.setState({swipe: true});
+    }
+  }
+
   handleTouchStart(e) {
     this.setState({
       touchStartX: e.nativeEvent.changedTouches[0].clientX
@@ -47,8 +54,8 @@ class ListBasketItem extends React.Component {
 
   setCookie(newCookie) {
     let d = new Date();
-    const minutes = 10;
-    d.setTime(d.getTime() + (minutes*60*1000));
+    const minutes = 60 * 24 * 10;
+    d.setTime(d.getTime() + (minutes * 60 * 1000));
 
     cookie.save('basket', newCookie, {path: '/', expires: d});
   };
