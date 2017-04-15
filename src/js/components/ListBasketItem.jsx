@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Food from './Food.jsx';
+import cookie from "react-cookie";
 
 class ListBasketItem extends React.Component {
   constructor() {
@@ -24,16 +25,33 @@ class ListBasketItem extends React.Component {
   handleTouchEnd(e) {
     const initialClass = ''
     const touchEndX = e.nativeEvent.changedTouches[0].clientX;
+    let tempBasket = cookie.load('basket') || [];
 
     // adding class on swipe
-    if (touchEndX + 50 < this.state.touchStartX) {
+    if (touchEndX + 50 < this.state.touchStartX && this.state.swipe) {
       this.setState({swipe: false});
+
+      // Removing this product from basket cookies
+      tempBasket.splice(tempBasket.indexOf(this.props.food[0]), 1);
+      this.setCookie(tempBasket);
     }
 
-    if (touchEndX - 50 > this.state.touchStartX) {
+    if (touchEndX - 50 > this.state.touchStartX && !this.state.swipe) {
       this.setState({swipe: true});
+
+      // Adding this product to basket cookies
+      tempBasket.push(this.props.food[0]);
+      this.setCookie(tempBasket);
     }
   }
+
+  setCookie(newCookie) {
+    let d = new Date();
+    const minutes = 10;
+    d.setTime(d.getTime() + (minutes*60*1000));
+
+    cookie.save('basket', newCookie, {path: '/', expires: d});
+  };
 
   renderClass() {
     const initialClass = 'basket-item';
