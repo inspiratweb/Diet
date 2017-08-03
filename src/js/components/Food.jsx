@@ -16,7 +16,7 @@ class Food extends React.Component {
       })
       .then((foods) => {
         this.setState({ foods: foods })
-      })
+      });
   }
 
   renderFoodSummary() {
@@ -34,10 +34,12 @@ class Food extends React.Component {
     return this.state.foods.map((food) => {
       return this.props.food.map((key) => {
         if (key.food === food.code) {
-          return (<li>{key.qtty}g: {food.desc}</li>);
+          return food.skipGrams ?
+            <li>({key.qtty}) {food.desc}</li> :
+            <li>{key.qtty}g: {food.desc}</li>;
         }
         return false;
-      })
+      });
       return false;
     });
   }

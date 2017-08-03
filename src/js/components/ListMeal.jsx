@@ -16,21 +16,24 @@ class ListMeal extends React.Component {
     this.basket = [];
 
     this
-      .add(8, 'Leche', 200)
-      .add(8, 'Avena', 100)
-      .add(8, 'Proteina', 50)
-      .add(8, 'Piña', 120)
+      .add(8, 'Requeson', 250)
+      .add(8, 'Avena', 70)
+      .add(8, 'Miel', 15)
+      .add(8, 'Almendras', 15)
+      .add(8, 'Platano', 1)
       .add(11, 'Arroz', 50)
-      .add(11, 'Pollo', 200)
-      .add(11, 'Almendras', 20)
-      .add(14, 'Arroz', 50)
-      .add(14, 'Pollo', 200)
-      .add(14, 'Almendras', 20)
-      .add(14, 'Ensalada', 100)
-      .add(17, 'Tortitas', 30)
-      .add(20, 'Batido', 100)
-      .add(23, 'Brocoli', 200)
-      .add(23, 'Pollo', 200);
+      .add(11, 'Pollo', 150)
+      .add(11, 'Aceite', 10)
+      .add(14, 'Arroz', 70)
+      .add(14, 'Pollo', 150)
+      .add(14, 'Aceite', 10)
+      .add(19, 'Batido', 100)
+      .add(19, 'Manzana', 1)
+      .add(19, 'Avena', 30)
+      .add(23, 'Huevos', 3)
+      .add(23, 'AtunL', 2)
+      .add(23, 'Tortitas', 1)
+      .add(23, 'Almendras', 25);
   }
 
   handleClickA() {

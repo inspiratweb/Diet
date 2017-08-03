@@ -35,7 +35,7 @@
   {
     "code": "Tortitas",
     "desc": "Tortitas de maiz/arroz"
-    },
+  },
   {
     "code": "Batido",
     "desc": "Batido P50+C30+B10+C8",
@@ -44,5 +44,37 @@
   {
     "code": "Brocoli",
     "desc": "Brocoli"
+  },
+  {
+    "code": "Requeson",
+    "desc": "Queso batido 0%"
+  },
+  {
+    "code": "Miel",
+    "desc": "Miel"
+  },
+  {
+    "code": "Platano",
+    "desc": "Platano",
+    "skipGrams": true
+  },
+  {
+    "code": "Manzana",
+    "desc": "Manzana",
+    "skipGrams": true
+  },
+  {
+    "code": "Huevos",
+    "desc": "Huevos L",
+    "skipGrams": true
+  },
+  {
+    "code": "AtunL",
+    "desc": "Atún al natural (latas)",
+    "skipGrams": true
+  },
+  {
+    "code": "Aceite",
+    "desc": "Aceite de oliva"
   }
 ]
