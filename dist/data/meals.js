@@ -12,11 +12,15 @@
     "desc": "Comida"
   },
   {
+    "code": 17,
+    "desc": "Tentempié"
+  },
+  {
     "code": 19,
     "desc": "Merienda"
   },
   {
-    "code": 20,
+    "code": 22,
     "desc": "Post entreno"
   },
   {

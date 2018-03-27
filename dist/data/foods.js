@@ -18,7 +18,7 @@
   },
   {
     "code": "Arroz",
-    "desc": "Arroz integral"
+    "desc": "Arroz basmati"
   },
   {
     "code": "Pollo",
@@ -38,7 +38,7 @@
   },
   {
     "code": "Batido",
-    "desc": "Batido P50+C30+B10+C8",
+    "desc": "Batido P50+B10+C8",
     "notbuy": true
   },
   {
@@ -76,5 +76,51 @@
   {
     "code": "Aceite",
     "desc": "Aceite de oliva"
+  },
+  {
+    "code": "Agua",
+    "desc": "Agua",
+    "notbuy": true
+  },
+  {
+    "code": "CremaCacahuete",
+    "desc": "Crema de cacahuete",
+    "notbuy": true
+  },
+  {
+    "code": "Chocolate",
+    "desc": "Chocolate sin azucar"
+  },
+  {
+    "code": "PanCenteno",
+    "desc": "Pan de centeno"
+  },
+  {
+    "code": "Canela",
+    "desc": "Canela molida"
+  },
+  {
+    "code": "Jamon",
+    "desc": "Jamon serrano"
+  },
+  {
+    "code": "Yogur",
+    "desc": "Yogur 0% pasas/nueces"
+  },
+  {
+    "code": "Chia",
+    "desc": "Semillas de chia"
+  },
+  {
+    "code": "Nueces",
+    "desc": "Nueces"
+  },
+  {
+    "code": "Patatas",
+    "desc": "Patatas"
+  },
+  {
+    "code": "Aguacate",
+    "desc": "Aguacate"
   }
 ]
