@@ -1,13 +1,9 @@
 import React from 'react';
-import ListMeal from './components/ListMeal.jsx';
+import Layout from './components/Layout.jsx';
 
 class App extends React.Component {
   render() {
-    return (
-      <div>
-        <ListMeal />
-      </div>
-    )
+    return <Layout />;
   }
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Meal from './Meal.jsx';
 import Food from './Food.jsx';
 
-class ListMealItem extends React.Component {
+class ListDietItem extends React.Component {
   constructor() {
     super();
 
@@ -19,7 +19,7 @@ class ListMealItem extends React.Component {
   }
 
   handleClick() {
-    this.setState({visibleItem: !this.state.visibleItem});
+    this.setState({ visibleItem: !this.state.visibleItem });
   }
 
   handleTouchStart(e) {
@@ -29,44 +29,45 @@ class ListMealItem extends React.Component {
   }
 
   handleTouchEnd(e) {
-    const initialClass = ''
     const touchEndX = e.nativeEvent.changedTouches[0].clientX;
 
     // adding class on swipe
     if (touchEndX + 50 < this.state.touchStartX) {
-      this.setState({swipe: false});
+      this.setState({ swipe: false });
     }
 
     if (touchEndX - 50 > this.state.touchStartX) {
-      this.setState({swipe: true});
+      this.setState({ swipe: true });
     }
   }
 
   renderClass() {
-    const initialClass = 'listmeal-item';
+    const initialClass = 'diet-item';
     return this.state.swipe ? `${initialClass} active` : initialClass;
   }
 
   render() {
     return (
-      <li className={this.renderClass()}
+      <li
+        className={this.renderClass()}
         onClick={this.handleClick}
         onTouchStart={this.handleTouchStart}
-        onTouchEnd={this.handleTouchEnd}>
-        <Meal 
-          mealTime={this.props.mealTime} />
+        onTouchEnd={this.handleTouchEnd}
+      >
+        <Meal mealTime={this.props.mealTime} />
         <Food
-           food={this.props.food}
-           showDetail={this.state.visibleItem}
-           tab='listitem' />
+          food={this.props.food}
+          showDetail={this.state.visibleItem}
+          tab="listitem"
+        />
       </li>
-    )
+    );
   }
 }
 
-ListMealItem.propTypes = {
+ListDietItem.propTypes = {
   mealTime: PropTypes.number,
   food: PropTypes.array
 };
 
-export default ListMealItem;
+export default ListDietItem;

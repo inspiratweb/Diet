@@ -6,48 +6,50 @@ class Food extends React.Component {
   constructor() {
     super();
 
-    this.state = {foods: []};
+    this.state = { foods: [] };
   }
 
   componentWillMount() {
     fetch('./data/foods.js')
-      .then((response) => {
-        return response.json()
-      })
+      .then(response => response.json())
       .then((foods) => {
-        this.setState({ foods: foods })
+        this.setState({ foods });
       });
   }
 
   renderFoodSummary() {
-    const length = this.props.food.length;
-
-    return this.props.food.map((food, i) => {
-      if (i < length - 1) {
-        return `${food.food}, `;
-      }
-      return food.food;
-    });
+    return this.props.food.reduce(
+      (acc, cur, i) =>
+        i < this.props.food.length - 1
+          ? `${acc}${cur.food}, `
+          : `${acc}${cur.food}`,
+      ''
+    );
   }
 
   renderFoodDetail() {
-    return this.state.foods.map((food) => {
-      return this.props.food.map((key) => {
-        if (key.food === food.code) {
-          return food.skipGrams ?
-            <li>({key.qtty}) {food.desc}</li> :
-            <li>{key.qtty}g: {food.desc}</li>;
-        }
-        return false;
-      });
-      return false;
+    return this.props.food.map((meal) => {
+      const meals = this.state.foods.find(food => meal.food === food.code);
+      return meals.skipGrams ? (
+        <li>
+          ({meal.qtty}) {meals.desc}
+        </li>
+      ) : (
+        <li>
+          {meal.qtty}g: {meals.desc}
+        </li>
+      );
     });
   }
 
   renderBasketNames() {
-    return this.state.foods.map((key) => {
-      if (key.code === this.props.food[0]) {
-        return key.notbuy ? <span className="basket-item-dontbuy">{key.desc}</span> : key.desc;
+    return this.state.foods.map((food) => {
+      if (food.code === this.props.food[0]) {
+        return food.notbuy ? (
+          <span className="basket-item-dontbuy">{food.desc}</span>
+        ) : (
+          food.desc
+        );
       }
       return false;
     });
@@ -55,25 +57,19 @@ class Food extends React.Component {
 
   renderItem() {
     if (this.props.tab === 'listitem') {
-      if (this.props.showDetail) {
-        return (
-          <ul className="listmeal-food-detail">
-            {this.renderFoodDetail()}
-          </ul>
-        );
-      }
-      return <p className="listmeal-food-summary">{this.renderFoodSummary()}</p>;
+      return this.props.showDetail ? (
+        <ul className="diet-food-detail">{this.renderFoodDetail()}</ul>
+      ) : (
+        <p className="diet-food-summary">{this.renderFoodSummary()}</p>
+      );
     } else if (this.props.tab === 'basket') {
       return this.renderBasketNames();
     }
+    return false;
   }
 
   render() {
-    return (
-      <div>
-        {this.renderItem()}
-      </div>
-    );
+    return <div>{this.renderItem()}</div>;
   }
 }
 

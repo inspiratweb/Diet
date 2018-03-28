@@ -6,32 +6,24 @@ class Meal extends React.Component {
   constructor() {
     super();
 
-    this.state = {meals: []};
+    this.state = { meals: [] };
   }
 
   componentWillMount() {
     fetch('./data/meals.js')
-      .then((response) => {
-        return response.json()
-      })
+      .then(response => response.json())
       .then((meals) => {
-        this.setState({ meals: meals })
-      })
+        this.setState({ meals });
+      });
   }
 
   renderMeal() {
-    return this.state.meals.map((meal) => {
-      if (meal.code === this.props.mealTime) {
-        return meal.desc;
-      }
-      return false;
-    });
+    const mealObj = this.state.meals.find(meal => meal.code === this.props.mealTime);
+    return mealObj ? mealObj.desc : false;
   }
 
   render() {
-    return (
-      <h3 className="listmeal-name">{this.renderMeal()}</h3>
-    );
+    return <h3 className="diet-name">{this.renderMeal()}</h3>;
   }
 }
 

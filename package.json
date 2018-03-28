@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autobind-decorator": "1.4.3",
     "react": "^15.5.3",
     "webpack": "^1.14.0"
   },
