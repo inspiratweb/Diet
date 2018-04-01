@@ -16,12 +16,12 @@
     "desc": "Tentempié"
   },
   {
-    "code": 19,
-    "desc": "Merienda"
+    "code": 20,
+    "desc": "Post entreno"
   },
   {
-    "code": 22,
-    "desc": "Post entreno"
+    "code": 21,
+    "desc": "Merienda"
   },
   {
     "code": 23,

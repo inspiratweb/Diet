@@ -13,12 +13,25 @@
     "notbuy": true
   },
   {
+    "code": "Amilopectina",
+    "desc": "Amilopectina/Palatinosa",
+    "notbuy": true
+  },
+  {
     "code": "Piña",
     "desc": "Piña en su jugo"
   },
   {
-    "code": "Arroz",
+    "code": "ArrozBasmati",
     "desc": "Arroz basmati"
+  },
+  {
+    "code": "ArrozIntegral",
+    "desc": "Arroz integral"
+  },
+  {
+    "code": "HarinaArroz",
+    "desc": "Harina de arroz"
   },
   {
     "code": "Pollo",
@@ -100,8 +113,22 @@
     "desc": "Canela molida"
   },
   {
+    "code": "Limon",
+    "desc": "Limon exprimido",
+    "skipGrams": true
+  },
+  {
+    "code": "RalladuraLimon",
+    "desc": "Ralladura de limon",
+    "notbuy": true
+  },
+  {
     "code": "Jamon",
     "desc": "Jamon serrano"
+  },
+  {
+    "code": "Lomo",
+    "desc": "Lomo embuchado"
   },
   {
     "code": "Yogur",
