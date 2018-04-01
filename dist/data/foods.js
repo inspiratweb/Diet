@@ -114,7 +114,7 @@
   },
   {
     "code": "Limon",
-    "desc": "Limon exprimido",
+    "desc": "Limon",
     "skipGrams": true
   },
   {
