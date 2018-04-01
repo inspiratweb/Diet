@@ -31,7 +31,7 @@ class Layout extends React.Component {
       .add(14, 'Pollo', 100)
       .add(14, 'Brocoli', 100)
       .add(14, 'Platano', 100)
-      .add(17, 'HarinaArroz', 90)
+      .add(17, 'HarinaArroz', 60)
       .add(17, 'Chocolate', 20)
       .add(17, 'Chia', 5)
       .add(17, 'Canela', 5)
