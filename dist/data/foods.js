@@ -149,5 +149,30 @@
   {
     "code": "Aguacate",
     "desc": "Aguacate"
+  },
+  {
+    "code": "Q-Havarti",
+    "desc": "Queso havarti",
+    "skipGrams": true
+  },
+  {
+    "code": "Q-Cabra",
+    "desc": "Queso de cabra"
+  },
+  {
+    "code": "BolloTruño",
+    "desc": "Bollo proteico"
+  },
+  {
+    "code": "Arandanos",
+    "desc": "Arandanos congelados"
+  },
+  {
+    "code": "FrutosRojos",
+    "desc": "Frutos rojos congelados"
+  },
+  {
+    "code": "Merluza",
+    "desc": "Merluza congelada"
   }
 ]

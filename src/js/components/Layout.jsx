@@ -16,37 +16,37 @@ class Layout extends React.Component {
     this.basket = [];
 
     this
-      .add(8, 'Limon', 1)
-      .add(8, 'Avena', 60)
-      .add(8, 'Agua', 200)
-      .add(8, 'Miel', 15)
-      .add(8, 'Manzana', 1)
-      .add(8, 'Canela', 5)
-      .add(8, 'Requeson', 250)
-      .add(11, 'PanCenteno', 100)
-      .add(11, 'Aceite', 5)
-      .add(11, 'Lomo', 60)
-      .add(11, 'Tortitas', 30)
-      .add(14, 'ArrozBasmati', 80)
+      .add(8, 'Huevos', 3)
+      .add(8, 'Q-Havarti', 3)
+      .add(8, 'Nueces', 25)
+
+      .add(11, 'Requeson', 150)
+      .add(11, 'BolloTruño', 100)
+      .add(11, 'Arandanos', 30)
+
       .add(14, 'Pollo', 100)
-      .add(14, 'Brocoli', 100)
-      .add(14, 'Platano', 100)
-      .add(17, 'HarinaArroz', 60)
-      .add(17, 'Chocolate', 20)
-      .add(17, 'Chia', 5)
-      .add(17, 'Canela', 5)
-      .add(17, 'RalladuraLimon', 5)
-      .add(20, 'Proteinas', 45)
-      .add(20, 'Amilopectina', 50)
-      .add(21, 'ArrozBasmati', 80)
+      .add(14, 'Q-Cabra', 30)
+      .add(14, 'Brocoli', 70)
+      .add(14, 'Aceite', 10)
+      .add(14, 'Yogur', 125)
+      .add(14, 'Nueces', 25)
+
+      .add(17, 'Huevos', 2)
+      .add(17, 'Q-Havarti', 2)
+
+      .add(20, 'Proteina', 30)
+
       .add(21, 'Pollo', 100)
-      .add(21, 'Brocoli', 100)
-      .add(21, 'Platano', 100)
-      .add(23, 'Ensalada', 50)
-      .add(23, 'Huevos', 3)
+      .add(21, 'Q-Cabra', 30)
+      .add(21, 'Brocoli', 70)
+      .add(21, 'Aceite', 10)
+      .add(21, 'Nueces', 25)
+
+      .add(23, 'Ensalada', 70)
+      .add(23, 'Huevos', 2)
+      .add(23, 'Merluza', 100)
       .add(23, 'AtunL', 1)
-      .add(23, 'Aceite', 15)
-      .add(23, 'Aguacate', 100);
+      .add(23, 'Aceite', 10);
   }
 
   handleClickDiet() {
