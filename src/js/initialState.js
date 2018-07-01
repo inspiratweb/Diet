@@ -177,4 +177,44 @@ export default {
       desc: 'Merluza congelada',
     }
   },
+  meals: {
+    Desayuno: {
+      time: 8,
+      desc: 'Desayuno',
+    },
+    Almuerzo: {
+      time: 11,
+      desc: 'Almuerzo',
+    },
+    Comida: {
+      time: 14,
+      desc: 'Comida',
+    },
+    Tentempie: {
+      time: 17,
+      desc: 'Tentempié',
+    },
+    PostEntreno: {
+      time: 20,
+      desc: 'Post entreno',
+    },
+    Merienda: {
+      time: 21,
+      desc: 'Merienda',
+    },
+    Cena: {
+      time: 23,
+      desc: 'Cena',
+    }
+  },
+  diet: {
+    Desayuno: [
+      { food: 'Merluza', qtty: 200 },
+      { food: 'Avena', qtty: 100 },
+    ],
+    Almuerzo: [
+      { food: 'Merluza', qtty: 200 },
+      { food: 'Avena', qtty: 100 },
+    ],
+  }
 };
