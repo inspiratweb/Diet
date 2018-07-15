@@ -2,30 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import getMealFromId from '../selectors/getMealFromId.jsx';
-import getFoodFromId from '../selectors/getFoodFromId.jsx';
+import ListDietItem from '../components/ListDietItem.jsx';
 
 class Diet extends React.Component {
-  renderFoodsList(meals) {
-    const { foods } = this.props;
-
-    return meals.map((meal) => {
-      const mealName = getFoodFromId(meal.food, foods);
-
-      return <li>{meal.qtty} {mealName.desc}</li>;
-    });
-  }
-
   renderMealsList() {
-    const { diet, meals } = this.props;
+    const { diet, meals, foods } = this.props;
 
     return Object.entries(diet).map((meal) => {
       const mealName = getMealFromId(meal[0], meals).desc;
 
       return (
-        <li className="diet-item">
-          <h3 className="diet-name">{mealName}</h3>
-          <ul className="diet-food-detail">{this.renderFoodsList(meal[1])}</ul>
-        </li>
+        <ListDietItem
+          key={mealName}
+          mealName={mealName}
+          mealFoods={meal[1]}
+          foods={foods}
+        />
       );
     });
   }

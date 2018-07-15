@@ -211,6 +211,7 @@ export default {
     Desayuno: [
       { food: 'Merluza', qtty: 200 },
       { food: 'Avena', qtty: 100 },
+      { food: 'Huevos', qtty: 2 },
     ],
     Almuerzo: [
       { food: 'Merluza', qtty: 200 },
