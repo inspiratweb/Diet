@@ -32,11 +32,11 @@ class ListDietItem extends React.Component {
     const touchEndX = e.nativeEvent.changedTouches[0].clientX;
 
     // adding class on swipe
-    if (touchEndX + 50 < this.state.touchStartX) {
+    if (touchEndX + 90 < this.state.touchStartX) {
       this.setState({ swipe: false });
     }
 
-    if (touchEndX - 50 > this.state.touchStartX) {
+    if (touchEndX - 90 > this.state.touchStartX) {
       this.setState({ swipe: true });
     }
   }
