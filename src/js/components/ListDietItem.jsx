@@ -96,7 +96,7 @@ ListDietItem.propTypes = {
   mealFoods: PropTypes.arrayOf(
     PropTypes.shape({
       food: PropTypes.string,
-      qtty: PropTypes.number,
+      qtty: PropTypes.any,
     })
   ),
   foods: PropTypes.shape({

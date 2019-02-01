@@ -2,6 +2,7 @@ import React from 'react';
 // import ListDietItem from './ListDietItem.jsx';
 // import ListBasketItem from './ListBasketItem.jsx';
 import Diet from '../containers/Diet.jsx';
+import Basket from '../containers/Basket.jsx';
 
 class Layout extends React.Component {
   constructor() {
@@ -12,6 +13,8 @@ class Layout extends React.Component {
     this.state = {
       selectedTab: 'diet'
     };
+
+    // this.addPredefined(currentDiet);
   }
 
   handleClickDiet() {
@@ -40,6 +43,12 @@ class Layout extends React.Component {
   //   this.addToBasket(food);
 
   //   return this;
+  // }
+
+  // addPredefined(diet) {
+  //   diet.forEach((d) => {
+  //     this.add(d[0], d[1], d[2]);
+  //   });
   // }
 
   // renderDiet() {
@@ -82,6 +91,7 @@ class Layout extends React.Component {
           </li>
         </ul>
         <Diet className={this.renderTab('diet')} />
+        <Basket className={this.renderTab('basket')} />
         {/* <ul className={this.renderTab('diet')}>{this.renderDiet()}</ul>
         <ul className={this.renderTab('basket')}>{this.renderBasket()}</ul> */}
       </div>

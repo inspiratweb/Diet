@@ -112,6 +112,7 @@ export default {
     Canela: {
       code: 'Canela',
       desc: 'Canela molida',
+      skipGrams: true,
     },
     Limon: {
       code: 'Limon',
@@ -138,6 +139,7 @@ export default {
     Chia: {
       code: 'Chia',
       desc: 'Semillas de chia',
+      skipGrams: true,
     },
     Nueces: {
       code: 'Nueces',
@@ -175,6 +177,10 @@ export default {
     Merluza: {
       code: 'Merluza',
       desc: 'Merluza congelada',
+    },
+    Panga: {
+      code: 'Panga',
+      desc: 'Panga congelada',
     }
   },
   meals: {
@@ -207,15 +213,4 @@ export default {
       desc: 'Cena',
     }
   },
-  diet: {
-    Desayuno: [
-      { food: 'Merluza', qtty: 200 },
-      { food: 'Avena', qtty: 100 },
-      { food: 'Huevos', qtty: 2 },
-    ],
-    Almuerzo: [
-      { food: 'Merluza', qtty: 200 },
-      { food: 'Avena', qtty: 100 },
-    ],
-  }
 };

@@ -1,10 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import getMealFromId from '../selectors/getMealFromId.jsx';
 import ListDietItem from '../components/ListDietItem.jsx';
+import currentDiet from '../diets/2019-02.jsx';
+import { fillDiet } from '../actions/index.jsx';
 
 class Diet extends React.Component {
+  componentWillMount() {
+    this.props.actions.fillDiet(currentDiet);
+  }
+
   renderMealsList() {
     const { diet, meals, foods } = this.props;
 
@@ -31,19 +38,21 @@ class Diet extends React.Component {
 
 Diet.propTypes = {
   className: PropTypes.string.isRequired,
+  actions: {
+    fillDiet: PropTypes.func,
+  },
+  diet: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.any,
+    )
+  ),
   meals: PropTypes.shape({
     any: PropTypes.shape({
       time: PropTypes.number,
       desc: PropTypes.string,
     })
-  }),
-  diet: PropTypes.shape({
-    any: PropTypes.arrayOf(
-      PropTypes.shape({
-        food: PropTypes.string,
-        qtty: PropTypes.number,
-      })
-    )
   }),
   foods: PropTypes.shape({
     any: PropTypes.shape({
@@ -54,9 +63,9 @@ Diet.propTypes = {
 };
 
 Diet.defaultProps = {
-  meals: {},
   diet: {},
-  foods: {},
+  meals: {},
+  foods: {}
 };
 
 const mapStateToProps = state => ({
@@ -65,5 +74,12 @@ const mapStateToProps = state => ({
   foods: state.foods,
 });
 
-export default connect(mapStateToProps)(Diet);
+const mapDispatchToProps = (dispatch) => {
+  const actions = {
+    fillDiet,
+  };
+  return { actions: bindActionCreators(actions, dispatch) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Diet);
 export { Diet as PureComponent };

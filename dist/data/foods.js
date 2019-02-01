@@ -35,7 +35,14 @@
   },
   {
     "code": "Pollo",
-    "desc": "Pechuga de pollo"
+    "desc": "Pechuga de pollo",
+    "macros": {
+      "p": 23,
+      "hc": 0,
+      "hcs": 0,
+      "f": 2.6,
+      "fs": 0.6
+    }
   },
   {
     "code": "Almendras",
@@ -110,7 +117,8 @@
   },
   {
     "code": "Canela",
-    "desc": "Canela molida"
+    "desc": "Canela molida",
+    "skipGrams": true
   },
   {
     "code": "Limon",
@@ -136,7 +144,8 @@
   },
   {
     "code": "Chia",
-    "desc": "Semillas de chia"
+    "desc": "Semillas de chia",
+    "skipGrams": true
   },
   {
     "code": "Nueces",
@@ -174,5 +183,9 @@
   {
     "code": "Merluza",
     "desc": "Merluza congelada"
+  },
+  {
+    "code": "Panga",
+    "desc": "Panga congelada"
   }
 ]
