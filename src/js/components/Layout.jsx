@@ -1,6 +1,7 @@
 import React from 'react';
 import ListDietItem from './ListDietItem.jsx';
 import ListBasketItem from './ListBasketItem.jsx';
+import currentDiet from '../diets/2019-02.jsx';
 
 class Layout extends React.Component {
   constructor() {
@@ -15,38 +16,7 @@ class Layout extends React.Component {
     this.diet = [];
     this.basket = [];
 
-    this
-      .add(8, 'Huevos', 3)
-      .add(8, 'Q-Havarti', 3)
-      .add(8, 'Nueces', 25)
-
-      .add(11, 'Requeson', 150)
-      .add(11, 'BolloTruño', 100)
-      .add(11, 'Arandanos', 30)
-
-      .add(14, 'Pollo', 100)
-      .add(14, 'Q-Cabra', 30)
-      .add(14, 'Brocoli', 70)
-      .add(14, 'Aceite', 10)
-      .add(14, 'Yogur', 125)
-      .add(14, 'Nueces', 25)
-
-      .add(17, 'Huevos', 2)
-      .add(17, 'Q-Havarti', 2)
-
-      .add(20, 'Proteina', 30)
-
-      .add(21, 'Pollo', 100)
-      .add(21, 'Q-Cabra', 30)
-      .add(21, 'Brocoli', 70)
-      .add(21, 'Aceite', 10)
-      .add(21, 'Nueces', 25)
-
-      .add(23, 'Ensalada', 70)
-      .add(23, 'Huevos', 2)
-      .add(23, 'Merluza', 100)
-      .add(23, 'AtunL', 1)
-      .add(23, 'Aceite', 10);
+    this.addPredefined(currentDiet);
   }
 
   handleClickDiet() {
@@ -75,6 +45,12 @@ class Layout extends React.Component {
     this.addToBasket(food);
 
     return this;
+  }
+
+  addPredefined(diet) {
+    diet.forEach((d) => {
+      this.add(d[0], d[1], d[2]);
+    });
   }
 
   renderDiet() {

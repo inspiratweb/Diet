@@ -110,7 +110,8 @@
   },
   {
     "code": "Canela",
-    "desc": "Canela molida"
+    "desc": "Canela molida",
+    "skipGrams": true
   },
   {
     "code": "Limon",
@@ -136,7 +137,8 @@
   },
   {
     "code": "Chia",
-    "desc": "Semillas de chia"
+    "desc": "Semillas de chia",
+    "skipGrams": true
   },
   {
     "code": "Nueces",
@@ -174,5 +176,9 @@
   {
     "code": "Merluza",
     "desc": "Merluza congelada"
+  },
+  {
+    "code": "Panga",
+    "desc": "Panga congelada"
   }
 ]
