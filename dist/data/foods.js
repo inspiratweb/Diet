@@ -35,7 +35,14 @@
   },
   {
     "code": "Pollo",
-    "desc": "Pechuga de pollo"
+    "desc": "Pechuga de pollo",
+    "macros": {
+      "p": 23,
+      "hc": 0,
+      "hcs": 0,
+      "f": 2.6,
+      "fs": 0.6
+    }
   },
   {
     "code": "Almendras",
