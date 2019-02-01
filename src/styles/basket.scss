@@ -35,6 +35,7 @@
     &-dontbuy {
       color: rgba($basecolor, 0.2);
       text-decoration: line-through;
+      pointer-events: none;
     }
   }
 }

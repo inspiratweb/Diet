@@ -2,27 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import getMealFromId from '../selectors/getMealFromId.jsx';
-import ListDietItem from '../components/ListDietItem.jsx';
+import ListBasketItem from '../components/ListBasketItem.jsx';
 
 class Basket extends React.Component {
   renderMealsList() {
     const { diet, foods } = this.props;
-    // debugger;
 
-    // return Object.entries(foods).filter((food) => {
-    //   return Object.entries(diet)
-    //   food.code
-    //   const mealName = getMealFromId(meal[0], meals).desc;
+    const foodFromDiet = [...new Set(Object.values(diet)
+      .reduce((a, b) =>
+        [...a, ...b], []
+      )
+      .map(food => food.food)
+    )];
 
-    //   return (
-    //     <ListDietItem
-    //       key={mealName}
-    //       mealName={mealName}
-    //       mealFoods={meal[1]}
-    //       foods={foods}
-    //     />
-    //   );
-    // });
+    return (
+      foodFromDiet.map(ffd =>
+        <ListBasketItem
+          food={foods[ffd]}
+        />
+      )
+    );
   }
 
   render() {

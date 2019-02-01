@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Food from './Food.jsx';
 import cookie from 'react-cookie';
 
 class ListBasketItem extends React.Component {
@@ -63,8 +62,10 @@ class ListBasketItem extends React.Component {
   }
 
   renderClass() {
-    const initialClass = 'basket-item';
-    return this.state.swipe ? `${initialClass} active` : initialClass;
+    let initialClass = 'basket-item';
+    initialClass += this.props.food.notbuy ? ' basket-item-dontbuy' : '';
+    initialClass += this.state.swipe ? ' active' : '';
+    return initialClass;
   }
 
   render() {
@@ -74,7 +75,7 @@ class ListBasketItem extends React.Component {
         onTouchStart={this.handleTouchStart}
         onTouchEnd={this.handleTouchEnd}
       >
-        <Food food={this.props.food} tab="basket" />
+        {this.props.food.desc}
       </li>
     );
   }
