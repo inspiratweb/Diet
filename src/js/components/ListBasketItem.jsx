@@ -19,7 +19,7 @@ class ListBasketItem extends React.Component {
     // Checking basket cookie and load initial list
     if (
       cookie.load('basket') &&
-      cookie.load('basket').indexOf(this.props.food[0]) > -1
+      cookie.load('basket').indexOf(this.props.food.code) > -1
     ) {
       this.setState({ swipe: true });
     }
@@ -40,7 +40,7 @@ class ListBasketItem extends React.Component {
       this.setState({ swipe: false });
 
       // Removing this product from basket cookies
-      tempBasket.splice(tempBasket.indexOf(this.props.food[0]), 1);
+      tempBasket.splice(tempBasket.indexOf(this.props.food.code), 1);
       this.setCookie(tempBasket);
     }
 
@@ -48,7 +48,7 @@ class ListBasketItem extends React.Component {
       this.setState({ swipe: true });
 
       // Adding this product to basket cookies
-      tempBasket.push(this.props.food[0]);
+      tempBasket.push(this.props.food.code);
       this.setCookie(tempBasket);
     }
   }
