@@ -25,7 +25,7 @@ class Diet extends React.Component {
           mealName={mealName}
           mealFoods={meal[1]}
           foods={foods}
-          macros={getMacrosFromMeal(meal[1], foods)}
+          kcal={getMacrosFromMeal(meal[1], foods)}
         />
       );
     });
@@ -40,16 +40,15 @@ class Diet extends React.Component {
 
 Diet.propTypes = {
   className: PropTypes.string.isRequired,
-  actions: {
+  actions: PropTypes.shape({
     fillDiet: PropTypes.func,
-  },
-  diet: PropTypes.arrayOf(
-    PropTypes.arrayOf(
+  }),
+  diet: PropTypes.shape({
+    any: PropTypes.arrayOf(
       PropTypes.number,
-      PropTypes.string,
       PropTypes.any,
     )
-  ),
+  }),
   meals: PropTypes.shape({
     any: PropTypes.shape({
       time: PropTypes.number,

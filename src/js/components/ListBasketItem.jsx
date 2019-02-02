@@ -82,7 +82,20 @@ class ListBasketItem extends React.Component {
 }
 
 ListBasketItem.propTypes = {
-  food: PropTypes.array
+  food: PropTypes.shape({
+    code: PropTypes.string,
+    desc: PropTypes.string,
+    notbuy: PropTypes.boolean,
+    skiGrams: PropTypes.boolean,
+    eq: PropTypes.number,
+    macros: PropTypes.shape({
+      p: PropTypes.number,
+      ch: PropTypes.number,
+      chs: PropTypes.number,
+      f: PropTypes.number,
+      fs: PropTypes.number,
+    })
+  })
 };
 
 export default ListBasketItem;

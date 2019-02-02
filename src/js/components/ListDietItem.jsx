@@ -82,11 +82,11 @@ class ListDietItem extends React.Component {
   }
 
   renderMealTitle() {
-    const { mealName, macros } = this.props;
+    const { mealName, kcal } = this.props;
     return (
       <p className="diet-food-summary">
         {mealName}
-        <span className="diet-food-cals">{`${macros}KCal`}</span>
+        <span className="diet-food-cals">{`${kcal}KCal`}</span>
       </p>
     );
   }
@@ -128,13 +128,7 @@ ListDietItem.propTypes = {
       skipGrams: PropTypes.bool,
     }),
   }),
-  macros: PropTypes.shape({
-    p: PropTypes.number,
-    ch: PropTypes.number,
-    chs: PropTypes.number,
-    f: PropTypes.number,
-    fs: PropTypes.number,
-  })
+  kcal: PropTypes.number
 };
 
 export default ListDietItem;

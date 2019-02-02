@@ -18,6 +18,7 @@ class Basket extends React.Component {
     return (
       foodFromDiet.map(ffd =>
         <ListBasketItem
+          key={ffd}
           food={foods[ffd]}
         />
       )
@@ -33,13 +34,12 @@ class Basket extends React.Component {
 
 Basket.propTypes = {
   className: PropTypes.string.isRequired,
-  diet: PropTypes.arrayOf(
-    PropTypes.arrayOf(
+  diet: PropTypes.shape({
+    any: PropTypes.arrayOf(
       PropTypes.number,
-      PropTypes.string,
       PropTypes.any,
     )
-  ),
+  }),
   foods: PropTypes.shape({
     any: PropTypes.shape({
       code: PropTypes.string,
