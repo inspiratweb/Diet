@@ -37,6 +37,13 @@ export default {
     Pollo: {
       code: 'Pollo',
       desc: 'Pechuga de pollo',
+      macros: {
+        p: 23,
+        ch: 0,
+        chs: 0,
+        f: 2.6,
+        fs: 0.6,
+      }
     },
     Almendras: {
       code: 'Almendras',

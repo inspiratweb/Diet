@@ -46,6 +46,10 @@ class ListDietItem extends React.Component {
     return this.state.swipe ? `${initialClass} active` : initialClass;
   }
 
+  renderNoMacroClass(food) {
+    return food.macros ? '' : 'diet-food-detail-empty';
+  }
+
   renderFoodList(meals) {
     const { foods } = this.props;
 
@@ -53,8 +57,16 @@ class ListDietItem extends React.Component {
       const mealName = getFoodFromId(meal.food, foods);
 
       return mealName.skipGrams
-        ? <li key={mealName.code}>({meal.qtty}) {mealName.desc}</li>
-        : <li key={mealName.code}>{meal.qtty}g: {mealName.desc}</li>;
+        ? (
+          <li key={mealName.code}>
+            <span className={this.renderNoMacroClass(mealName)}>({meal.qtty}) {mealName.desc}</span>
+          </li>
+        )
+        : (
+          <li key={mealName.code}>
+            <span className={this.renderNoMacroClass(mealName)}>{meal.qtty}g: {mealName.desc}</span>
+          </li>
+        );
 
     });
   }
@@ -67,11 +79,20 @@ class ListDietItem extends React.Component {
 
       return i < meals.length - 1 ? `${mealName.code}, ` : mealName.code;
     });
+  }
 
+  renderMealTitle() {
+    const { mealName, macros } = this.props;
+    return (
+      <p className="diet-food-summary">
+        {mealName}
+        <span className="diet-food-cals">{`${macros}KCal`}</span>
+      </p>
+    );
   }
 
   render() {
-    const { mealName, mealFoods } = this.props;
+    const { mealFoods } = this.props;
 
     return (
       <li
@@ -80,7 +101,7 @@ class ListDietItem extends React.Component {
         onTouchStart={this.handleTouchStart}
         onTouchEnd={this.handleTouchEnd}
       >
-        <h3 className="diet-name">{mealName}</h3>
+        <h3 className="diet-name">{this.renderMealTitle()}</h3>
         {
           this.state.visibleItem
             ? <ul className="diet-food-detail">{this.renderFoodList(mealFoods)}</ul>
@@ -107,6 +128,13 @@ ListDietItem.propTypes = {
       skipGrams: PropTypes.bool,
     }),
   }),
+  macros: PropTypes.shape({
+    p: PropTypes.number,
+    ch: PropTypes.number,
+    chs: PropTypes.number,
+    f: PropTypes.number,
+    fs: PropTypes.number,
+  })
 };
 
 export default ListDietItem;

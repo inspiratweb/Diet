@@ -6,6 +6,7 @@ import getMealFromId from '../selectors/getMealFromId.jsx';
 import ListDietItem from '../components/ListDietItem.jsx';
 import currentDiet from '../diets/2019-02.jsx';
 import { fillDiet } from '../actions/index.jsx';
+import getMacrosFromMeal from '../selectors/getMacrosFromMeal.jsx';
 
 class Diet extends React.Component {
   componentWillMount() {
@@ -24,6 +25,7 @@ class Diet extends React.Component {
           mealName={mealName}
           mealFoods={meal[1]}
           foods={foods}
+          macros={getMacrosFromMeal(meal[1], foods)}
         />
       );
     });
@@ -65,7 +67,7 @@ Diet.propTypes = {
 Diet.defaultProps = {
   diet: {},
   meals: {},
-  foods: {}
+  foods: {},
 };
 
 const mapStateToProps = state => ({

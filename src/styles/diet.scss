@@ -75,16 +75,29 @@
   }
 
   &-food {
-    &-summary {
-
+    &-cals {
+      margin-left: 4px;
+      font-weight: $book-weight;
+      color: $basecolor-light;
     }
 
     &-detail {
       font-size: 0.95em;
       color: $basecolor-light;
       margin: 2px 0 0 10px;
-      >li {
-
+      &-empty {
+        position:relative;
+        z-index: 1;
+        &:before {
+          content: "";
+          position: absolute;
+          left: -4px;
+          right: -4px;
+          top: calc(50% - 1px);
+          background-color: rgba($maincolor, 0.5);
+          height: 4px;
+          z-index: -1;
+        }
       }
     }
   }

@@ -24,6 +24,8 @@ export default {
     {food: 'Requeson', qtty: 150},
     {food: 'BolloTruño', qtty: 100},
     {food: 'Avena', qtty: 20},
+    {food: 'Almendras', qtty: 20},
+    {food: 'Platano', qtty: 1},
     {food: 'Canela', qtty: 'una pizca'},
     {food: 'Chia', qtty: 'una pizca'},
   ],
