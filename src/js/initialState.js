@@ -78,6 +78,14 @@ export default {
       code: 'Platano',
       desc: 'Platano',
       skipGrams: true,
+      eq: 120,
+      macros: {
+        p: 1,
+        ch: 21,
+        chs: 12,
+        f: 0.3,
+        fs: 0.1,
+      }
     },
     Manzana: {
       code: 'Manzana',
