@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import getFoodFromId from '../selectors/getFoodFromId.jsx';
+import {getTotalKcal} from '../utils/index.jsx';
 
 
 class ListDietItem extends React.Component {
@@ -82,7 +83,8 @@ class ListDietItem extends React.Component {
   }
 
   renderMealTitle() {
-    const { mealName, kcal } = this.props;
+    const { mealName, macros } = this.props;
+    const kcal = getTotalKcal(macros);
     return (
       <p className="diet-food-summary">
         {mealName}
@@ -128,7 +130,11 @@ ListDietItem.propTypes = {
       skipGrams: PropTypes.bool,
     }),
   }),
-  kcal: PropTypes.number
+  macros: PropTypes.shape({
+    p: PropTypes.number,
+    ch: PropTypes.number,
+    f: PropTypes.number,
+  })
 };
 
 export default ListDietItem;

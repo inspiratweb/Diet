@@ -1,14 +1,21 @@
-const getTotalKcal = (macros, qtty, eq) => {
+const getTotalMacros = (macros, qtty, eq) => {
   // eq is used to calc the proporcional qtty
   const realQtty = eq ? eq * qtty : qtty;
   const total = (realQtty / 100);
-  return total * ((macros.p * 4) + (macros.ch * 4) + (macros.f * 9));
+  return {
+    p: macros.p * total,
+    ch: macros.ch * total,
+    f: macros.f * total,
+  };
 };
 
-export default (meal, foods) => (
-  meal
+export default (meal, foods) => {
+  const defaultMacros = {p: 0, ch: 0, f: 0};
+
+  return meal
     .map(m => ({...foods[m.food], qtty: m.qtty}))
-    .reduce((acc, val) =>
-      acc + (val.macros ? getTotalKcal(val.macros, val.qtty, val.eq) : 0)
-    , 0)
-);
+    .reduce((acc, val) => {
+      const macros = val.macros ? getTotalMacros(val.macros, val.qtty, val.eq) : defaultMacros;
+      return {p: acc.p + macros.p, ch: acc.ch + macros.ch, f: acc.f + macros.f};
+    }, defaultMacros);
+};
