@@ -40,8 +40,16 @@
       border-radius: 50%;
       width: 32px;
       height: 32px;
-      margin-right: 10px;
-      background: red;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      background: $white;
     }
 
     &:first-child:before {

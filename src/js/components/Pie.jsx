@@ -9,19 +9,13 @@ class Pie extends React.Component {
     return [x, y];
   }
 
-  // getMacrosPercent() {
-  //   const {p, ch, f} = this.props;
-  //   const totalKcal = 
-
-  // }
-
   renderPieChildren() {
-    const {p, ch, f, id} = this.props;
+    const {p, ch, f} = this.props;
 
     const slices = [
-      { percent: 0.1, color: 'Coral' },
-      { percent: 0.65, color: 'CornflowerBlue' },
-      { percent: 0.25, color: '#00ab6b' },
+      { percent: p, color: '#EE0D6E' },
+      { percent: ch, color: '#8457F7' },
+      { percent: f, color: '#B0FF01' },
     ];
 
     let cumulativePercent = 0;

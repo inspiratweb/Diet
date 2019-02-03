@@ -7,7 +7,6 @@ import ListDietItem from '../components/ListDietItem.jsx';
 import currentDiet from '../diets/2019-02.jsx';
 import { fillDiet } from '../actions/index.jsx';
 import getMacrosFromMeal from '../selectors/getMacrosFromMeal.jsx';
-import Pie from '../components/Pie.jsx';
 
 class Diet extends React.Component {
   componentWillMount() {
@@ -34,11 +33,7 @@ class Diet extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>hola</div>
-        <Pie p={20} ch={30} f={40} />
-        <ul className={this.props.className}>{this.renderMealsList()}</ul>
-      </div>
+      <ul className={this.props.className}>{this.renderMealsList()}</ul>
     );
   }
 }

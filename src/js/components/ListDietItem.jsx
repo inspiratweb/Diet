@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import getFoodFromId from '../selectors/getFoodFromId.jsx';
-import {getTotalKcal} from '../utils/index.jsx';
-
+import {getTotalKcal, getMacrosPecent} from '../utils/index.jsx';
+import Pie from './Pie.jsx';
 
 class ListDietItem extends React.Component {
   constructor() {
@@ -94,7 +94,8 @@ class ListDietItem extends React.Component {
   }
 
   render() {
-    const { mealFoods } = this.props;
+    const { mealFoods, macros } = this.props;
+    const macrosPercent = getMacrosPecent(macros);
 
     return (
       <li
@@ -103,6 +104,7 @@ class ListDietItem extends React.Component {
         onTouchStart={this.handleTouchStart}
         onTouchEnd={this.handleTouchEnd}
       >
+        <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
         <h3 className="diet-name">{this.renderMealTitle()}</h3>
         {
           this.state.visibleItem
