@@ -52,31 +52,55 @@ class ListDietItem extends React.Component {
     return food.macros ? '' : 'diet-food-detail-empty';
   }
 
+  renderMeal(meal, mealName) {
+    return mealName.skipGrams
+      ? (
+        <li key={mealName.code}>
+          <span className={this.renderNoMacroClass(mealName)}>({meal.qtty}) {mealName.desc}</span>
+        </li>
+      )
+      : (
+        <li key={mealName.code}>
+          <span className={this.renderNoMacroClass(mealName)}>{meal.qtty}g: {mealName.desc}</span>
+        </li>
+      );
+  }
+
+  renderLightBoxDetail(data) {
+    return data.map(d => (
+      <li>{`${d.food} ${d.grams}`}</li>
+    ));
+  }
+
+  renderLightBox(data) {
+    console.log(data);
+    return data && data.map(d => (
+      <div className="lightbox-item">
+        <p>{`${d[0].food} ${d[0].qtty}`}</p>
+        <ul>{this.renderLightBoxDetail(d[1])}</ul>
+      </div>
+    ));
+  }
+
   renderFoodList(meals) {
     const { foods, similars } = this.props;
+    const lightBoxData = [];
 
-    return meals.map((meal) => {
+    const mealList = meals.map((meal) => {
       const mealName = getFoodFromId(meal.food, foods);
       const similarFoods = getSimilarFoods(meal, foods, similars);
       if (similarFoods) {
-        // show popup here!
-        console.log(meal);
-        console.log(similarFoods);
+        lightBoxData.push([meal, similarFoods]);
       }
-
-      return mealName.skipGrams
-        ? (
-          <li key={mealName.code}>
-            <span className={this.renderNoMacroClass(mealName)}>({meal.qtty}) {mealName.desc}</span>
-          </li>
-        )
-        : (
-          <li key={mealName.code}>
-            <span className={this.renderNoMacroClass(mealName)}>{meal.qtty}g: {mealName.desc}</span>
-          </li>
-        );
-
+      return this.renderMeal(meal, mealName);
     });
+
+    return (
+      <React.Fragment>
+        <ul className="diet-food-detail">{mealList}</ul>
+        <div className="lightBox">{this.renderLightBox(lightBoxData)}</div>
+      </React.Fragment>
+    );
   }
 
   renderFoodSummary(meals) {
@@ -115,8 +139,8 @@ class ListDietItem extends React.Component {
         <h3 className="diet-name">{this.renderMealTitle()}</h3>
         {
           this.state.visibleItem
-            ? <ul className="diet-food-detail">{this.renderFoodList(mealFoods)}</ul>
-            : <div><p className="diet-food-summary">{this.renderFoodSummary(mealFoods)}</p></div>
+            ? this.renderFoodList(mealFoods)
+            : <p className="diet-food-summary">{this.renderFoodSummary(mealFoods)}</p>
         }
       </li>
     );
