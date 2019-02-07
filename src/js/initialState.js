@@ -25,10 +25,24 @@ export default {
     ArrozBasmati: {
       code: 'ArrozBasmati',
       desc: 'Arroz basmati',
+      macros: {
+        p: 9,
+        ch: 78,
+        chs: 0.5,
+        f: 0.6,
+        fs: 0.2,
+      }
     },
     ArrozIntegral: {
       code: 'ArrozIntegral',
       desc: 'Arroz integral',
+      macros: {
+        p: 8.9,
+        ch: 71.3,
+        chs: 2.4,
+        f: 2.9,
+        fs: 0.5,
+      }
     },
     HarinaArroz: {
       code: 'HarinaArroz',
@@ -163,6 +177,13 @@ export default {
     Patatas: {
       code: 'Patatas',
       desc: 'Patatas',
+      macros: {
+        p: 2.5,
+        ch: 19,
+        chs: 0,
+        f: 0.1,
+        fs: 0,
+      }
     },
     Aguacate: {
       code: 'Aguacate',
@@ -196,7 +217,18 @@ export default {
     Panga: {
       code: 'Panga',
       desc: 'Panga congelada',
-    }
+    },
+    Pasta: {
+      code: 'Pasta',
+      desc: 'Pasta',
+      macros: {
+        p: 11,
+        ch: 72,
+        chs: 3.5,
+        f: 1.5,
+        fs: 0.3,
+      }
+    },
   },
   meals: {
     Desayuno: {
@@ -228,4 +260,7 @@ export default {
       desc: 'Cena',
     }
   },
+  similars: [
+    ['Pasta', 'Patatas', 'ArrozBasmati', 'ArrozIntegral'],
+  ]
 };

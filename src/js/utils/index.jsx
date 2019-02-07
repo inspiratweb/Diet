@@ -8,8 +8,10 @@ const getKcalFromMacros = ({p, ch, f}) => (
 
 const getTotalKcal = (macros) => {
   const kcalFromMacros = getKcalFromMacros(macros);
-  return Math.ceil(kcalFromMacros.p + kcalFromMacros.ch + kcalFromMacros.f);
+  return kcalFromMacros.p + kcalFromMacros.ch + kcalFromMacros.f;
 };
+
+const getRoundedKcal = macros => Math.ceil(getTotalKcal(macros));
 
 const getMacrosPecent = (macros) => {
   const kcals = getKcalFromMacros(macros);
@@ -21,4 +23,4 @@ const getMacrosPecent = (macros) => {
   };
 };
 
-export {getTotalKcal, getMacrosPecent};
+export {getTotalKcal, getMacrosPecent, getRoundedKcal};

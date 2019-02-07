@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import getFoodFromId from '../selectors/getFoodFromId.jsx';
-import {getTotalKcal, getMacrosPecent} from '../utils/index.jsx';
+import getSimilarFoods from '../selectors/getSimilarFoods.jsx';
+import {getRoundedKcal, getMacrosPecent} from '../utils/index.jsx';
 import Pie from './Pie.jsx';
 
 class ListDietItem extends React.Component {
@@ -52,10 +53,16 @@ class ListDietItem extends React.Component {
   }
 
   renderFoodList(meals) {
-    const { foods } = this.props;
+    const { foods, similars } = this.props;
 
     return meals.map((meal) => {
       const mealName = getFoodFromId(meal.food, foods);
+      const similarFoods = getSimilarFoods(meal, foods, similars);
+      if (similarFoods) {
+        // show popup here!
+        console.log(meal);
+        console.log(similarFoods);
+      }
 
       return mealName.skipGrams
         ? (
@@ -84,7 +91,7 @@ class ListDietItem extends React.Component {
 
   renderMealTitle() {
     const { mealName, macros } = this.props;
-    const kcal = getTotalKcal(macros);
+    const kcal = getRoundedKcal(macros);
     return (
       <p className="diet-food-summary">
         {mealName}
@@ -136,7 +143,13 @@ ListDietItem.propTypes = {
     p: PropTypes.number,
     ch: PropTypes.number,
     f: PropTypes.number,
-  })
+  }),
+  similars: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.string,
+    )
+  )
 };
 
 export default ListDietItem;
+

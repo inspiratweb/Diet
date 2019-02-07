@@ -14,7 +14,7 @@ class Diet extends React.Component {
   }
 
   renderMealsList() {
-    const { diet, meals, foods } = this.props;
+    const { diet, meals, foods, similars } = this.props;
 
     return Object.entries(diet).map((meal) => {
       const mealName = getMealFromId(meal[0], meals).desc;
@@ -26,6 +26,7 @@ class Diet extends React.Component {
           mealFoods={meal[1]}
           foods={foods}
           macros={getMacrosFromMeal(meal[1], foods)}
+          similars={similars}
         />
       );
     });
@@ -60,19 +61,26 @@ Diet.propTypes = {
       code: PropTypes.string,
       desc: PropTypes.string,
     })
-  })
+  }),
+  similars: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.string,
+    )
+  )
 };
 
 Diet.defaultProps = {
   diet: {},
   meals: {},
   foods: {},
+  similars: {},
 };
 
 const mapStateToProps = state => ({
   diet: state.diet,
   meals: state.meals,
   foods: state.foods,
+  similars: state.similars,
 });
 
 const mapDispatchToProps = (dispatch) => {

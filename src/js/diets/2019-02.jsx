@@ -11,7 +11,8 @@ export default {
   Almuerzo: [
     {food: 'PanCenteno', qtty: 150},
     {food: 'Jamon', qtty: 100},
-    {food: 'Arandanos', qtty: 30},
+    {food: 'Patatas', qtty: 100},
+    {food: 'ArrozIntegral', qtty: 100},
     {food: 'ArrozBasmati', qtty: 50},
   ],
   Comida: [
