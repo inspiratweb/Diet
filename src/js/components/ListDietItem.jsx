@@ -84,18 +84,24 @@ class ListDietItem extends React.Component {
   }
 
   renderLightBoxDetail(data) {
-    return data.map(d => (
-      <li>{`${d.food} ${d.grams}g`}</li>
-    ));
+    return data.map((d) => {
+      const foodName = this.props.foods[d.food].desc;
+      const foodQtty = d.grams;
+      return <li>{`${foodName} ${foodQtty}g`}</li>;
+    });
   }
 
   renderLightBox(data) {
-    return data && data.map(d => (
-      <div className="lightBox-item">
-        <p className="lightBox-item-title">{`${d[0].food} ${d[0].qtty}g`}</p>
-        <ul>{this.renderLightBoxDetail(d[1])}</ul>
-      </div>
-    ));
+    return data && data.map((d) => {
+      const foodName = this.props.foods[d[0].food].desc;
+      const foodQtty = d[0].qtty;
+      return (
+        <div className="lightBox-item">
+          <p className="lightBox-item-title">{`${foodName} ${foodQtty}g`}</p>
+          <ul>{this.renderLightBoxDetail(d[1])}</ul>
+        </div>
+      );
+    });
   }
 
   renderLightboxClass() {
@@ -103,7 +109,6 @@ class ListDietItem extends React.Component {
   }
 
   renderClassDetail(lightbox) {
-    console.log(lightbox);
     return lightbox ? 'diet-food-detail withLightbox' : 'diet-food-detail';
   }
 
