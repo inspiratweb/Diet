@@ -12,12 +12,15 @@ class ListDietItem extends React.Component {
     this.state = {
       visibleItem: false,
       touchStartX: 0,
-      swipe: false
+      swipe: false,
+      showLightbox: false
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleTouchStart = this.handleTouchStart.bind(this);
     this.handleTouchEnd = this.handleTouchEnd.bind(this);
+    this.openLightbox = this.openLightbox.bind(this);
+    this.closeLightbox = this.closeLightbox.bind(this);
   }
 
   handleClick() {
@@ -41,6 +44,20 @@ class ListDietItem extends React.Component {
     if (touchEndX - 90 > this.state.touchStartX) {
       this.setState({ swipe: true });
     }
+  }
+
+  openLightbox(e) {
+    e.stopPropagation();
+    this.setState({
+      showLightbox: true
+    });
+  }
+
+  closeLightbox(e) {
+    e.stopPropagation();
+    this.setState({
+      showLightbox: false
+    });
   }
 
   renderClass() {
@@ -68,18 +85,26 @@ class ListDietItem extends React.Component {
 
   renderLightBoxDetail(data) {
     return data.map(d => (
-      <li>{`${d.food} ${d.grams}`}</li>
+      <li>{`${d.food} ${d.grams}g`}</li>
     ));
   }
 
   renderLightBox(data) {
-    console.log(data);
     return data && data.map(d => (
-      <div className="lightbox-item">
-        <p>{`${d[0].food} ${d[0].qtty}`}</p>
+      <div className="lightBox-item">
+        <p className="lightBox-item-title">{`${d[0].food} ${d[0].qtty}g`}</p>
         <ul>{this.renderLightBoxDetail(d[1])}</ul>
       </div>
     ));
+  }
+
+  renderLightboxClass() {
+    return this.state.showLightbox ? 'lightBox active' : 'lightBox';
+  }
+
+  renderClassDetail(lightbox) {
+    console.log(lightbox);
+    return lightbox ? 'diet-food-detail withLightbox' : 'diet-food-detail';
   }
 
   renderFoodList(meals) {
@@ -97,8 +122,12 @@ class ListDietItem extends React.Component {
 
     return (
       <React.Fragment>
-        <ul className="diet-food-detail">{mealList}</ul>
-        <div className="lightBox">{this.renderLightBox(lightBoxData)}</div>
+        <ul className={this.renderClassDetail(!!lightBoxData.length)} onClick={this.openLightbox}>{mealList}</ul>
+        <div className={this.renderLightboxClass()} onClick={this.closeLightbox}>
+          <div className="lightBox-wrapper" onClick={(e) => e.stopPropagation()}>
+            {this.renderLightBox(lightBoxData)}
+          </div>
+        </div>
       </React.Fragment>
     );
   }

@@ -10,7 +10,7 @@
     border: solid 1px $basecolor-lighter;
     border-radius: 2px;
     margin: 5px;
-    padding: 10px 40px 10px 50px;
+    padding: 10px 10px 10px 60px;
     background-color: $white;
     transition: background-color $fast $easing;
 
@@ -38,17 +38,17 @@
       left: 10px;
       top: 10px;
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      width: 37px;
+      height: 37px;
     }
     &:after {
       content: "";
       position: absolute;
-      left: 16px;
-      top: 16px;
+      left: 17px;
+      top: 17px;
       border-radius: 50%;
-      width: 20px;
-      height: 20px;
+      width: 23px;
+      height: 23px;
       background: $white;
     }
 
@@ -78,6 +78,7 @@
   }
 
   &-name {
+    cursor: pointer;
     font-size: 13px;
     font-weight: $bold-weight;
   }
@@ -87,6 +88,10 @@
       margin-left: 4px;
       font-weight: $book-weight;
       color: $basecolor-light;
+    }
+
+    &-summary {
+      margin-bottom: 5px;
     }
 
     &-detail {
@@ -105,6 +110,19 @@
           background-color: rgba($maincolor, 0.5);
           height: 4px;
           z-index: -1;
+        }
+      }
+      
+      &.withLightbox {
+        cursor: pointer;
+        &:before {
+          content: "";
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          height: 3px;
+          background: linear-gradient(to right, rgba(#8457F7,1) 0%,rgba($maincolor,1) 100%);
         }
       }
     }
