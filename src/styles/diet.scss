@@ -58,17 +58,7 @@
       background-color: rgba($maincolor, 0.2);
       border-color: rgba($maincolor, 0.5);
       &:after {
-        content: "";
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        margin-top: -5px;
-        width: 10px;
-        height: 4px;
-        border: solid 2px $maincolor;
-        border-top: 0;
-        border-right: 0;
-        transform: rotate(-45deg);
+        background-color: $white;
       }
     }
 
