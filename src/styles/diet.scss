@@ -5,6 +5,46 @@
     display: block;
   }
   
+  &-title {
+    font-weight: $bold-weight;
+    text-align: right;
+    margin: 0 5px 0 5px;
+    padding: 10px;
+    background-color: $white;
+    border: solid 1px $basecolor-lighter;
+    border-radius: 2px;
+    color: $basecolor;
+    &-macros {
+      margin-left: 5px;
+      font-weight: $book-weight;
+      font-size: 13px;
+      border-radius: 20px 0 20px 0;
+      line-height: 16px;
+      color: $basecolor-light;
+      > * {
+        margin-left: 10px;
+        &:before {
+          content: "";
+          display: inline-block;
+          margin-right: 4px;
+          width: 8px;
+          height: 10px;
+          border-radius: 6px 0 6px 0;
+        }
+      }
+
+      &-p:before {
+        background-color: #EE0D6E;
+      }
+      &-ch:before {
+        background-color: #8457F7;
+      }
+      &-f:before {
+        background-color: #B0FF01;
+      }
+    }
+  }
+  
   &-item {
     position: relative;
     border: solid 1px $basecolor-lighter;
@@ -92,6 +132,7 @@
 
     &-summary {
       margin-bottom: 5px;
+      font-size: 14px;
     }
 
     &-detail {

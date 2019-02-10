@@ -7,6 +7,8 @@ import ListDietItem from '../components/ListDietItem.jsx';
 import currentDiet from '../diets/2019-02.jsx';
 import { fillDiet } from '../actions/index.jsx';
 import getMacrosFromMeal from '../selectors/getMacrosFromMeal.jsx';
+import {getRoundedKcal} from '../utils/index.jsx';
+
 
 class Diet extends React.Component {
   componentWillMount() {
@@ -15,9 +17,16 @@ class Diet extends React.Component {
 
   renderMealsList() {
     const { diet, meals, foods, similars } = this.props;
+    let totalMacros = { p: 0, ch: 0, f: 0};
 
-    return Object.entries(diet).map((meal) => {
+    const mealsList = Object.entries(diet).map((meal) => {
       const mealName = getMealFromId(meal[0], meals).desc;
+      const mealMacros = getMacrosFromMeal(meal[1], foods);
+      totalMacros = {
+        p: totalMacros.p += mealMacros.p,
+        ch: totalMacros.ch += mealMacros.ch,
+        f: totalMacros.f += mealMacros.f
+      };
 
       return (
         <ListDietItem
@@ -25,17 +34,28 @@ class Diet extends React.Component {
           mealName={mealName}
           mealFoods={meal[1]}
           foods={foods}
-          macros={getMacrosFromMeal(meal[1], foods)}
+          macros={mealMacros}
           similars={similars}
         />
       );
     });
+
+    return (
+      <ul className={this.props.className}>
+        <h3 className="diet-title">
+          <span className="diet-title-kcal">{getRoundedKcal(totalMacros)}KCal</span>
+          <span className="diet-title-macros">
+            <span className="diet-title-macros-p">{Math.round(totalMacros.p)}g</span>
+            <span className="diet-title-macros-ch">{Math.round(totalMacros.ch)}g</span>
+            <span className="diet-title-macros-f">{Math.round(totalMacros.f)}g</span></span>
+        </h3>
+        {mealsList}
+      </ul>
+    );
   }
 
   render() {
-    return (
-      <ul className={this.props.className}>{this.renderMealsList()}</ul>
-    );
+    return this.renderMealsList();
   }
 }
 
