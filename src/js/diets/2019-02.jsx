@@ -2,7 +2,7 @@ export default {
   Desayuno: [
     {food: 'Avena', qtty: 80},
     {food: 'Proteina', qtty: 15},
-    {food: 'Agua', qtty: 100},
+    {food: 'LecheSD', qtty: 200},
     {food: 'Chocolate', qtty: 12.5},
     {food: 'Manzana', qtty: 1},
     {food: 'Canela', qtty: 'una pizca'},
@@ -22,16 +22,18 @@ export default {
   Tentempie: [
     {food: 'Requeson', qtty: 150},
     {food: 'BolloTruño', qtty: 45},
-    {food: 'Avena', qtty: 20},
+    {food: 'Arandanos', qtty: 25},
+    {food: 'Avena', qtty: 30},
     {food: 'Platano', qtty: 1},
     {food: 'Canela', qtty: 'una pizca'},
     {food: 'Chia', qtty: 'una pizca'},
   ],
   PostEntreno: [
     {food: 'Proteina', qtty: 50},
+    {food: 'Amilopectina', qtty: 40},
   ],
   Merienda: [
-    {food: 'Patatas', qtty: 300},
+    {food: 'Patatas', qtty: 350},
     {food: 'AtunL', qtty: 1},
   ],
   Cena: [

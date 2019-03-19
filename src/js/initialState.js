@@ -1,7 +1,7 @@
 export default {
   foods: {
-    Leche: {
-      code: 'Leche',
+    LecheD: {
+      code: 'LecheD',
       desc: 'Leche desnatada',
       macros: {
         p: 3.1,
@@ -9,6 +9,17 @@ export default {
         chs: 4.7,
         f: 0.3,
         fs: 0.2,
+      },
+    },
+    LecheSD: {
+      code: 'LecheSD',
+      desc: 'Leche semidesnatada',
+      macros: {
+        p: 3.1,
+        ch: 4.7,
+        chs: 4.7,
+        f: 1.55,
+        fs: 1,
       },
     },
     Avena: {
@@ -80,11 +91,33 @@ export default {
       code: 'Pollo',
       desc: 'Pechuga de pollo',
       macros: {
+        p: 20,
+        ch: 0,
+        chs: 0,
+        f: 1,
+        fs: 0.4,
+      }
+    },
+    Pavo: {
+      code: 'Pavo',
+      desc: 'Pechuga de pavo',
+      macros: {
         p: 23,
         ch: 0,
         chs: 0,
         f: 2.6,
         fs: 0.6,
+      }
+    },
+    CarnePicada: {
+      code: 'CarnePicada',
+      desc: 'Ternera picada',
+      macros: {
+        p: 18,
+        ch: 0,
+        chs: 0,
+        f: 15,
+        fs: 0,
       }
     },
     Almendras: {
@@ -341,6 +374,13 @@ export default {
     Arandanos: {
       code: 'Arandanos',
       desc: 'Arandanos congelados',
+      macros: {
+        p: 0.7,
+        ch: 11,
+        chs: 10,
+        f: 0,
+        fs: 0,
+      },
     },
     FrutosRojos: {
       code: 'FrutosRojos',
@@ -398,5 +438,6 @@ export default {
   },
   similars: [
     ['Pasta', 'Patatas', 'ArrozBasmati', 'ArrozIntegral'],
+    ['Pollo', 'CarnePicada', 'Pavo'],
   ]
 };
