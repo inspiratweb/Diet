@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'babel-polyfill';
+import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import dietApp from './reducers/index.jsx';
 import initialState from './initialState.js';
 import App from './App.jsx';
 
 import '../styles/index.scss';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   dietApp,
   initialState,
-  composeEnhancers(),
+  compose(
+    applyMiddleware(reduxThunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
 );
 
 ReactDOM.render(

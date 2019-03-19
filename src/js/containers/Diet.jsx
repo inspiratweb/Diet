@@ -4,15 +4,16 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import getMealFromId from '../selectors/getMealFromId.jsx';
 import ListDietItem from '../components/ListDietItem.jsx';
-import currentDiet from '../diets/2019-02.jsx';
-import { fillDiet } from '../actions/index.jsx';
+// import currentDiet from '../diets/2019-02.jsx';
+import { fillDiet, fetchDiet } from '../actions/index.jsx';
 import getMacrosFromMeal from '../selectors/getMacrosFromMeal.jsx';
 import {getRoundedKcal} from '../utils/index.jsx';
 
 
 class Diet extends React.Component {
   componentWillMount() {
-    this.props.actions.fillDiet(currentDiet);
+    // this.props.actions.fillDiet(currentDiet);
+    this.props.actions.fetchDiet(this.props.meals);
   }
 
   renderMealsList() {
@@ -63,6 +64,7 @@ Diet.propTypes = {
   className: PropTypes.string.isRequired,
   actions: PropTypes.shape({
     fillDiet: PropTypes.func,
+    fetchDiet: PropTypes.func,
   }),
   diet: PropTypes.shape({
     any: PropTypes.arrayOf(
@@ -106,6 +108,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   const actions = {
     fillDiet,
+    fetchDiet
   };
   return { actions: bindActionCreators(actions, dispatch) };
 };

@@ -1,6 +1,4 @@
 import React from 'react';
-// import ListDietItem from './ListDietItem.jsx';
-// import ListBasketItem from './ListBasketItem.jsx';
 import Diet from '../containers/Diet.jsx';
 import Basket from '../containers/Basket.jsx';
 
@@ -13,8 +11,6 @@ class Layout extends React.Component {
     this.state = {
       selectedTab: 'diet'
     };
-
-    // this.addPredefined(currentDiet);
   }
 
   handleClickDiet() {
@@ -24,46 +20,6 @@ class Layout extends React.Component {
   handleClickBasket() {
     this.setState({ selectedTab: 'basket' });
   }
-
-  // addToDiet(mealTime, food, qtty) {
-  //   const existingIndex = this.diet.findIndex(
-  //     diet => diet.mealTime === mealTime
-  //   );
-  //   return existingIndex >= 0
-  //     ? this.diet[existingIndex].food.push({ food, qtty })
-  //     : this.diet.push({ mealTime, food: [{ food, qtty }] });
-  // }
-
-  // addToBasket(food) {
-  //   return this.basket.indexOf(food) === -1 && this.basket.push(food);
-  // }
-
-  // add(mealTime, food, qtty) {
-  //   this.addToDiet(mealTime, food, qtty);
-  //   this.addToBasket(food);
-
-  //   return this;
-  // }
-
-  // addPredefined(diet) {
-  //   diet.forEach((d) => {
-  //     this.add(d[0], d[1], d[2]);
-  //   });
-  // }
-
-  // renderDiet() {
-  //   return this.diet.map(key => (
-  //     <ListDietItem
-  //       key={key.mealTime}
-  //       mealTime={key.mealTime}
-  //       food={key.food}
-  //     />
-  //   ));
-  // }
-
-  // renderBasket() {
-  //   return this.basket.map(food => <ListBasketItem key={food} food={[food]} />);
-  // }
 
   renderTabClass(tab) {
     return this.state.selectedTab === tab ? 'active' : '';
@@ -92,8 +48,6 @@ class Layout extends React.Component {
         </ul>
         <Diet className={this.renderTab('diet')} />
         <Basket className={this.renderTab('basket')} />
-        {/* <ul className={this.renderTab('diet')}>{this.renderDiet()}</ul>
-        <ul className={this.renderTab('basket')}>{this.renderBasket()}</ul> */}
       </div>
     );
   }
