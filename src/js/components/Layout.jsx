@@ -43,6 +43,19 @@ class Layout extends React.Component {
     return this.state.selectedTab === tab ? `${tab} active` : tab;
   }
 
+  renderEmoji() {
+    return (
+      <div className="blankSlate-emoji">
+        <div className="blankSlate-emoji-head">
+          <div className="blankSlate-emoji-face">
+            <div className="blankSlate-emoji-eyes" />
+            <div className="blankSlate-emoji-mouth" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return this.props.dietAvailables ? (
       <div>
@@ -63,7 +76,11 @@ class Layout extends React.Component {
         <Diet className={this.renderTab('diet')} />
         <Basket className={this.renderTab('basket')} />
       </div>
-    ) : <div>NADA</div>;
+    ) : (
+      <div className="blankSlate">
+        {this.renderEmoji()}
+      </div>
+    );
   }
 }
 

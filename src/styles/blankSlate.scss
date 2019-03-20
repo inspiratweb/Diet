@@ -1,0 +1,77 @@
+@keyframes blink {
+  48% { height: 100%; top: 0; }
+  50% { height: 0; top: 50%; }
+  52% { height: 100%; top: 0; }
+}
+
+@keyframes move {
+  20% { left: 15%; }
+  25%, 35% { left: 5%; }
+  45%, 55% { left: 25%; }
+  60% { left: 15%; }
+}
+
+.blankSlate {
+  margin-top: 30vh;
+  text-align: center;
+  font-size: 16px;
+  line-height: 18px;
+
+  &-emoji {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 40px auto;
+    position: relative;
+
+    &-head {
+      position: absolute;
+      left: 0%;
+      top: 0%;
+      width: 100%;
+      height: 100%;
+      border: solid 3px $maincolor;
+      border-radius: 50%;
+    }
+
+    &-face {
+      position: absolute;
+      left: 15%;
+      top: 50%;
+      width: 70%;
+      height: 24%;
+      animation: move 4s infinite;
+    }
+
+    &-eyes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 46%;
+      &:before, &:after {
+        content: "";
+        position: absolute;
+        width: 16%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: $maincolor;
+        animation: blink 3s infinite;
+      }
+      &:before {
+        left: 0;
+      }
+      &:after {
+        right: 0;
+      }
+    }
+
+    &-mouth {
+      position: absolute;
+      left: 28%;
+      bottom: 0;
+      height: 12%;
+      width: 44%;
+      background-color: $maincolor;
+    }
+  }
+}
