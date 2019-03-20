@@ -15,4 +15,4 @@ export const dietsRef = databaseRef.child('diets');
 export const foodsRef = databaseRef.child('foods');
 export const mealsRef = databaseRef.child('meals');
 export const similarsRef = databaseRef.child('similars');
-export const dietRef = dietsRef.child('3200');
+export const routerRef = databaseRef.child('router');

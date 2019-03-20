@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import getDietAvailable from '../selectors/getDietAvailable.jsx';
-import { setRouter, fetchDiet, fetchFoods, fetchMeals, fetchSimilars } from '../actions/index.jsx';
+import { setRouter, fetchDiet, fetchFoods, fetchMeals, fetchSimilars, fetchRouter } from '../actions/index.jsx';
 
 import Diet from '../containers/Diet.jsx';
 import Basket from '../containers/Basket.jsx';
@@ -20,7 +20,12 @@ class Layout extends React.Component {
   }
 
   componentWillMount() {
-    this.props.actions.setRouter(this.props.location.pathname);
+    const normalizedUrl = this.props.location.pathname.replace(/\//g, '');
+    if (normalizedUrl) {
+      this.props.actions.setRouter(normalizedUrl);
+    } else {
+      this.props.actions.fetchRouter();
+    }
     this.props.actions.fetchDiet();
     this.props.actions.fetchFoods();
     this.props.actions.fetchMeals();
@@ -91,6 +96,7 @@ Layout.propTypes = {
     fetchFoods: PropTypes.func,
     fetchMeals: PropTypes.func,
     fetchSimilars: PropTypes.func,
+    fetchRouter: PropTypes.func,
   }),
   location: PropTypes.shape({
     pathname: PropTypes.string,
@@ -108,7 +114,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchDiet,
     fetchFoods,
     fetchMeals,
-    fetchSimilars
+    fetchSimilars,
+    fetchRouter
   };
   return { actions: bindActionCreators(actions, dispatch) };
 };

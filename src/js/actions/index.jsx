@@ -1,4 +1,4 @@
-import { dietsRef, foodsRef, mealsRef, similarsRef } from '../firebase.jsx';
+import { dietsRef, foodsRef, mealsRef, similarsRef, routerRef } from '../firebase.jsx';
 
 const setRouter = payload => ({
   type: 'SET_ROUTER',
@@ -41,4 +41,13 @@ const fetchSimilars = () => async (dispatch) => {
   });
 };
 
-export {fetchDiet, fetchFoods, fetchMeals, fetchSimilars, setRouter};
+const fetchRouter = () => async (dispatch) => {
+  routerRef.on('value', (snapshot) => {
+    dispatch({
+      type: 'FETCH_ROUTER',
+      payload: snapshot.val(),
+    });
+  });
+};
+
+export {fetchDiet, fetchFoods, fetchMeals, fetchSimilars, fetchRouter, setRouter};
