@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getMealFromId from '../selectors/getMealFromId.jsx';
 import ListBasketItem from '../components/ListBasketItem.jsx';
 
 class Basket extends React.Component {
   renderMealsList() {
-    const { diet, foods } = this.props;
+    const { diets, foods, router } = this.props;
+    const diet = diets[router];
 
     const foodFromDiet = [...new Set(Object.values(diet)
       .reduce((a, b) =>
@@ -15,13 +15,13 @@ class Basket extends React.Component {
       .map(food => food.food)
     )];
 
-    return (
-      foodFromDiet.map(ffd =>
+    return Object.entries(foods).length > 0 && (
+      foodFromDiet.map(ffd => (
         <ListBasketItem
           key={ffd}
           food={foods[ffd]}
         />
-      )
+      ))
     );
   }
 
@@ -34,7 +34,7 @@ class Basket extends React.Component {
 
 Basket.propTypes = {
   className: PropTypes.string.isRequired,
-  diet: PropTypes.shape({
+  diets: PropTypes.shape({
     any: PropTypes.arrayOf(
       PropTypes.number,
       PropTypes.any,
@@ -45,17 +45,20 @@ Basket.propTypes = {
       code: PropTypes.string,
       desc: PropTypes.string,
     })
-  })
+  }),
+  router: PropTypes.string
 };
 
 Basket.defaultProps = {
-  diet: {},
-  foods: {}
+  diets: {},
+  foods: {},
+  router: '',
 };
 
 const mapStateToProps = state => ({
-  diet: state.diet,
+  diets: state.diet,
   foods: state.foods,
+  router: state.router,
 });
 
 export default connect(mapStateToProps)(Basket);

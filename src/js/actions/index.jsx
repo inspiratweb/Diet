@@ -1,19 +1,44 @@
-import databaseRef from '../firebase.jsx';
-import getOrderedDiet from '../selectors/getOrderedDiet.jsx';
+import { dietsRef, foodsRef, mealsRef, similarsRef } from '../firebase.jsx';
 
-// const fillDiet = payload => ({
-//   type: 'FILL_DIET',
-//   payload,
-// });
+const setRouter = payload => ({
+  type: 'SET_ROUTER',
+  payload,
+});
 
-const fetchDiet = meals => async (dispatch) => {
-  databaseRef.on('value', (snapshot) => {
+const fetchDiet = () => async (dispatch) => {
+  dietsRef.on('value', (snapshot) => {
     dispatch({
       type: 'FETCH_DIET',
-      payload: getOrderedDiet(snapshot.val(), meals)
+      payload: snapshot.val(),
     });
   });
 };
 
-// export { fillDiet, fetchDiet};
-export {fetchDiet};
+const fetchFoods = () => async (dispatch) => {
+  foodsRef.on('value', (snapshot) => {
+    dispatch({
+      type: 'FETCH_FOODS',
+      payload: snapshot.val(),
+    });
+  });
+};
+
+const fetchMeals = () => async (dispatch) => {
+  mealsRef.on('value', (snapshot) => {
+    dispatch({
+      type: 'FETCH_MEALS',
+      payload: snapshot.val(),
+    });
+  });
+};
+
+const fetchSimilars = () => async (dispatch) => {
+  similarsRef.on('value', (snapshot) => {
+    dispatch({
+      type: 'FETCH_SIMILARS',
+      payload: snapshot.val(),
+    });
+  });
+};
+
+export {fetchDiet, fetchFoods, fetchMeals, fetchSimilars, setRouter};

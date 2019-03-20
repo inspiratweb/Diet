@@ -10,5 +10,9 @@ const config = {
 };
 
 firebase.initializeApp(config);
-export default firebase.database().ref();
-// export const dietRef = databaseRef.child('diet');
+export const databaseRef = firebase.database().ref();
+export const dietsRef = databaseRef.child('diets');
+export const foodsRef = databaseRef.child('foods');
+export const mealsRef = databaseRef.child('meals');
+export const similarsRef = databaseRef.child('similars');
+export const dietRef = dietsRef.child('3200');

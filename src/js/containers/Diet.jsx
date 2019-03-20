@@ -1,26 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import getMealFromId from '../selectors/getMealFromId.jsx';
 import ListDietItem from '../components/ListDietItem.jsx';
-// import currentDiet from '../diets/2019-02.jsx';
-import { fillDiet, fetchDiet } from '../actions/index.jsx';
 import getMacrosFromMeal from '../selectors/getMacrosFromMeal.jsx';
 import {getRoundedKcal} from '../utils/index.jsx';
 
 
 class Diet extends React.Component {
-  componentWillMount() {
-    // this.props.actions.fillDiet(currentDiet);
-    this.props.actions.fetchDiet(this.props.meals);
-  }
-
   renderMealsList() {
-    const { diet, meals, foods, similars } = this.props;
+    const { diets, meals, foods, similars, router } = this.props;
+    const diet = diets[router];
     let totalMacros = { p: 0, ch: 0, f: 0};
 
-    const mealsList = Object.entries(diet).map((meal) => {
+    const mealsList = Object.entries(meals).length > 0 && Object.entries(diet).map((meal) => {
       const mealName = getMealFromId(meal[0], meals).desc;
       const mealMacros = getMacrosFromMeal(meal[1], foods);
       totalMacros = {
@@ -62,11 +55,7 @@ class Diet extends React.Component {
 
 Diet.propTypes = {
   className: PropTypes.string.isRequired,
-  actions: PropTypes.shape({
-    fillDiet: PropTypes.func,
-    fetchDiet: PropTypes.func,
-  }),
-  diet: PropTypes.shape({
+  diets: PropTypes.shape({
     any: PropTypes.arrayOf(
       PropTypes.number,
       PropTypes.any,
@@ -88,30 +77,25 @@ Diet.propTypes = {
     PropTypes.arrayOf(
       PropTypes.string,
     )
-  )
+  ),
+  router: PropTypes.string
 };
 
 Diet.defaultProps = {
-  diet: {},
+  diets: {},
   meals: {},
   foods: {},
   similars: {},
+  router: '',
 };
 
 const mapStateToProps = state => ({
-  diet: state.diet,
+  diets: state.diet,
   meals: state.meals,
   foods: state.foods,
   similars: state.similars,
+  router: state.router,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  const actions = {
-    fillDiet,
-    fetchDiet
-  };
-  return { actions: bindActionCreators(actions, dispatch) };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Diet);
+export default connect(mapStateToProps)(Diet);
 export { Diet as PureComponent };

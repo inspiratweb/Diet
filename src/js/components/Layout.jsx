@@ -1,4 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import getDietAvailable from '../selectors/getDietAvailable.jsx';
+import { setRouter, fetchDiet, fetchFoods, fetchMeals, fetchSimilars } from '../actions/index.jsx';
+
 import Diet from '../containers/Diet.jsx';
 import Basket from '../containers/Basket.jsx';
 
@@ -11,6 +17,14 @@ class Layout extends React.Component {
     this.state = {
       selectedTab: 'diet'
     };
+  }
+
+  componentWillMount() {
+    this.props.actions.setRouter(this.props.location.pathname);
+    this.props.actions.fetchDiet();
+    this.props.actions.fetchFoods();
+    this.props.actions.fetchMeals();
+    this.props.actions.fetchSimilars();
   }
 
   handleClickDiet() {
@@ -30,7 +44,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.dietAvailables ? (
       <div>
         <ul className="tabs">
           <li
@@ -49,8 +63,37 @@ class Layout extends React.Component {
         <Diet className={this.renderTab('diet')} />
         <Basket className={this.renderTab('basket')} />
       </div>
-    );
+    ) : <div>NADA</div>;
   }
 }
 
-export default Layout;
+Layout.propTypes = {
+  actions: PropTypes.shape({
+    setRouter: PropTypes.func,
+    fetchDiet: PropTypes.func,
+    fetchFoods: PropTypes.func,
+    fetchMeals: PropTypes.func,
+    fetchSimilars: PropTypes.func,
+  }),
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+  dietAvailables: PropTypes.bool,
+};
+
+const mapStateToProps = state => ({
+  dietAvailables: getDietAvailable(state),
+});
+
+const mapDispatchToProps = (dispatch) => {
+  const actions = {
+    setRouter,
+    fetchDiet,
+    fetchFoods,
+    fetchMeals,
+    fetchSimilars
+  };
+  return { actions: bindActionCreators(actions, dispatch) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

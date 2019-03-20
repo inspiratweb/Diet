@@ -1,5 +1,8 @@
 const similars = (state = [[]], action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
+    case 'FETCH_SIMILARS':
+      return payload;
     default:
       return state;
   }
