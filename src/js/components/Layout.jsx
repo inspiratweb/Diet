@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import config from '@config';
 import getDietAvailable from '../selectors/getDietAvailable.jsx';
 import { setRouter, fetchDiet, fetchFoods, fetchMeals, fetchSimilars, fetchRouter } from '../actions/index.jsx';
 
@@ -20,7 +21,8 @@ class Layout extends React.Component {
   }
 
   componentWillMount() {
-    const normalizedUrl = this.props.location.pathname.replace(/\//g, '');
+    const normalizedUrl = this.props.location.pathname.replace(config.url.base, '').replace(/\//g, '');
+    console.log(normalizedUrl);
     if (normalizedUrl) {
       this.props.actions.setRouter(normalizedUrl);
     } else {
@@ -62,6 +64,8 @@ class Layout extends React.Component {
   }
 
   render() {
+    console.log(process.env);
+
     return this.props.dietAvailables ? (
       <div>
         <ul className="tabs">

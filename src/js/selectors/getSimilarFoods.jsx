@@ -12,15 +12,22 @@ const getSimilarArray = (similars, meal) => {
     similarArrayCopy;
 };
 
+const getSkipGrams = (foods, food) => Object.values(foods).find(f => f.code === food).skipGrams;
+
 const getSimilarFoods = (meal, foods, similars) => {
   const similarArray = getSimilarArray(similars, meal);
   if (similarArray) {
     // Total kcal from the compared food
     const baseKcals = getTotalKcal(getMacrosFromMeal([meal], foods));
     return similarArray.map((similar) => {
+      let diff = '';
+      const skipGrams = getSkipGrams(foods, similar);
       const foodKcalsPerGram = getTotalKcal(getMacrosFromMeal([{food: similar, qtty: 1}], foods));
-      const diff = baseKcals / foodKcalsPerGram;
-      return {food: similar, grams: Math.round(diff)};
+      if (foodKcalsPerGram) {
+        const qtty = Math.round(baseKcals / foodKcalsPerGram);
+        diff = skipGrams ? `(${qtty})` : `${qtty}g:`;
+      }
+      return {food: similar, qtty: diff};
     });
   }
   return false;

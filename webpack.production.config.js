@@ -1,16 +1,17 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  entry: "./js/index.jsx",
+  entry: './js/index.jsx',
   output: {
-    path: path.join(__dirname, 'dist'), 
-    filename: "all.min.js"
+    path: path.join(__dirname, 'dist'),
+    filename: 'all.min.js'
   },
   watch: true,
   devServer: {
-    contentBase: path.join(__dirname, '/dist'), 
+    contentBase: path.join(__dirname, '/dist'),
+    publicPath: '/diet/',
     stats: 'errors-only',
     inline: true,
     hot: true,
@@ -25,7 +26,7 @@ module.exports = {
       }
     ],
     loaders: [
-       {
+      {
         test: /\.jsx$/,
         include: path.join(__dirname, 'src'),
         // loader: 'eslint-loader',
@@ -50,10 +51,15 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      '@config': path.resolve(__dirname, 'src/js/config/base'),
+    }
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
       }
     }),
     new webpack.optimize.UglifyJsPlugin()

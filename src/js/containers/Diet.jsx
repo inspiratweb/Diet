@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import getMealFromId from '../selectors/getMealFromId.jsx';
 import ListDietItem from '../components/ListDietItem.jsx';
 import getMacrosFromMeal from '../selectors/getMacrosFromMeal.jsx';
+import getOrderedDiet from '../selectors/getOrderedDiet.jsx';
 import {getRoundedKcal} from '../utils/index.jsx';
 
 
@@ -13,7 +14,7 @@ class Diet extends React.Component {
     const diet = diets[router];
     let totalMacros = { p: 0, ch: 0, f: 0};
 
-    const mealsList = Object.entries(meals).length > 0 && Object.entries(diet).map((meal) => {
+    const mealsList = Object.entries(meals).length > 0 && Object.entries(getOrderedDiet(diet, meals)).map((meal) => {
       const mealName = getMealFromId(meal[0], meals).desc;
       const mealMacros = getMacrosFromMeal(meal[1], foods);
       totalMacros = {

@@ -70,34 +70,31 @@ class ListDietItem extends React.Component {
   }
 
   renderMeal(meal, mealName) {
-    return mealName.skipGrams
-      ? (
-        <li key={mealName.code}>
-          <span className={this.renderNoMacroClass(mealName)}>({meal.qtty}) {mealName.desc}</span>
-        </li>
-      )
-      : (
-        <li key={mealName.code}>
-          <span className={this.renderNoMacroClass(mealName)}>{meal.qtty}g: {mealName.desc}</span>
-        </li>
-      );
+    return (
+      <li key={mealName.code}>
+        <span className={this.renderNoMacroClass(mealName)}>
+          {mealName.skipGrams ? `(${meal.qtty}) ${mealName.desc}` : `${meal.qtty}g: ${mealName.desc}`}
+        </span>
+      </li>
+    );
   }
 
   renderLightBoxDetail(data) {
     return data.map((d) => {
       const foodName = this.props.foods[d.food].desc;
-      const foodQtty = d.grams;
-      return <li>{`${foodName} ${foodQtty}g`}</li>;
+      const foodQtty = d.qtty;
+      return <li className={!foodQtty ? 'lightBox-item-nodata' : ''}>{`${foodQtty} ${foodName}`}</li>;
     });
   }
 
   renderLightBox(data) {
     return data && data.map((d) => {
       const foodName = this.props.foods[d[0].food].desc;
+      const skipGrams = this.props.foods[d[0].food].skipGrams;
       const foodQtty = d[0].qtty;
       return (
         <div className="lightBox-item">
-          <p className="lightBox-item-title">{`${foodName} ${foodQtty}g`}</p>
+          <p className="lightBox-item-title">{skipGrams ? `(${foodQtty}) ${foodName}` : `${foodName} ${foodQtty}g`}</p>
           <ul>{this.renderLightBoxDetail(d[1])}</ul>
         </div>
       );
@@ -129,8 +126,10 @@ class ListDietItem extends React.Component {
       <React.Fragment>
         <ul className={this.renderClassDetail(!!lightBoxData.length)} onClick={this.openLightbox}>{mealList}</ul>
         <div className={this.renderLightboxClass()} onClick={this.closeLightbox}>
-          <div className="lightBox-wrapper" onClick={(e) => e.stopPropagation()}>
-            {this.renderLightBox(lightBoxData)}
+          <div className="lightBox-wrapper" onClick={e => e.stopPropagation()}>
+            <div className="lightBox-inner">
+              {this.renderLightBox(lightBoxData)}
+            </div>
           </div>
         </div>
       </React.Fragment>

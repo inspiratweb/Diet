@@ -30,10 +30,12 @@
 
   &-wrapper {
     position: relative;
+    display: flex;
     background: $white;
-    padding: 30px;
-    width: 90%;
+    margin-top: 30px;
+    width: 85%;
     max-width: 380px;
+    max-height: calc(80vh - 40px);
     border-radius: 5px;
     box-shadow: 0 5px 10px 8px rgba($black, 0.05);
     background-color: $white;
@@ -67,6 +69,22 @@
     }
   }
 
+  &-inner {
+    overflow: auto;
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: red;
+    }
+  }
+
   &-item {
     &:not(:first-child) {
       margin-top: 15px;
@@ -83,6 +101,10 @@
     }
     li {
       margin-bottom: 5px;
+    }
+    &-nodata {
+      color: rgba($basecolor, 0.2);
+      text-decoration: line-through;
     }
   }
 }
