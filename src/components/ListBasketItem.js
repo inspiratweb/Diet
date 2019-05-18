@@ -85,8 +85,8 @@ ListBasketItem.propTypes = {
   food: PropTypes.shape({
     code: PropTypes.string,
     desc: PropTypes.string,
-    notbuy: PropTypes.boolean,
-    skiGrams: PropTypes.boolean,
+    notbuy: PropTypes.bool,
+    skiGrams: PropTypes.bool,
     eq: PropTypes.number,
     macros: PropTypes.shape({
       p: PropTypes.number,

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'babel-polyfill';
+// import 'babel-polyfill';
 import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
-import dietApp from './reducers/index.jsx';
-import App from './App.jsx';
+import dietApp from './reducers/index';
+import App from './App';
 
-import '../styles/index.scss';
+import './styles/index.scss';
 
 const store = createStore(
   dietApp,

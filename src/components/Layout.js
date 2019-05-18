@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import config from '@config';
-import getDietAvailable from '../selectors/getDietAvailable.jsx';
-import { setRouter, fetchDiet, fetchFoods, fetchMeals, fetchSimilars, fetchRouter } from '../actions/index.jsx';
+import getDietAvailable from '../selectors/getDietAvailable';
+import { setRouter, fetchDiet, fetchFoods, fetchMeals, fetchSimilars, fetchRouter } from '../actions/index';
 
-import Diet from '../containers/Diet.jsx';
-import Basket from '../containers/Basket.jsx';
+import Diet from '../containers/Diet';
+import Basket from '../containers/Basket';
 
 class Layout extends React.Component {
   constructor() {
@@ -21,8 +20,8 @@ class Layout extends React.Component {
   }
 
   componentWillMount() {
-    const normalizedUrl = this.props.location.pathname.replace(config.url.base, '').replace(/\//g, '');
-    console.log(normalizedUrl);
+    const normalizedUrl = this.props.location.pathname.replace(process.env.PUBLIC_URL, '').replace(/\//g, '');
+
     if (normalizedUrl) {
       this.props.actions.setRouter(normalizedUrl);
     } else {
@@ -64,8 +63,6 @@ class Layout extends React.Component {
   }
 
   render() {
-    console.log(process.env);
-
     return this.props.dietAvailables ? (
       <div>
         <ul className="tabs">

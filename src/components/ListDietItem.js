@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getFoodFromId from '../selectors/getFoodFromId.jsx';
-import getSimilarFoods from '../selectors/getSimilarFoods.jsx';
-import {getRoundedKcal, getMacrosPecent} from '../utils/index.jsx';
-import Pie from './Pie.jsx';
+import getFoodFromId from '../selectors/getFoodFromId';
+import getSimilarFoods from '../selectors/getSimilarFoods';
+import {getRoundedKcal, getMacrosPecent} from '../utils/index';
+import Pie from './Pie';
 
 class ListDietItem extends React.Component {
   constructor() {

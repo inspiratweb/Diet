@@ -1,5 +1,5 @@
-import getMacrosFromMeal from './getMacrosFromMeal.jsx';
-import {getTotalKcal} from '../utils/index.jsx';
+import getMacrosFromMeal from './getMacrosFromMeal';
+import {getTotalKcal} from '../utils/index';
 
 
 const getSimilarArray = (similars, meal) => {

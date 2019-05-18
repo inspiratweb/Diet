@@ -73,16 +73,6 @@
     overflow: auto;
     width: 100%;
     padding: 30px;
-    position: relative;
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 30px;
-      background: red;
-    }
   }
 
   &-item {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import ListBasketItem from '../components/ListBasketItem.jsx';
+import ListBasketItem from '../components/ListBasketItem';
 
 class Basket extends React.Component {
   renderMealsList() {

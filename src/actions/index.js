@@ -1,4 +1,4 @@
-import { dietsRef, foodsRef, mealsRef, similarsRef, routerRef } from '../firebase.jsx';
+import { dietsRef, foodsRef, mealsRef, similarsRef, routerRef } from '../firebase';
 
 const setRouter = payload => ({
   type: 'SET_ROUTER',

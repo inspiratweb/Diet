@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import getMealFromId from '../selectors/getMealFromId.jsx';
-import ListDietItem from '../components/ListDietItem.jsx';
-import getMacrosFromMeal from '../selectors/getMacrosFromMeal.jsx';
-import getOrderedDiet from '../selectors/getOrderedDiet.jsx';
-import {getRoundedKcal} from '../utils/index.jsx';
+import getMealFromId from '../selectors/getMealFromId';
+import ListDietItem from '../components/ListDietItem';
+import getMacrosFromMeal from '../selectors/getMacrosFromMeal';
+import getOrderedDiet from '../selectors/getOrderedDiet';
+import {getRoundedKcal} from '../utils/index';
 
 
 class Diet extends React.Component {
