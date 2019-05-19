@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Diet",
+  "name": "Mantente rocoso!",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +8,7 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#64FFDA",
   "background_color": "#ffffff"
 }
