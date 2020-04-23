@@ -16,7 +16,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
+      <Router basename="/diet">
         <Switch>
           <Route path="/foods" component={Foods} />
           <Route component={Layout} />

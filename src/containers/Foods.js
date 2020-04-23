@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getRoundedKcal, getMacrosPecent } from '../utils';
+import { getRoundedKcal, getMacrosPecent, getRealQtty } from '../utils';
 import Pie from '../components/Pie';
 
 class Foods extends React.Component {
@@ -18,19 +18,21 @@ class Foods extends React.Component {
     this.setState({ [grams]: e.currentTarget.value });
   }
 
-  getRealQtty(food) {
+  getUniQtty(food) {
     const qtty = food.eq ? 1 : 100;
     return this.state[food.code] || qtty;
   }
 
   getRealKcalQtty(food) {
-    const qtty = food.eq ? 1 : 100;
-    return getRoundedKcal(food.macros) * (this.state[food.code] || qtty) / qtty;
+    let qtty = food.eq ? 1 : 100;
+    qtty = getRealQtty(food.eq, this.state[food.code] || qtty);
+    const macros = {p: food.macros.p * qtty, ch: food.macros.ch * qtty, f: food.macros.f * qtty};
+    return getRoundedKcal(macros);
   }
 
   getRealMacroQtty(food) {
     let qtty = food.eq ? 1 : 100;
-    qtty = (this.state[food.code] || qtty) / qtty;
+    qtty = getRealQtty(food.eq, this.state[food.code] || qtty);
   
     return (
       <span className="diet-title-macros">
@@ -55,7 +57,7 @@ class Foods extends React.Component {
           <li className="diet-item">
             <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
             <h3 className="diet-food-summary">{food.desc}</h3>
-            <input className="foods-input" onChange={this.handleChange} type="number" name={food.code} value={this.getRealQtty(food)} />
+            <input className="foods-input" onChange={this.handleChange} type="number" name={food.code} value={this.getUniQtty(food)} />
             <span className="foods-qtty">{this.getGramsosUnits(food)}</span>
             {this.getRealMacroQtty(food)}
             <span className="foods-kcal">{this.getRealKcalQtty(food)} KCal</span>

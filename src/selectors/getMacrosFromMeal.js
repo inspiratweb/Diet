@@ -1,7 +1,7 @@
+import { getRealQtty } from '../utils';
+
 const getTotalMacros = (macros, qtty, eq) => {
-  // eq is used to calc the proporcional qtty
-  const realQtty = eq ? eq * qtty : qtty;
-  const total = (realQtty / 100);
+  const total = getRealQtty(eq, qtty);
   return {
     p: macros.p * total,
     ch: macros.ch * total,
