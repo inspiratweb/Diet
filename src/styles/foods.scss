@@ -1,0 +1,21 @@
+.foods {
+  &-input {
+    border: none;
+    border-bottom: solid 2px $maincolor;
+    margin-right: 2px;
+    font-weight: $bold-weight;
+    width: 50px;
+    text-align: right;
+    font-size: 12px;
+  }
+
+  &-qtty {
+    width: 10px;
+    display: inline-block;
+  }
+
+  &-kcal {
+    font-weight: $bold-weight;
+    margin-left: 10px;
+  }
+}
