@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Layout from './components/Layout';
 import Foods from './containers/Foods';
+import Builder from './containers/Builder';
 import { fetchFoods, fetchMeals, fetchSimilars } from './actions/index';
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
       <Router basename="/diet">
         <Switch>
           <Route path="/foods" component={Foods} />
+          <Route path="/builder" component={Builder} />
           <Route component={Layout} />
         </Switch>
       </Router>
