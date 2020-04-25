@@ -52,7 +52,7 @@
     margin: 5px;
     padding: 10px 10px 10px 60px;
     background-color: $white;
-    transition: background-color $fast $easing;
+    transition: all $fast $easing;
 
     &.active {
       background-color: rgba($maincolor, 0.2);
@@ -60,6 +60,14 @@
       &:after {
         background-color: $white;
       }
+    }
+
+    &.dragging {
+      background-color: rgba($maincolor, 0.2);
+      border-color: rgba($maincolor, 0.5);
+      cursor: move;
+      box-shadow: 0 0 4px 2px rgba($basecolor, 0.2);
+      z-index: 99999;
     }
 
     &:before {
@@ -125,6 +133,14 @@
       font-size: 14px;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      &-drag {
+        cursor: pointer;
+        padding: 10px;
+        margin-right: -10px;
+        height: 37px;
+        width: 37px;
+      }
     }
 
     &-detail {

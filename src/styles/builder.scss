@@ -54,13 +54,14 @@ $offcanvas: 240px;
     position: absolute;
     left: -$offcanvas;
     width: $offcanvas;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     overflow: auto;
-    padding: 5px 0;
+    margin: 5px 0;
+    border-right: solid 5px $basecolor-lighter;
   }
 
   &-diet {
-    border-left: solid 5px $basecolor-lighter;
     padding: 10px 5px;
 
     &-list > li:not(:first-child) {
@@ -68,11 +69,37 @@ $offcanvas: 240px;
     }
     
     &-meals {
+      position: relative;
+      margin-top: 10px;
       > li {
         border: solid 1px $basecolor-lighter;
         padding: 10px;
         background-color: $white;
         margin: 5px 0;
+
+        &.empty {
+          color: $basecolor-light;
+          display: flex;
+          align-items: center;
+          min-height: 60px;
+        }
+      }
+
+      &.canDrop:before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        background-color: rgba($maincolor, 0.2);
+        border: dashed 2px rgba($maincolor, 0.5);
+        border-radius: 4px;
+      }
+      
+      &.isOver:before {
+        background-color: rgba($maincolor, 0.5);
+        border: dashed 2px $maincolor;
       }
     }
 
@@ -104,6 +131,7 @@ $offcanvas: 240px;
     display: flex;
     align-content: center;
     align-items: center;
+    justify-content: space-between;
     height: 59px;
   }
 

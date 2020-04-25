@@ -50,4 +50,10 @@ const fetchRouter = () => async (dispatch) => {
   });
 };
 
-export {fetchDiet, fetchFoods, fetchMeals, fetchSimilars, fetchRouter, setRouter};
+const addDraggedFood = (food, meal) => ({
+  type: 'ADD_DRAGGED_FOOD',
+  food,
+  meal
+})
+
+export {fetchDiet, fetchFoods, fetchMeals, fetchSimilars, fetchRouter, setRouter, addDraggedFood};
