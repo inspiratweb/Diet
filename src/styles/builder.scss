@@ -89,6 +89,7 @@ $offcanvas: 240px;
         background-color: $basecolor;
       }
       &-icon {
+        cursor: pointer;
         height: 32px;
         padding: 10px;
         display: block;

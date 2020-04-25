@@ -6,47 +6,26 @@ import Pie from '../components/Pie';
 import search from '../images/search.svg';
 import toggler from '../images/toggler.svg';
 
-class Foods extends React.Component {
-  constructor() {
-    super();
+const Foods = ({ meals, foods }) => {
+  const [filter, setFilter] = React.useState('');
+  const [collapsed, setCollapsed] = React.useState(false);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleTogglerClick = this.handleTogglerClick.bind(this);
-
-    this.state = {
-      filter: '',
-      collapsed: false
-    };
-  }
-
-  handleChange(e) {
-    this.setState({ filter: e.currentTarget.value });
-  }
-
-  handleTogglerClick() {
-    this.setState({
-      collapsed: !this.state.collapsed
-    })
-  }
-
-  renderFoods() {
-    const { foods } = this.props;
+  const renderFoods = () => {
     return Object.values(foods)
     .filter(food => !!food.macros)
-    .filter(food => food.desc.toLowerCase().indexOf(this.state.filter.toLowerCase()) >= 0)
+    .filter(food => food.desc.toLowerCase().indexOf(filter.toLowerCase()) >= 0)
     .map(food => {
         const macrosPercent = getMacrosPecent(food.macros);
         return (
           <li className="diet-item">
             <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
-            <h3 className="diet-food-summary">{food.desc}</h3>
+            <p className="diet-food-summary">{food.desc}</p>
           </li>
         )
       })
   }
 
-  renderMeals() {
-    const { meals } = this.props;
+  const renderMeals = () => {
     return Object.values(meals).map(meal =>
       <li>
         <h3>{meal.desc}</h3>
@@ -58,35 +37,44 @@ class Foods extends React.Component {
     )
   }
 
-  renderBuilderClassName() {
+  const renderBuilderClassName = () => {
     let className = 'builder';
-    return className += this.state.collapsed ? ' collapsed' : ''
+    return className += collapsed ? ' collapsed' : ''
   }
 
-  render() {
-    return (
-      <div className={this.renderBuilderClassName()}>
-        <div className="builder-header">
-          <h3 className="builder-header-title">Diet builder</h3>
-          <div className="builder-header-filter">
-            <img src={search} className="builder-header-filter-icon" onClick={this.handleTogglerClick} />
-            <input className="builder-header-filter-input" name="search" type="text" value={this.state.filter} placeholder="Search food" onChange={this.handleChange} />
-          </div>
-        </div>
-        <div className="builder-wrapper">
-          <ul className="builder-foods">{this.renderFoods()}</ul>
-          <div className="builder-diet">
-            <div className="builder-diet-toggler">
-              <img src={toggler} className="builder-diet-toggler-icon" onClick={this.handleTogglerClick} />
-            </div>
-            <ul className="builder-diet-list">
-              {this.renderMeals()}
-            </ul>
-          </div>
+  return (
+    <div className={renderBuilderClassName()}>
+      <div className="builder-header">
+        <h3 className="builder-header-title">Diet builder</h3>
+        <div className="builder-header-filter">
+          <img src={search} className="builder-header-filter-icon" />
+          <input
+            className="builder-header-filter-input"
+            name="search"
+            type="text"
+            value={filter}
+            placeholder="Search food"
+            onChange={(e) => setFilter(e.currentTarget.value)}
+          />
         </div>
       </div>
-    );
-  }
+      <div className="builder-wrapper">
+        <ul className="builder-foods">{renderFoods()}</ul>
+        <div className="builder-diet">
+          <div className="builder-diet-toggler">
+            <img
+              src={toggler}
+              className="builder-diet-toggler-icon"
+              onClick={() => setCollapsed(!collapsed)}
+            />
+          </div>
+          <ul className="builder-diet-list">
+            {renderMeals()}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 Foods.propTypes = {
