@@ -59,7 +59,7 @@ const Builder = ({ meals, foods }) => {
   return (
     <div className={renderBuilderClassName()}>
       <div className="builder-header">
-        <h3 className="builder-header-title">Diet builder</h3>
+        <h3 className="builder-header-title">Diet<p>Builder</p></h3>
         <div className="builder-header-filter">
           <img src={search} className="builder-header-filter-icon" />
           <input
@@ -67,7 +67,7 @@ const Builder = ({ meals, foods }) => {
             name="search"
             type="text"
             value={filter}
-            placeholder="Search food"
+            placeholder="Search food..."
             onChange={(e) => setFilter(e.currentTarget.value)}
           />
         </div>

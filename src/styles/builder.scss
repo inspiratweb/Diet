@@ -1,4 +1,5 @@
 $offcanvas: 240px;
+$headerHeight: 170px;
 
 .builder {
   min-height: 100vh;
@@ -15,24 +16,33 @@ $offcanvas: 240px;
     
     &-title {
       color: $white;
-      font-size: 20px;
+      font-weight: $book-weight;
+      font-size: 34px;
+      line-height: 30px;
+      p {
+        font-weight: $black-weight;
+        margin-left: 1px;
+      }
     }
 
     &-filter {
-      margin-top: 20px;
+      margin-top: 30px;
+      margin-left: 3px;
 
       &-input {
         background-color: transparent;
         border: 0;
-        &, &::placeholder {
-          color: white
+        font-size: 14px;
+        color: $white;
+        &::placeholder {
+          color: rgba($white, 0.7);
         }
       }
 
       &-icon {
         vertical-align: middle;
-        height: 10px;
-        margin-right: 2px;
+        height: 14px;
+        margin-right: 4px;
       }
     }
   }
@@ -64,6 +74,7 @@ $offcanvas: 240px;
     overflow: auto;
     margin: 5px 0;
     border-right: solid 5px $basecolor-lighter;
+    padding-bottom: $headerHeight;
 
     .diet-item {
       display: flex;
@@ -76,6 +87,12 @@ $offcanvas: 240px;
 
   &-diet {
     padding: 10px 5px;
+    height: 100%;
+    min-height: 100vh;
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    padding-bottom: $headerHeight;
 
     &-list > li:not(:first-child) {
       margin-top: 15px;
@@ -113,12 +130,15 @@ $offcanvas: 240px;
         background-color: rgba($maincolor, 0.2);
         border: dashed 2px rgba($maincolor, 0.5);
         border-radius: 4px;
+        z-index: 1;
       }
       
-      &.isOver:before {
-        background-color: rgba($maincolor, 0.5);
-        border: dashed 2px $maincolor;
-        z-index: 1;
+      &.isOver {
+        cursor: copy;
+        &:before {
+          background-color: rgba($maincolor, 0.5);
+          border: dashed 2px $maincolor;
+        }
       }
     }
 
