@@ -9,6 +9,8 @@ import dragIcon from '../images/drag.svg';
 import { useDrag } from 'react-dnd';
 import ItemDroppable from './ItemDroppable';
 import BlankSlate from '../components/BlankSlate';
+import getMacrosFromMeal from '../selectors/getMacrosFromMeal';
+import {getRoundedKcal} from '../utils/index';
 
 const ItemDraggable = ({ macrosPercent, food }) => {
   const [{ isDragging }, drag] = useDrag({
@@ -27,7 +29,7 @@ const ItemDraggable = ({ macrosPercent, food }) => {
   )
 }
 
-const Builder = ({ meals, foods }) => {
+const Builder = ({ meals, foods, newDiet }) => {
   const codes = Object.values(foods).map(food => food.code);
 
   const [filter, setFilter] = React.useState('');
@@ -76,6 +78,26 @@ const Builder = ({ meals, foods }) => {
       <div className="diet-titleSimple"><span className="highlight">{renderFoods().length}</span> foods after filtering</div>
       {!renderFoods().length && <BlankSlate />}
     </>
+  
+  const renderSummary = () => {
+    const totalMacros = Object.values(newDiet).length && Object.values(newDiet).reduce((acc, val) => {
+      const mealMacros = getMacrosFromMeal(val, foods);
+      return {
+        p: acc.p += mealMacros.p,
+        ch: acc.ch += mealMacros.ch,
+        f: acc.f += mealMacros.f
+      }
+    }, { p: 0, ch: 0, f: 0 });
+    return !!getRoundedKcal(totalMacros) && (
+      <h3 className="diet-titleSimple">
+        <span className="diet-title-kcal highlight">{getRoundedKcal(totalMacros)}KCal</span>
+        <span className="diet-title-macros">
+          <span className="diet-title-macros-p">{Math.round(totalMacros.p)}g</span>
+          <span className="diet-title-macros-ch">{Math.round(totalMacros.ch)}g</span>
+          <span className="diet-title-macros-f">{Math.round(totalMacros.f)}g</span></span>
+      </h3>
+    );
+  }
 
   return (
     <div className={renderBuilderClassName()}>
@@ -116,7 +138,7 @@ const Builder = ({ meals, foods }) => {
               onClick={() => setCollapsed(!collapsed)}
               />
           </div>
-          <p className="builder-diet-summary">SUMMARY</p>
+          {renderSummary()}
           <ul className="builder-diet-list">
             {renderMeals()}
           </ul>
@@ -142,6 +164,7 @@ Builder.defaultProps = {
 const mapStateToProps = state => ({
   foods: state.foods,
   meals: state.meals,
+  newDiet: state.newDiet,
 });
 
 export default connect(mapStateToProps)(Builder);

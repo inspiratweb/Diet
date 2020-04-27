@@ -12,7 +12,7 @@ class Diet extends React.Component {
   renderMealsList() {
     const { diets, meals, foods, similars, router } = this.props;
     const diet = diets[router];
-    let totalMacros = { p: 0, ch: 0, f: 0};
+    let totalMacros = { p: 0, ch: 0, f: 0 };
 
     const mealsList = Object.entries(meals).length > 0 && Object.entries(getOrderedDiet(diet, meals)).map((meal) => {
       const mealName = getMealFromId(meal[0], meals).desc;
