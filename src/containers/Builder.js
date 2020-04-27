@@ -7,8 +7,8 @@ import search from '../images/search.svg';
 import toggler from '../images/toggler.svg';
 import dragIcon from '../images/drag.svg';
 import { useDrag } from 'react-dnd';
-import ItemDroppable from '../containers/ItemDroppable';
-
+import ItemDroppable from './ItemDroppable';
+import BlankSlate from '../components/BlankSlate';
 
 const ItemDraggable = ({ macrosPercent, food }) => {
   const [{ isDragging }, drag] = useDrag({
@@ -32,12 +32,27 @@ const Builder = ({ meals, foods }) => {
 
   const [filter, setFilter] = React.useState('');
   const [collapsed, setCollapsed] = React.useState(false);
+  const [filterMacros, setFilterMacros] = React.useState({ p: false, ch: false, f: false });
+
+  const handleChangeCheckbox = (e) => {
+    const macro = e.currentTarget.id;
+    setFilterMacros({...filterMacros, [macro]: !filterMacros[macro]});
+  }
 
   const renderFoods = () => {
     return Object.values(foods)
-    .filter(food => !!food.macros)
-    .filter(food => food.desc.toLowerCase().indexOf(filter.toLowerCase()) >= 0)
-    .map(food => {
+      .filter(food => !!food.macros)
+      .filter(food => food.desc.toLowerCase().indexOf(filter.toLowerCase()) >= 0)
+      .filter(food => {
+        const macrosPercent = getMacrosPecent(food.macros);
+        return (!filterMacros.p && !filterMacros.ch && !filterMacros.f)
+          || (
+            (filterMacros.p ? macrosPercent.p > 0.3 : true)
+            && (filterMacros.ch ? macrosPercent.ch > 0.3 : true)
+            && (filterMacros.f ? macrosPercent.f > 0.3 : true)
+          );
+      })
+      .map(food => {
         const macrosPercent = getMacrosPecent(food.macros);
         return <ItemDraggable macrosPercent={macrosPercent} food={food} />
       })
@@ -56,32 +71,52 @@ const Builder = ({ meals, foods }) => {
     return className += collapsed ? ' collapsed' : ''
   }
 
+  const renderFilterResult = () =>
+    <>
+      <div className="diet-titleSimple"><span className="highlight">{renderFoods().length}</span> foods after filtering</div>
+      {!renderFoods().length && <BlankSlate />}
+    </>
+
   return (
     <div className={renderBuilderClassName()}>
       <div className="builder-header">
         <h3 className="builder-header-title">Diet<p>Builder</p></h3>
         <div className="builder-header-filter">
-          <img src={search} className="builder-header-filter-icon" />
-          <input
-            className="builder-header-filter-input"
-            name="search"
-            type="text"
-            value={filter}
-            placeholder="Search food..."
-            onChange={(e) => setFilter(e.currentTarget.value)}
-          />
+          <div>
+            <img src={search} className="builder-header-filter-icon" />
+            <input
+              className="builder-header-filter-input"
+              name="search"
+              type="text"
+              value={filter}
+              placeholder="Search food..."
+              onChange={(e) => setFilter(e.currentTarget.value)}
+            />
+          </div>
+          <div>
+            <input checked={filterMacros.p} onChange={handleChangeCheckbox} className="builder-header-filter-checkbox" id="p" type="checkbox" />
+            <label htmlFor="p" className="checkbox-p" />
+            <input checked={filterMacros.ch} onChange={handleChangeCheckbox} className="builder-header-filter-checkbox" id="ch" type="checkbox" />
+            <label htmlFor="ch" className="checkbox-ch" />
+            <input checked={filterMacros.f} onChange={handleChangeCheckbox} className="builder-header-filter-checkbox" id="f" type="checkbox" />
+            <label htmlFor="f" className="checkbox-f" />
+          </div>
         </div>
       </div>
       <div className="builder-wrapper">
-        <ul className="builder-foods">{renderFoods()}</ul>
+        <div className="builder-foods">
+          {renderFilterResult()}
+          <ul>{renderFoods()}</ul>
+        </div>
         <div className="builder-diet">
           <div className="builder-diet-toggler">
             <img
               src={toggler}
               className="builder-diet-toggler-icon"
               onClick={() => setCollapsed(!collapsed)}
-            />
+              />
           </div>
+          <p className="builder-diet-summary">SUMMARY</p>
           <ul className="builder-diet-list">
             {renderMeals()}
           </ul>

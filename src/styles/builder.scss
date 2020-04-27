@@ -26,16 +26,68 @@ $headerHeight: 170px;
     }
 
     &-filter {
-      margin-top: 30px;
+      margin-top: 20px;
       margin-left: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
       &-input {
+        min-width: 200px;
+        text-overflow: ellipsis;
         background-color: transparent;
         border: 0;
         font-size: 14px;
         color: $white;
         &::placeholder {
           color: rgba($white, 0.7);
+        }
+      }
+
+      &-checkbox {
+        position: absolute;
+        opacity: 0;
+        left: -99999px;
+
+        + label {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          width: 30px;
+          height: 30px;
+          margin-left: 10px;
+          &:before {
+            content: "";
+            z-index: 1;
+            position: absolute;
+            left: calc(50% - 8px);
+            top: calc(50% - 8px);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+          }
+
+          &.checkbox-p:before {
+            background-color: #EE0D6E;
+          }
+          &.checkbox-ch:before {
+            background-color: #8457F7;
+          }
+          &.checkbox-f:before {
+            background-color: #B0FF01;
+          }
+        }
+
+        &:checked + label:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: $maincolor;
+          border-radius: 50%;
+          box-shadow: inset 6px 6px 5px 0 rgba($black, 0.2), inset -6px -6px 5px 0 rgba($white, 0.3);
         }
       }
 
@@ -142,9 +194,14 @@ $headerHeight: 170px;
       }
     }
 
+    &-summary:not(:empty) {
+      margin-bottom: 20px;
+    }
+
     &-toggler {
       position: relative;
       margin-top: -5px;
+      margin-bottom: 10px;
       &:before {
         content: "";
         position: absolute;
@@ -156,7 +213,7 @@ $headerHeight: 170px;
       }
       &-icon {
         cursor: pointer;
-        height: 32px;
+        height: 36px;
         padding: 10px;
         display: block;
         transform: rotate(180deg);

@@ -7,6 +7,7 @@ import { setRouter, fetchDiet, fetchRouter } from '../actions/index';
 
 import Diet from '../containers/Diet';
 import Basket from '../containers/Basket';
+import BlankSlate from './BlankSlate';
 
 class Layout extends React.Component {
   constructor() {
@@ -46,19 +47,6 @@ class Layout extends React.Component {
     return this.state.selectedTab === tab ? `${tab} active` : tab;
   }
 
-  renderEmoji() {
-    return (
-      <div className="blankSlate-emoji">
-        <div className="blankSlate-emoji-head">
-          <div className="blankSlate-emoji-face">
-            <div className="blankSlate-emoji-eyes" />
-            <div className="blankSlate-emoji-mouth" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   render() {
     return this.props.dietAvailables ? (
       <div>
@@ -80,9 +68,7 @@ class Layout extends React.Component {
         <Basket className={this.renderTab('basket')} />
       </div>
     ) : (
-      <div className="blankSlate">
-        {this.renderEmoji()}
-      </div>
+      <BlankSlate />
     );
   }
 }

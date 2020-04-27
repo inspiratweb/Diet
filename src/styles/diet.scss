@@ -44,6 +44,21 @@
       }
     }
   }
+
+  &-titleSimple {
+    font-weight: $bold-weight;
+    text-align: center;
+    margin: 0 5px 0 5px;
+    padding: 10px 0;
+    z-index: 1;
+    color: $basecolor-light;
+    
+    .highlight {
+      color: $basecolor;
+      font-weight: $black-weight;
+      font-size: 14px;
+    }
+  }
   
   &-item {
     position: relative;
