@@ -2,14 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useDrop } from 'react-dnd';
-import { addDraggedFood } from '../actions/index';
+import { addDraggedFood, changeFoodQuantity } from '../actions/index';
 import getFoodFromId from '../selectors/getFoodFromId';
+import getNewDietFood from '../selectors/getNewDietFood';
+import { getRoundedKcal, getMacrosPecent, getRealQtty } from '../utils';
+import Pie from '../components/Pie';
 
 const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: foodCodes,
     drop: (food) => {
-      actions.addDraggedFood(food.type, meal.desc);
+      actions.addDraggedFood(food.type, meal.desc, foods);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -17,11 +20,53 @@ const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
     }),
   });
 
-  const renderFoodByMeal = (meal) => {
-    return newDiet[meal]
-      ? newDiet[meal].map(meal => {
+  const handleChange = (e, food, meal) => {
+    actions.changeFoodQuantity(food, meal, e.currentTarget.value);
+  }
+
+  const getFoodQtty = (food, meal) => {
+    return getNewDietFood(newDiet, meal, food).qtty;
+  }
+  
+  const getRealKcalQtty = (food, meal) => {
+    const newDietFoodQtty = getNewDietFood(newDiet, meal, food.code).qtty;
+    const qtty = getRealQtty(food.eq, newDietFoodQtty);
+    const macros = {p: food.macros.p * qtty, ch: food.macros.ch * qtty, f: food.macros.f * qtty};
+    return getRoundedKcal(macros);
+  }
+  
+  const getRealMacroQtty = (food, meal) => {
+    const newDietFoodQtty = getNewDietFood(newDiet, meal, food.code).qtty;
+    const qtty = getRealQtty(food.eq, newDietFoodQtty);
+  
+    return (
+      <span className="diet-title-macros">
+        <span className="diet-title-macros-p">{Math.ceil(food.macros.p * qtty)}</span>
+        <span className="diet-title-macros-ch">{Math.ceil(food.macros.ch * qtty)}</span>
+        <span className="diet-title-macros-f">{Math.ceil(food.macros.f * qtty)}</span>
+      </span>
+    )
+  }
+
+  const getGramsOrUnits = (food) => {
+    return food.eq ? ' ' : 'g';
+  }
+
+  const renderFoodByMeal = (mealName) => {
+    return newDiet[mealName]
+      ? newDiet[mealName].map(meal => {
         const food = getFoodFromId(meal.food, foods);
-        return <li>{food.desc}</li>
+        const macrosPercent = getMacrosPecent(food.macros);
+        return (
+          <li className="diet-item">
+            <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
+            <h3 className="diet-food-summary">{food.desc}</h3>
+            <input className="foods-input" onChange={(e) => handleChange(e, food.code, mealName)} type="number" name={food.code} value={getFoodQtty(food.code, mealName)} />
+            <span className="foods-qtty">{getGramsOrUnits(food)}</span>
+            {getRealMacroQtty(food, mealName)}
+            <span className="foods-kcal">{getRealKcalQtty(food, mealName)} KCal</span>
+          </li>
+        )
       })
       : <li className="empty">Empty (drop foods here)</li>
   }
@@ -50,6 +95,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   const actions = {
     addDraggedFood,
+    changeFoodQuantity,
   };
   return { actions: bindActionCreators(actions, dispatch) };
 };

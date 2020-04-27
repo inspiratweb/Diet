@@ -2,7 +2,12 @@ $offcanvas: 240px;
 
 .builder {
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
+
+  .diet-food-summary {
+    min-width: 0;
+    margin-bottom: 0;
+  }
 
   &-header {
     padding: 25px 10px;
@@ -59,6 +64,14 @@ $offcanvas: 240px;
     overflow: auto;
     margin: 5px 0;
     border-right: solid 5px $basecolor-lighter;
+
+    .diet-item {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: space-between;
+      height: 59px;
+    }
   }
 
   &-diet {
@@ -71,10 +84,12 @@ $offcanvas: 240px;
     &-meals {
       position: relative;
       margin-top: 10px;
+
+      .diet-food-summary {
+        margin-bottom: 5px;
+      }
+
       > li {
-        border: solid 1px $basecolor-lighter;
-        padding: 10px;
-        background-color: $white;
         margin: 5px 0;
 
         &.empty {
@@ -82,6 +97,9 @@ $offcanvas: 240px;
           display: flex;
           align-items: center;
           min-height: 60px;
+          border: solid 1px $basecolor-lighter;
+          padding: 10px;
+          background-color: $white;
         }
       }
 
@@ -100,6 +118,7 @@ $offcanvas: 240px;
       &.isOver:before {
         background-color: rgba($maincolor, 0.5);
         border: dashed 2px $maincolor;
+        z-index: 1;
       }
     }
 
@@ -125,18 +144,5 @@ $offcanvas: 240px;
         position: relative;
       }
     }
-  }
-
-  .diet-item {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
-    height: 59px;
-  }
-
-  .diet-food-summary {
-    min-width: 0;
-    margin-bottom: 0;
   }
 }
