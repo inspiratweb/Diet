@@ -24,7 +24,7 @@ const ItemDraggable = ({ macrosPercent, food }) => {
     <li className={isDragging ? 'diet-item dragging' : 'diet-item'}>
       <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
       <p className="diet-food-summary">{food.desc}</p>
-      <img ref={drag} src={dragIcon} className="diet-food-summary-drag" />
+      <img alt="drag me!" ref={drag} src={dragIcon} className="diet-food-summary-drag" />
     </li>
   )
 }
@@ -56,7 +56,7 @@ const Builder = ({ meals, foods, newDiet }) => {
       })
       .map(food => {
         const macrosPercent = getMacrosPecent(food.macros);
-        return <ItemDraggable macrosPercent={macrosPercent} food={food} />
+        return <ItemDraggable key={food.code} macrosPercent={macrosPercent} food={food} />
       })
   }
 
@@ -64,7 +64,7 @@ const Builder = ({ meals, foods, newDiet }) => {
     return Object.values(meals)
       .sort((a, b) => a.time - b.time)
       .map(meal =>
-        codes.length && <ItemDroppable foodCodes={codes} meal={meal} />
+        codes.length && <ItemDroppable key={meal.desc} foodCodes={codes} meal={meal} />
       )
   }
 
@@ -105,7 +105,7 @@ const Builder = ({ meals, foods, newDiet }) => {
         <h3 className="builder-header-title">Diet<p>Builder</p></h3>
         <div className="builder-header-filter">
           <div>
-            <img src={search} className="builder-header-filter-icon" />
+            <img alt="search" src={search} className="builder-header-filter-icon" />
             <input
               className="builder-header-filter-input"
               name="search"
@@ -133,6 +133,7 @@ const Builder = ({ meals, foods, newDiet }) => {
         <div className="builder-diet">
           <div className="builder-diet-toggler">
             <img
+              alt="toggle menu"
               src={toggler}
               className="builder-diet-toggler-icon"
               onClick={() => setCollapsed(!collapsed)}

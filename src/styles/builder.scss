@@ -85,7 +85,7 @@ $headerHeight: 170px;
           left: 0;
           right: 0;
           bottom: 0;
-          background: $maincolor;
+          background: rgba($maincolor, .4);
           border-radius: 50%;
           box-shadow: inset 6px 6px 5px 0 rgba($black, 0.2), inset -6px -6px 5px 0 rgba($white, 0.3);
         }
