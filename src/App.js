@@ -19,9 +19,9 @@ class App extends React.Component {
     return (
       <Router basename="/diet">
         <Switch>
-          <Route path="/foods" component={Foods} />
-          <Route path="/builder" component={BuilderWrapper} />
-          <Route component={Layout} />
+          <Route exact path="/foods" component={Foods} />
+          <Route exact path="/builder" component={BuilderWrapper} />
+          <Route exact path="/" component={Layout} />
         </Switch>
       </Router>
     )
