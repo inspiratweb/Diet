@@ -13,7 +13,7 @@ $headerHeight: 170px;
   &-header {
     padding: 25px 10px;
     font-size: 14px;
-    
+
     &-title {
       color: $white;
       font-weight: $book-weight;
@@ -107,11 +107,15 @@ $headerHeight: 170px;
     .builder-wrapper {
       transform: translateX(0);
     }
-    .builder-diet-toggler-icon {
-      transform: rotate(0deg);
+    .builder-diet {
+      width: 100%;
+
+      &-toggler-icon {
+        transform: rotate(0deg);
+      }
     }
   }
-  
+
   .builder-wrapper {
     transform: translateX($offcanvas);
     transition: transform $faster $easing;
@@ -142,14 +146,14 @@ $headerHeight: 170px;
     height: 100%;
     min-height: 100vh;
     position: absolute;
-    width: 100%;
+    width: calc(100% - #{$offcanvas});
     overflow: auto;
     padding-bottom: $headerHeight;
 
     &-list > li:not(:first-child) {
       margin-top: 15px;
     }
-    
+
     &-meals {
       position: relative;
       margin-top: 10px;
@@ -160,6 +164,20 @@ $headerHeight: 170px;
 
       > li {
         margin: 5px 0;
+
+        &.diet-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          & .diet-item-cross {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 100%;
+            background: $maincolor;
+            color: $white;
+          }
+        }
 
         &.empty {
           color: $basecolor-light;
@@ -184,7 +202,7 @@ $headerHeight: 170px;
         border-radius: 4px;
         z-index: 1;
       }
-      
+
       &.isOver {
         cursor: copy;
         &:before {

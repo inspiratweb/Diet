@@ -16,6 +16,13 @@ export default (state = {}, action) => {
       }
 
       return {...state, [meal]: newPayload};
+
+    case 'REMOVE_DRAGGED_FOOD':
+      const filtedMeal = state[meal].filter(f => f.food !== food.code);
+      const filteredState = { ...state, [meal]: [...filtedMeal] };
+
+      return filteredState;
+
     case 'CHANGE_FOOD_QUANTITY':
       const index = state[meal].findIndex((f) => f.food === food);
       const newSlice = [...state[meal]];

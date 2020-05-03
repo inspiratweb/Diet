@@ -57,6 +57,12 @@ const addDraggedFood = (food, meal, foods) => ({
   meal
 })
 
+const removeDraggedFood = (food, meal) => ({
+  type: 'REMOVE_DRAGGED_FOOD',
+  food,
+  meal
+})
+
 const changeFoodQuantity = (food, meal, inputQtty) => ({
   type: 'CHANGE_FOOD_QUANTITY',
   food,
@@ -72,5 +78,6 @@ export {
   fetchRouter,
   setRouter,
   addDraggedFood,
+  removeDraggedFood,
   changeFoodQuantity
 };
