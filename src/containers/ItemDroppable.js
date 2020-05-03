@@ -57,12 +57,12 @@ const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
   }
 
   const renderFoodByMeal = (mealName) => {
-    return newDiet[mealName]
+    return newDiet[mealName] && newDiet[mealName].length
       ? newDiet[mealName].map(meal => {
         const food = getFoodFromId(meal.food, foods);
         const macrosPercent = getMacrosPecent(food.macros);
         return (
-          <li key={food} className="diet-item">
+          <li key={`${mealName}-${food}`} className="diet-item">
             <div className="diet-item-data">
               <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
               <h3 className="diet-food-summary">{food.desc}</h3>
