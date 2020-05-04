@@ -7,6 +7,7 @@ import getFoodFromId from '../selectors/getFoodFromId';
 import getNewDietFood from '../selectors/getNewDietFood';
 import { getRoundedKcal, getMacrosPecent, getRealQtty } from '../utils';
 import Pie from '../components/Pie';
+import removeIcon from '../images/remove.svg';
 
 const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
   const [{ isOver, canDrop }, drop] = useDrop({
@@ -71,7 +72,11 @@ const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
               {getRealMacroQtty(food, mealName)}
               <span className="foods-kcal">{getRealKcalQtty(food, mealName)} KCal</span>
             </div>
-            <div onClick={() => removeFood(food, mealName, foods)} className="diet-item-cross">X</div>
+            <img
+               className="diet-item-cross"
+               src={removeIcon}
+               onClick={() => removeFood(food, mealName, foods)}
+            />
           </li>
         )
       })
