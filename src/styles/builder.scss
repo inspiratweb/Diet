@@ -146,7 +146,7 @@ $headerHeight: 170px;
     height: 100%;
     min-height: 100vh;
     position: absolute;
-    width: calc(100% - #{$offcanvas});
+    width: 100%;
     overflow: auto;
     padding-bottom: $headerHeight;
 
@@ -170,13 +170,14 @@ $headerHeight: 170px;
           justify-content: space-between;
           align-items: center;
 
-          & .diet-item-cross {
-            padding: 5px 10px;
+          .diet-item-cross {
+            margin-left: 5px;
+            padding: 8px;
+            width: 30px;
+            height: 30px;
             cursor: pointer;
-            border-radius: 100%;
+            border-radius: 50%;
             background: $maincolor;
-            color: $black;
-            font-weight: $black-weight;
           }
         }
 
@@ -235,6 +236,14 @@ $headerHeight: 170px;
         transition: transform $faster $easing;
         position: relative;
       }
+    }
+  }
+}
+
+@include mq($from: tablet) {
+  .builder {
+    &-diet {
+      width: calc(100% - #{$offcanvas});
     }
   }
 }
