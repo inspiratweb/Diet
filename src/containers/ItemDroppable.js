@@ -74,8 +74,9 @@ const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
             </div>
             <img
                className="diet-item-cross"
+               alt={`remove ${food} from ${mealName} icon`}
                src={removeIcon}
-               onClick={() => removeFood(food, mealName, foods)}
+               onClick={() => removeFood(food, mealName)}
             />
           </li>
         )
