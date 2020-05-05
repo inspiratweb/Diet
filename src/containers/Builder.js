@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getMacrosPecent } from '../utils';
+import { getMacrosPecent } from '../utils/getMacrosPecent';
+import { getRoundedKcal } from '../utils/getRoundedKcal';
 import Pie from '../components/Pie';
 import search from '../images/search.svg';
 import toggler from '../images/toggler.svg';
@@ -9,8 +10,7 @@ import dragIcon from '../images/drag.svg';
 import { useDrag } from 'react-dnd';
 import ItemDroppable from './ItemDroppable';
 import BlankSlate from '../components/BlankSlate';
-import getMacrosFromMeal from '../selectors/getMacrosFromMeal';
-import {getRoundedKcal} from '../utils/index';
+import { getMacrosFromMeal } from '../selectors/meals/getMacrosFromMeal';
 
 const ItemDraggable = ({ macrosPercent, food }) => {
   const [{ isDragging }, drag] = useDrag({
@@ -78,7 +78,7 @@ const Builder = ({ meals, foods, newDiet }) => {
       <div className="diet-titleSimple"><span className="highlight">{renderFoods().length}</span> foods after filtering</div>
       {!renderFoods().length && <BlankSlate />}
     </>
-  
+
   const renderSummary = () => {
     const totalMacros = Object.values(newDiet).length && Object.values(newDiet).reduce((acc, val) => {
       const mealMacros = getMacrosFromMeal(val, foods);

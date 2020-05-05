@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useDrop } from 'react-dnd';
-import { addDraggedFood, removeDraggedFood, changeFoodQuantity } from '../actions/index';
-import getFoodFromId from '../selectors/getFoodFromId';
-import getNewDietFood from '../selectors/getNewDietFood';
-import { getRoundedKcal, getMacrosPecent, getRealQtty } from '../utils';
+import { addDraggedFood } from '../actions/newDiet/addDraggedFood';
+import { removeDraggedFood } from '../actions/newDiet/removeDraggedFood';
+import { changeFoodQuantity } from '../actions/newDiet/changeFoodCuantity';
+import { getFoodFromId } from '../selectors/foods/getFoodFromId';
+import { getNewDietFood } from '../selectors/newDiet/getNewDietFood';
+import { getRoundedKcal } from '../utils/getRoundedKcal';
+import { getMacrosPecent } from '../utils/getMacrosPecent';
+import { getRealQtty } from '../utils/getRealQtty';
 import Pie from '../components/Pie';
 import removeIcon from '../images/remove.svg';
 
