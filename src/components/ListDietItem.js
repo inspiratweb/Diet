@@ -1,184 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
+import classNames from "classnames";
 import PropTypes from 'prop-types';
-import { getFoodFromId } from '../selectors/foods/getFoodFromId';
-import { getSimilarFoods } from '../selectors/similars/getSimilarFoods';
 import { getRoundedKcal } from '../utils/getRoundedKcal';
 import { getMacrosPecent } from '../utils/getMacrosPecent';
-import Pie from './Pie';
+import { Pie } from './Pie';
+import { FoodList } from './FoodList';
+import { getFoodSummary } from "../utils/getFoodSummary";
 
-class ListDietItem extends React.Component {
-  constructor() {
-    super();
+export const ListDietItem = ({ mealName, mealFoods, foods, macros, similars }) => {
+  const [ visibleItem, setVisibleItem ] = useState(false);
+  const [ touchStartX, setTouchStartX ] = useState(0);
+  const [ swipe, setSwipe ] = useState(false);
+  const [ showLightbox, setShowLightbox ] = useState(false);
+  const macrosPercent = getMacrosPecent(macros);
+  const kcal = getRoundedKcal(macros);
 
-    this.state = {
-      visibleItem: false,
-      touchStartX: 0,
-      swipe: false,
-      showLightbox: false
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleTouchStart = this.handleTouchStart.bind(this);
-    this.handleTouchEnd = this.handleTouchEnd.bind(this);
-    this.openLightbox = this.openLightbox.bind(this);
-    this.closeLightbox = this.closeLightbox.bind(this);
+  const handleClick = () => {
+    setVisibleItem(!visibleItem);
   }
 
-  handleClick() {
-    this.setState({ visibleItem: !this.state.visibleItem });
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.nativeEvent.changedTouches[0].clientX);
   }
 
-  handleTouchStart(e) {
-    this.setState({
-      touchStartX: e.nativeEvent.changedTouches[0].clientX
-    });
-  }
-
-  handleTouchEnd(e) {
+  const handleTouchEnd = (e) => {
     const touchEndX = e.nativeEvent.changedTouches[0].clientX;
 
     // adding class on swipe
-    if (touchEndX + 90 < this.state.touchStartX) {
-      this.setState({ swipe: false });
+    if (touchEndX + 90 < touchStartX) {
+      setSwipe(false);
     }
 
-    if (touchEndX - 90 > this.state.touchStartX) {
-      this.setState({ swipe: true });
+    if (touchEndX - 90 > touchStartX) {
+      setSwipe(true);
     }
   }
 
-  openLightbox(e) {
+  const openLightbox = (e) => {
     e.stopPropagation();
-    this.setState({
-      showLightbox: true
-    });
+    setShowLightbox(true);
   }
 
-  closeLightbox(e) {
+  const closeLightbox = (e) => {
     e.stopPropagation();
-    this.setState({
-      showLightbox: false
-    });
+    setShowLightbox(false);
   }
 
-  renderClass() {
-    const initialClass = 'diet-item';
-    return this.state.swipe ? `${initialClass} active` : initialClass;
-  }
-
-  renderNoMacroClass(food) {
-    return food.macros ? '' : 'diet-food-detail-empty';
-  }
-
-  renderMeal(meal, mealName) {
-    return (
-      <li key={mealName.code}>
-        <span className={this.renderNoMacroClass(mealName)}>
-          {mealName.skipGrams ? `(${meal.qtty}) ${mealName.desc}` : `${meal.qtty}g: ${mealName.desc}`}
-        </span>
-      </li>
-    );
-  }
-
-  renderLightBoxDetail(data) {
-    return data.map((d) => {
-      const foodName = this.props.foods[d.food].desc;
-      const foodQtty = d.qtty;
-      return <li className={!foodQtty ? 'lightBox-item-nodata' : ''}>{`${foodQtty} ${foodName}`}</li>;
-    });
-  }
-
-  renderLightBox(data) {
-    return data && data.map((d) => {
-      const foodName = this.props.foods[d[0].food].desc;
-      const skipGrams = this.props.foods[d[0].food].skipGrams;
-      const foodQtty = d[0].qtty;
-      return (
-        <div className="lightBox-item">
-          <p className="lightBox-item-title">{skipGrams ? `(${foodQtty}) ${foodName}` : `${foodName} ${foodQtty}g`}</p>
-          <ul>{this.renderLightBoxDetail(d[1])}</ul>
-        </div>
-      );
-    });
-  }
-
-  renderLightboxClass() {
-    return this.state.showLightbox ? 'lightBox active' : 'lightBox';
-  }
-
-  renderClassDetail(lightbox) {
-    return lightbox ? 'diet-food-detail withLightbox' : 'diet-food-detail';
-  }
-
-  renderFoodList(meals) {
-    const { foods, similars } = this.props;
-    const lightBoxData = [];
-
-    const mealList = meals.map((meal) => {
-      const mealName = getFoodFromId(meal.food, foods);
-      const similarFoods = getSimilarFoods(meal, foods, similars);
-      if (similarFoods) {
-        lightBoxData.push([meal, similarFoods]);
+  return (
+    <li
+      className={classNames('diet-item', { active: swipe })}
+      onClick={handleClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
+      <h3 className="diet-name">
+        <p className="diet-food-summary">
+          {mealName}
+          <span className="diet-food-cals">{`${kcal}KCal`}</span>
+        </p>
+      </h3>
+      {
+        visibleItem
+          ? <FoodList meals={mealFoods} showLightbox={showLightbox} openLightbox={openLightbox} closeLightbox={closeLightbox} />
+          : <p className="diet-food-summary">{ getFoodSummary({ meals: mealFoods, foods }) }</p>
       }
-      return this.renderMeal(meal, mealName);
-    });
-
-    return (
-      <React.Fragment>
-        <ul className={this.renderClassDetail(!!lightBoxData.length)} onClick={this.openLightbox}>{mealList}</ul>
-        <div className={this.renderLightboxClass()} onClick={this.closeLightbox}>
-          <div className="lightBox-wrapper" onClick={e => e.stopPropagation()}>
-            <div className="lightBox-inner">
-              {this.renderLightBox(lightBoxData)}
-            </div>
-          </div>
-        </div>
-      </React.Fragment>
-    );
-  }
-
-  renderFoodSummary(meals) {
-    const { foods } = this.props;
-
-    return meals.map((meal, i) => {
-      const mealName = getFoodFromId(meal.food, foods);
-
-      return i < meals.length - 1 ? `${mealName.code}, ` : mealName.code;
-    });
-  }
-
-  renderMealTitle() {
-    const { mealName, macros } = this.props;
-    const kcal = getRoundedKcal(macros);
-    return (
-      <p className="diet-food-summary">
-        {mealName}
-        <span className="diet-food-cals">{`${kcal}KCal`}</span>
-      </p>
-    );
-  }
-
-  render() {
-    const { mealFoods, macros } = this.props;
-    const macrosPercent = getMacrosPecent(macros);
-
-    return (
-      <li
-        className={this.renderClass()}
-        onClick={this.handleClick}
-        onTouchStart={this.handleTouchStart}
-        onTouchEnd={this.handleTouchEnd}
-      >
-        <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
-        <h3 className="diet-name">{this.renderMealTitle()}</h3>
-        {
-          this.state.visibleItem
-            ? this.renderFoodList(mealFoods)
-            : <p className="diet-food-summary">{this.renderFoodSummary(mealFoods)}</p>
-        }
-      </li>
-    );
-  }
+    </li>
+  );
 }
 
 ListDietItem.propTypes = {
@@ -208,5 +96,3 @@ ListDietItem.propTypes = {
     )
   )
 };
-
-export default ListDietItem;

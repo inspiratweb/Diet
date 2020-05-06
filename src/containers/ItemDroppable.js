@@ -1,23 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import classNames from "classnames";
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { addDraggedFood } from '../actions/newDiet/addDraggedFood';
 import { removeDraggedFood } from '../actions/newDiet/removeDraggedFood';
 import { changeFoodQuantity } from '../actions/newDiet/changeFoodCuantity';
 import { getFoodFromId } from '../selectors/foods/getFoodFromId';
 import { getNewDietFood } from '../selectors/newDiet/getNewDietFood';
-import { getRoundedKcal } from '../utils/getRoundedKcal';
+import { getNewDiet } from '../selectors/newDiet/getNewDiet';
+import { getFoods } from '../selectors/foods/getFoods';
 import { getMacrosPecent } from '../utils/getMacrosPecent';
-import { getRealQtty } from '../utils/getRealQtty';
-import Pie from '../components/Pie';
+import { Pie } from '../components/Pie';
 import removeIcon from '../images/remove.svg';
+import { RealMacroQtty } from '../components/RealMacroQtty';
+import { getRealKCalQtty } from '../utils/getRealKCalQtty';
 
-const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
+export const ItemDroppable = ({ foodCodes, meal }) => {
+  const dispatch = useDispatch();
+  const newDiet = useSelector(getNewDiet);
+  const foods = useSelector(getFoods);
+  const mealName = meal.desc;
+
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: foodCodes,
     drop: (food) => {
-      actions.addDraggedFood(food.type, meal.desc, foods);
+      dispatch(addDraggedFood(food.type, mealName, foods));
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -26,55 +33,33 @@ const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
   });
 
   const handleChange = (e, food, meal) => {
-    actions.changeFoodQuantity(food, meal, e.currentTarget.value);
+    dispatch(changeFoodQuantity(food, meal, e.currentTarget.value));
   }
 
   const removeFood = (food, meal) => {
-    actions.removeDraggedFood(food, meal);
+    dispatch(removeDraggedFood(food, meal));
   }
 
-  const getFoodQtty = (food, meal) => {
-    return getNewDietFood(newDiet, meal, food).qtty;
-  }
+  const getFoodQtty = (food, meal) => getNewDietFood(newDiet, meal, food).qtty;
 
-  const getRealKcalQtty = (food, meal) => {
-    const newDietFoodQtty = getNewDietFood(newDiet, meal, food.code).qtty;
-    const qtty = getRealQtty(food.eq, newDietFoodQtty);
-    const macros = {p: food.macros.p * qtty, ch: food.macros.ch * qtty, f: food.macros.f * qtty};
-    return getRoundedKcal(macros);
-  }
-
-  const getRealMacroQtty = (food, meal) => {
-    const newDietFoodQtty = getNewDietFood(newDiet, meal, food.code).qtty;
-    const qtty = getRealQtty(food.eq, newDietFoodQtty);
-
-    return (
-      <span className="diet-title-macros">
-        <span className="diet-title-macros-p">{Math.ceil(food.macros.p * qtty)}</span>
-        <span className="diet-title-macros-ch">{Math.ceil(food.macros.ch * qtty)}</span>
-        <span className="diet-title-macros-f">{Math.ceil(food.macros.f * qtty)}</span>
-      </span>
-    )
-  }
-
-  const getGramsOrUnits = (food) => {
-    return food.eq ? ' ' : 'g';
-  }
-
-  const renderFoodByMeal = (mealName) => {
-    return newDiet[mealName] && newDiet[mealName].length
+  return (
+    <li>
+      <h3>{mealName}</h3>
+      <ul ref={drop} className={classNames('builder-diet-meals', { isOver, canDrop })}>
+        {newDiet[mealName] && newDiet[mealName].length
       ? newDiet[mealName].map(meal => {
         const food = getFoodFromId(meal.food, foods);
-        const macrosPercent = getMacrosPecent(food.macros);
+        const { p, ch, f } = getMacrosPecent(food.macros);
+
         return (
-          <li key={`${mealName}-${food}`} className="diet-item">
+          <li key={`${mealName}-${food.desc}`} className="diet-item">
             <div className="diet-item-data">
-              <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
+              <Pie p={p} ch={ch} f={f} />
               <h3 className="diet-food-summary">{food.desc}</h3>
               <input className="foods-input" onChange={(e) => handleChange(e, food.code, mealName)} type="number" name={food.code} value={getFoodQtty(food.code, mealName)} />
-              <span className="foods-qtty">{getGramsOrUnits(food)}</span>
-              {getRealMacroQtty(food, mealName)}
-              <span className="foods-kcal">{getRealKcalQtty(food, mealName)} KCal</span>
+              <span className="foods-qtty">{food.eq ? ' ' : 'g'}</span>
+              <RealMacroQtty food={food} meal={mealName} newDiet={newDiet} />
+              <span className="foods-kcal">{getRealKCalQtty(food, mealName, newDiet)} KCal</span>
             </div>
             <img
                className="diet-item-cross"
@@ -85,37 +70,8 @@ const ItemDroppable = ({ foodCodes, foods, meal, actions, newDiet }) => {
           </li>
         )
       })
-      : <li className="empty">Empty (drop foods here)</li>
-  }
-
-  const renderClassname = () => {
-    let className = 'builder-diet-meals';
-    className += isOver ? ' isOver' : '';
-    className += canDrop ? ' canDrop' : '';
-    return className;
-  }
-
-  return (
-    <li>
-      <h3>{meal.desc}</h3>
-      <ul ref={drop} className={renderClassname()}>
-        {renderFoodByMeal(meal.desc)}
+      : <li className="empty">Empty (drop foods here)</li>}
       </ul>
     </li>
  );
 }
-const mapStateToProps = state => ({
-  newDiet: state.newDiet,
-  foods: state.foods,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  const actions = {
-    addDraggedFood,
-    removeDraggedFood,
-    changeFoodQuantity,
-  };
-  return { actions: bindActionCreators(actions, dispatch) };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemDroppable);

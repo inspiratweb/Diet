@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getMacrosPecent } from '../utils/getMacrosPecent';
 import { getRoundedKcal } from '../utils/getRoundedKcal';
-import Pie from '../components/Pie';
+import { Pie } from '../components/Pie';
 import search from '../images/search.svg';
 import toggler from '../images/toggler.svg';
 import dragIcon from '../images/drag.svg';
 import { useDrag } from 'react-dnd';
-import ItemDroppable from './ItemDroppable';
-import BlankSlate from '../components/BlankSlate';
+import { ItemDroppable } from './ItemDroppable';
+import { BlankSlate } from '../components/BlankSlate';
 import { getMacrosFromMeal } from '../selectors/meals/getMacrosFromMeal';
 
 const ItemDraggable = ({ macrosPercent, food }) => {
@@ -29,7 +29,7 @@ const ItemDraggable = ({ macrosPercent, food }) => {
   )
 }
 
-const Builder = ({ meals, foods, newDiet }) => {
+export const Builder = ({ meals, foods, newDiet }) => {
   const codes = Object.values(foods).map(food => food.code);
 
   const [filter, setFilter] = React.useState('');

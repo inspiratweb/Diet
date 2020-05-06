@@ -30,7 +30,7 @@ export default (state = {}, action) => {
       const index = state[meal].findIndex((f) => f.food === food);
       const newSlice = [...state[meal]];
       newSlice[index].qtty = inputQtty;
-      return {...state, [meal]: newSlice}
+      return { ...state, [meal]: newSlice }
     }
 
     default:

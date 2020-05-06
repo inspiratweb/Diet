@@ -1,78 +1,71 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getDietAvailable } from '../selectors/diet/getDietAvailable';
 import { fetchDiet } from '../actions/diet/fetchDiet';
 import { setRouter } from '../actions/router/setRouter';
 import { fetchRouter } from '../actions/router/fetchRouter';
 
-import Diet from '../containers/Diet';
-import Basket from '../containers/Basket';
-import BlankSlate from './BlankSlate';
+import { Diet } from '../components/Diet';
+import { Basket } from '../components/Basket';
+import { BlankSlate } from './BlankSlate';
 
-class Layout extends React.Component {
-  constructor() {
-    super();
+export const Layout = ({ location }) => {
+  const dietAvailables = useSelector(getDietAvailable);
+  const [ selectedTab, setSelectedTab ] = useState('diet');
+  const dispatch = useDispatch();
+  const normalizedUrl = location.pathname.replace(process.env.PUBLIC_URL, '').replace(/\//g, '');
 
-    this.handleClickDiet = this.handleClickDiet.bind(this);
-    this.handleClickBasket = this.handleClickBasket.bind(this);
-    this.state = {
-      selectedTab: 'diet'
-    };
-  }
-
-  componentWillMount() {
-    const normalizedUrl = this.props.location.pathname.replace(process.env.PUBLIC_URL, '').replace(/\//g, '');
-
+  useEffect(() => {
     if (normalizedUrl) {
-      this.props.actions.setRouter(normalizedUrl);
+      dispatch(setRouter(normalizedUrl));
     } else {
-      this.props.actions.fetchRouter();
+      dispatch(fetchRouter());
     }
-    this.props.actions.fetchDiet();
+    dispatch(fetchDiet());
+
+  }, [normalizedUrl, dispatch]);
+
+
+  const handleClickDiet = () => {
+    setSelectedTab('diet');
   }
 
-  handleClickDiet() {
-    this.setState({ selectedTab: 'diet' });
+  const handleClickBasket = () => {
+    setSelectedTab('basket');
   }
 
-  handleClickBasket() {
-    this.setState({ selectedTab: 'basket' });
+  const renderTabClass = (tab) => {
+    return selectedTab === tab ? 'active' : '';
   }
 
-  renderTabClass(tab) {
-    return this.state.selectedTab === tab ? 'active' : '';
+  const renderTab = (tab) => {
+    return selectedTab === tab ? `${tab} active` : tab;
   }
 
-  renderTab(tab) {
-    return this.state.selectedTab === tab ? `${tab} active` : tab;
-  }
+  return dietAvailables ? (
+    <div>
+      <ul className="tabs">
+        <li
+          className={renderTabClass('diet')}
+          onClick={handleClickDiet}
+        >
+          Diet
+        </li>
+        <li
+          className={renderTabClass('basket')}
+          onClick={handleClickBasket}
+        >
+          Basket
+        </li>
+      </ul>
+      <Diet className={renderTab('diet')} />
+      <Basket className={renderTab('basket')} />
+    </div>
+  ) : (
+    <BlankSlate />
+  );
 
-  render() {
-    return this.props.dietAvailables ? (
-      <div>
-        <ul className="tabs">
-          <li
-            className={this.renderTabClass('diet')}
-            onClick={this.handleClickDiet}
-          >
-            Diet
-          </li>
-          <li
-            className={this.renderTabClass('basket')}
-            onClick={this.handleClickBasket}
-          >
-            Basket
-          </li>
-        </ul>
-        <Diet className={this.renderTab('diet')} />
-        <Basket className={this.renderTab('basket')} />
-      </div>
-    ) : (
-      <BlankSlate />
-    );
-  }
 }
 
 Layout.propTypes = {
@@ -86,18 +79,3 @@ Layout.propTypes = {
   }),
   dietAvailables: PropTypes.bool,
 };
-
-const mapStateToProps = state => ({
-  dietAvailables: getDietAvailable(state),
-});
-
-const mapDispatchToProps = (dispatch) => {
-  const actions = {
-    setRouter,
-    fetchDiet,
-    fetchRouter
-  };
-  return { actions: bindActionCreators(actions, dispatch) };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);

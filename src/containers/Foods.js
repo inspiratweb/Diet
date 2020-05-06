@@ -1,40 +1,38 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getRoundedKcal } from '../utils/getRoundedKcal';
 import { getMacrosPecent } from '../utils/getMacrosPecent';
 import { getRealQtty } from '../utils/getRealQtty';
-import Pie from '../components/Pie';
+import { Pie } from '../components/Pie';
+import { getFoods } from "../selectors/foods/getFoods";
 
-class Foods extends React.Component {
-  constructor() {
-    super();
+export const Foods = () => {
+  const foods = useSelector(getFoods);
+  const [ selectedFood, setSelectedFood ] = useState({});
 
-    this.handleChange = this.handleChange.bind(this);
-
-    this.state = {};
-  }
-
-  handleChange(e) {
+  const  handleChange = (e) => {
     const grams = e.currentTarget.name;
-    this.setState({ [grams]: e.currentTarget.value });
+    const value =  e.currentTarget.value;
+    setSelectedFood(prevState => ({...prevState, [grams]: value  }));
   }
 
-  getUniQtty(food) {
+  const getUniQtty = (food) => {
     const qtty = food.eq ? 1 : 100;
-    return this.state[food.code] || qtty;
+    return selectedFood[food.code] || qtty;
   }
 
-  getRealKcalQtty(food) {
+  const getRealKcalQtty = (food) => {
     let qtty = food.eq ? 1 : 100;
-    qtty = getRealQtty(food.eq, this.state[food.code] || qtty);
+    qtty = getRealQtty(food.eq, selectedFood[food.code] || qtty);
     const macros = {p: food.macros.p * qtty, ch: food.macros.ch * qtty, f: food.macros.f * qtty};
     return getRoundedKcal(macros);
   }
 
-  getRealMacroQtty(food) {
+  // <getRealMacroQtty />
+  const getRealMacroQtty = (food) => {
     let qtty = food.eq ? 1 : 100;
-    qtty = getRealQtty(food.eq, this.state[food.code] || qtty);
+    qtty = getRealQtty(food.eq, selectedFood[food.code] || qtty);
 
     return (
       <span className="diet-title-macros">
@@ -45,34 +43,27 @@ class Foods extends React.Component {
     )
   }
 
-  getGramsosUnits(food) {
-    return food.eq ? ' ' : 'g';
-  }
+  return (
+    <ul>
+      { Object.values(foods)
+        .filter(food => !!food.macros)
+        .map(food => {
+          const macrosPercent = getMacrosPecent(food.macros);
 
-  renderFoods() {
-    const { foods } = this.props;
-    return Object.values(foods)
-    .filter(food => !!food.macros)
-    .map(food => {
-        const macrosPercent = getMacrosPecent(food.macros);
-        return (
-          <li className="diet-item">
-            <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
-            <h3 className="diet-food-summary">{food.desc}</h3>
-            <input className="foods-input" onChange={this.handleChange} type="number" name={food.code} value={this.getUniQtty(food)} />
-            <span className="foods-qtty">{this.getGramsosUnits(food)}</span>
-            {this.getRealMacroQtty(food)}
-            <span className="foods-kcal">{this.getRealKcalQtty(food)} KCal</span>
-          </li>
-        )
-      })
-  }
-
-  render() {
-    return (
-      <ul>{this.renderFoods()}</ul>
-    );
-  }
+          return (
+            <li key={food.desc} className="diet-item">
+              <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
+              <h3 className="diet-food-summary">{food.desc}</h3>
+              <input className="foods-input" onChange={handleChange} type="number" name={food.code} value={getUniQtty(food)} />
+              <span className="foods-qtty">{food.eq ? ' ' : 'g'}</span>
+              {getRealMacroQtty(food)}
+              <span className="foods-kcal">{getRealKcalQtty(food)} KCal</span>
+            </li>
+          )
+        })
+      }
+    </ul>
+  );
 }
 
 Foods.propTypes = {
@@ -87,10 +78,3 @@ Foods.propTypes = {
 Foods.defaultProps = {
   foods: {},
 };
-
-const mapStateToProps = state => ({
-  foods: state.foods,
-});
-
-export default connect(mapStateToProps)(Foods);
-export { Foods as PureComponent };
