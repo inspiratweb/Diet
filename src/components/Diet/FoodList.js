@@ -1,8 +1,8 @@
 import React from "react";
-import { getFoodFromId } from "../selectors/foods/getFoodFromId";
-import { getSimilarFoods } from "../selectors/similars/getSimilarFoods";
-import { getSimilars } from "../selectors/similars/getSimilars";
-import { getFoods } from "../selectors/foods/getFoods";
+import { getFoodFromId } from "../../selectors/foods/getFoodFromId";
+import { getSimilarFoods } from "../../selectors/similars/getSimilarFoods";
+import { getSimilars } from "../../selectors/similars/getSimilars";
+import { getFoods } from "../../selectors/foods/getFoods";
 import { Meal } from './Meal';
 import { LightBox } from './LightBox';
 import { useSelector } from "react-redux";

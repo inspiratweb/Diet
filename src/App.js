@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { Foods } from './containers/Foods';
-import { BuilderWrapper } from './components/BuilderWrapper';
+import { Layout } from './components/Diet/Layout';
+import { Foods } from './components/Foods/Foods';
+import { BuilderWrapper } from './components/Builder/BuilderWrapper';
 import { fetchFoods } from './actions/foods/fetchFoods';
 import { fetchMeals } from './actions/meals/fetchMeals';
 import { fetchSimilars } from './actions/similars/fetchSimilars';

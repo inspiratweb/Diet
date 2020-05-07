@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getDiet } from '../selectors/diet/getDiet';
-import { getFoods } from '../selectors/foods/getFoods';
-import { getRouter } from '../selectors/router/getRouter';
+import { getDiet } from '../../selectors/diet/getDiet';
+import { getFoods } from '../../selectors/foods/getFoods';
+import { getRouter } from '../../selectors/router/getRouter';
 import { ListBasketItem } from './ListBasketItem';
 
 const Basket = ({ className }) => {

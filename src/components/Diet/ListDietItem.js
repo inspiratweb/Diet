@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import classNames from "classnames";
 import PropTypes from 'prop-types';
-import { getRoundedKcal } from '../utils/getRoundedKcal';
-import { getMacrosPecent } from '../utils/getMacrosPecent';
-import { Pie } from './Pie';
+import { getRoundedKcal } from '../../utils/getRoundedKcal';
+import { getMacrosPecent } from '../../utils/getMacrosPecent';
+import { Pie } from '../Common/Pie';
 import { FoodList } from './FoodList';
-import { getFoodSummary } from "../utils/getFoodSummary";
+import { getFoodSummary } from "../../utils/getFoodSummary";
 
 export const ListDietItem = ({ mealName, mealFoods, foods, macros, similars }) => {
   const [ visibleItem, setVisibleItem ] = useState(false);

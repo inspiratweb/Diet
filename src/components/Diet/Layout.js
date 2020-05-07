@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getDietAvailable } from '../selectors/diet/getDietAvailable';
-import { fetchDiet } from '../actions/diet/fetchDiet';
-import { setRouter } from '../actions/router/setRouter';
-import { fetchRouter } from '../actions/router/fetchRouter';
+import { getDietAvailable } from '../../selectors/diet/getDietAvailable';
+import { fetchDiet } from '../../actions/diet/fetchDiet';
+import { setRouter } from '../../actions/router/setRouter';
+import { fetchRouter } from '../../actions/router/fetchRouter';
 
-import { Diet } from '../components/Diet';
-import { Basket } from '../components/Basket';
-import { BlankSlate } from './BlankSlate';
+import { Diet } from './Diet';
+import { Basket } from './Basket';
+import { BlankSlate } from '../Common/BlankSlate';
 
 export const Layout = ({ location }) => {
   const dietAvailables = useSelector(getDietAvailable);

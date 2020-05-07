@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getFoods } from "../selectors/foods/getFoods";
+import { getFoods } from "../../selectors/foods/getFoods";
 
 export const LightBox = ({ lightBoxData }) => {
   const foods = useSelector(getFoods);

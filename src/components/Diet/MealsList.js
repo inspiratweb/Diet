@@ -1,9 +1,9 @@
 import React from "react";
 import { ListDietItem } from "./ListDietItem";
 import PropTypes from 'prop-types';
-import { getOrderedDiet } from "../selectors/diet/getOrderedDiet";
-import { getMealFromId } from '../selectors/meals/getMealFromId';
-import { getMacrosFromMeal } from '../selectors/meals/getMacrosFromMeal';
+import { getOrderedDiet } from "../../selectors/diet/getOrderedDiet";
+import { getMealFromId } from '../../selectors/meals/getMealFromId';
+import { getMacrosFromMeal } from '../../selectors/meals/getMacrosFromMeal';
 
 const MealsList = ({ meals, foods, diets, similars, router }) => {
   const diet = diets[router];

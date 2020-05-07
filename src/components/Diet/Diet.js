@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getRoundedKcal } from '../utils/getRoundedKcal';
-import { getOrderedDiet } from '../selectors/diet/getOrderedDiet';
+import { getRoundedKcal } from '../../utils/getRoundedKcal';
+import { getOrderedDiet } from '../../selectors/diet/getOrderedDiet';
 import { MealsList } from './MealsList';
-import { getDiet } from '../selectors/diet/getDiet';
-import { getMeals } from '../selectors/meals/getMeals';
-import { getSimilars } from '../selectors/similars/getSimilars';
-import { getFoods } from '../selectors/foods/getFoods';
-import { getRouter } from '../selectors/router/getRouter';
-import { getMacrosFromMeal } from '../selectors/meals/getMacrosFromMeal';
+import { getDiet } from '../../selectors/diet/getDiet';
+import { getMeals } from '../../selectors/meals/getMeals';
+import { getSimilars } from '../../selectors/similars/getSimilars';
+import { getFoods } from '../../selectors/foods/getFoods';
+import { getRouter } from '../../selectors/router/getRouter';
+import { getMacrosFromMeal } from '../../selectors/meals/getMacrosFromMeal';
 
 export const Diet = ({ className }) => {
   const diets = useSelector(getDiet);

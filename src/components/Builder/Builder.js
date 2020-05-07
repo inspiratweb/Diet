@@ -1,35 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import classNames from "classnames";
 import PropTypes from 'prop-types';
-import { getMacrosPecent } from '../utils/getMacrosPecent';
-import { getRoundedKcal } from '../utils/getRoundedKcal';
-import { Pie } from '../components/Pie';
-import search from '../images/search.svg';
-import toggler from '../images/toggler.svg';
-import dragIcon from '../images/drag.svg';
-import { useDrag } from 'react-dnd';
+import { getMacrosPecent } from '../../utils/getMacrosPecent';
+import { ItemDraggable } from './ItemDraggable';
+import search from '../../images/search.svg';
+import toggler from '../../images/toggler.svg';
 import { ItemDroppable } from './ItemDroppable';
-import { BlankSlate } from '../components/BlankSlate';
-import { getMacrosFromMeal } from '../selectors/meals/getMacrosFromMeal';
+import { BlankSlate } from '../Common/BlankSlate';
+import { useSelector } from 'react-redux';
+import { getFoods } from '../../selectors/foods/getFoods';
+import { getNewDiet } from '../../selectors/newDiet/getNewDiet';
+import { getMeals } from '../../selectors/meals/getMeals';
+import { Summary } from './Summary';
 
-const ItemDraggable = ({ macrosPercent, food }) => {
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: food.code },
-    collect: monitor => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-  });
-
-  return (
-    <li className={isDragging ? 'diet-item dragging' : 'diet-item'}>
-      <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
-      <p className="diet-food-summary">{food.desc}</p>
-      <img alt="drag me!" ref={drag} src={dragIcon} className="diet-food-summary-drag" />
-    </li>
-  )
-}
-
-export const Builder = ({ meals, foods, newDiet }) => {
+export const Builder = () => {
+  const foods = useSelector(getFoods);
+  const meals = useSelector(getMeals);
+  const newDiet = useSelector(getNewDiet);
   const codes = Object.values(foods).map(food => food.code);
 
   const [filter, setFilter] = React.useState('');
@@ -60,47 +47,8 @@ export const Builder = ({ meals, foods, newDiet }) => {
       })
   }
 
-  const renderMeals = () => {
-    return Object.values(meals)
-      .sort((a, b) => a.time - b.time)
-      .map(meal =>
-        codes.length && <ItemDroppable key={meal.desc} foodCodes={codes} meal={meal} />
-      )
-  }
-
-  const renderBuilderClassName = () => {
-    let className = 'builder';
-    return className += collapsed ? ' collapsed' : ''
-  }
-
-  const renderFilterResult = () =>
-    <>
-      <div className="diet-titleSimple"><span className="highlight">{renderFoods().length}</span> foods after filtering</div>
-      {!renderFoods().length && <BlankSlate />}
-    </>
-
-  const renderSummary = () => {
-    const totalMacros = Object.values(newDiet).length && Object.values(newDiet).reduce((acc, val) => {
-      const mealMacros = getMacrosFromMeal(val, foods);
-      return {
-        p: acc.p += mealMacros.p,
-        ch: acc.ch += mealMacros.ch,
-        f: acc.f += mealMacros.f
-      }
-    }, { p: 0, ch: 0, f: 0 });
-    return !!getRoundedKcal(totalMacros) && (
-      <h3 className="diet-titleSimple">
-        <span className="diet-title-kcal highlight">{getRoundedKcal(totalMacros)}KCal</span>
-        <span className="diet-title-macros">
-          <span className="diet-title-macros-p">{Math.round(totalMacros.p)}g</span>
-          <span className="diet-title-macros-ch">{Math.round(totalMacros.ch)}g</span>
-          <span className="diet-title-macros-f">{Math.round(totalMacros.f)}g</span></span>
-      </h3>
-    );
-  }
-
   return (
-    <div className={renderBuilderClassName()}>
+    <div className={classNames('builder', { collapsed })}>
       <div className="builder-header">
         <h3 className="builder-header-title">Diet<p>Builder</p></h3>
         <div className="builder-header-filter">
@@ -127,7 +75,8 @@ export const Builder = ({ meals, foods, newDiet }) => {
       </div>
       <div className="builder-wrapper">
         <div className="builder-foods">
-          {renderFilterResult()}
+          <div className="diet-titleSimple"><span className="highlight">{renderFoods().length}</span> foods after filtering</div>
+          {!renderFoods().length && <BlankSlate />}
           <ul>{renderFoods()}</ul>
         </div>
         <div className="builder-diet">
@@ -139,9 +88,11 @@ export const Builder = ({ meals, foods, newDiet }) => {
               onClick={() => setCollapsed(!collapsed)}
               />
           </div>
-          {renderSummary()}
+          <Summary newDiet={newDiet} foods={foods} />
           <ul className="builder-diet-list">
-            {renderMeals()}
+            { Object.values(meals).sort((a, b) => a.time - b.time).map(meal =>
+                codes.length && <ItemDroppable key={meal.desc} foodCodes={codes} meal={meal} />
+            )}
           </ul>
         </div>
       </div>
@@ -161,12 +112,3 @@ Builder.propTypes = {
 Builder.defaultProps = {
   foods: {},
 };
-
-const mapStateToProps = state => ({
-  foods: state.foods,
-  meals: state.meals,
-  newDiet: state.newDiet,
-});
-
-export default connect(mapStateToProps)(Builder);
-export { Builder as PureComponent };

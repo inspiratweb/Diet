@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getMacrosPecent } from '../utils/getMacrosPecent';
-import { getRealQtty } from '../utils/getRealQtty';
-import { Pie } from '../components/Pie';
-import { getFoods } from "../selectors/foods/getFoods";
-import { getRealKCalQtty } from '../utils/getRealKCalQtty';
-import { RealMacroQtty } from '../components/RealMacroQtty';
+import { getMacrosPecent } from '../../utils/getMacrosPecent';
+import { getRealQtty } from '../../utils/getRealQtty';
+import { Pie } from '../Common/Pie';
+import { getFoods } from "../../selectors/foods/getFoods";
+import { getRealKCalQtty } from '../../utils/getRealKCalQtty';
+import { RealMacroQtty } from '../Common/RealMacroQtty';
 
 export const Foods = () => {
   const foods = useSelector(getFoods);
