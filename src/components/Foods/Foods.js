@@ -39,7 +39,7 @@ export const Foods = () => {
               <input className="foods-input" onChange={handleChange} type="number" name={food.code} value={getUniQtty(food)} />
               <span className="foods-qtty">{food.eq ? ' ' : 'g'}</span>
               <RealMacroQtty food={food} qtty={qtty}/>
-              <span className="foods-kcal">{getRealKCalQtty(food)} KCal</span>
+              <span className="foods-kcal">{getRealKCalQtty(food, qtty)} KCal</span>
             </li>
           )
         })
