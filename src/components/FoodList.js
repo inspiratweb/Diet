@@ -19,7 +19,7 @@ export const FoodList = ({ meals, showLightbox, openLightbox, closeLightbox }) =
     if (similarFoods) {
       lightBoxData.push([meal, similarFoods]);
     }
-    return <Meal meal={meal} mealName={mealName} />
+    return <Meal key={`${mealName}-${meal.food}`} meal={meal} mealName={mealName} />
   });
 
   const renderClassDetail = (lightbox) => lightbox ? 'diet-food-detail withLightbox' : 'diet-food-detail';

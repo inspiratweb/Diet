@@ -11,13 +11,13 @@ export const LightBox = ({ lightBoxData }) => {
     const foodQtty = d[0].qtty;
 
     return (
-      <div className="lightBox-item">
+      <div key={foodName} className="lightBox-item">
         <p className="lightBox-item-title">{skipGrams ? `(${foodQtty}) ${foodName}` : `${foodName} ${foodQtty}g`}</p>
         <ul>
           {d[1].map((d) => {
             const foodName = foods[d.food].desc;
             const foodQtty = d.qtty;
-            return <li className={!foodQtty ? 'lightBox-item-nodata' : ''}>{`${foodQtty} ${foodName}`}</li>;
+            return <li key={foodName} className={!foodQtty ? 'lightBox-item-nodata' : ''}>{`${foodQtty} ${foodName}`}</li>;
           })}
         </ul>
       </div>

@@ -53,6 +53,7 @@ export const ListBasketItem = ({ food }) => {
 
   return (
     <li
+      // eslint-disable-next-line
       className={classNames('basket-item', { ["basket-item-dontbuy"]: food.notbuy, active: swipe })}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}

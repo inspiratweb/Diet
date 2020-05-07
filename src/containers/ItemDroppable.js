@@ -14,6 +14,7 @@ import { Pie } from '../components/Pie';
 import removeIcon from '../images/remove.svg';
 import { RealMacroQtty } from '../components/RealMacroQtty';
 import { getRealKCalQtty } from '../utils/getRealKCalQtty';
+import { getRealQtty } from '../utils/getRealQtty';
 
 export const ItemDroppable = ({ foodCodes, meal }) => {
   const dispatch = useDispatch();
@@ -40,8 +41,6 @@ export const ItemDroppable = ({ foodCodes, meal }) => {
     dispatch(removeDraggedFood(food, meal));
   }
 
-  const getFoodQtty = (food, meal) => getNewDietFood(newDiet, meal, food).qtty;
-
   return (
     <li>
       <h3>{mealName}</h3>
@@ -50,16 +49,18 @@ export const ItemDroppable = ({ foodCodes, meal }) => {
       ? newDiet[mealName].map(meal => {
         const food = getFoodFromId(meal.food, foods);
         const { p, ch, f } = getMacrosPecent(food.macros);
+        const newDietFoodQtty = getNewDietFood(newDiet, mealName, food.code).qtty;
+        const qtty = getRealQtty(food.eq, newDietFoodQtty);
 
         return (
           <li key={`${mealName}-${food.desc}`} className="diet-item">
             <div className="diet-item-data">
               <Pie p={p} ch={ch} f={f} />
               <h3 className="diet-food-summary">{food.desc}</h3>
-              <input className="foods-input" onChange={(e) => handleChange(e, food.code, mealName)} type="number" name={food.code} value={getFoodQtty(food.code, mealName)} />
+              <input className="foods-input" onChange={(e) => handleChange(e, food.code, mealName)} type="number" name={food.code} value={getNewDietFood(newDiet, mealName, food.code).qtty} />
               <span className="foods-qtty">{food.eq ? ' ' : 'g'}</span>
-              <RealMacroQtty food={food} meal={mealName} newDiet={newDiet} />
-              <span className="foods-kcal">{getRealKCalQtty(food, mealName, newDiet)} KCal</span>
+              <RealMacroQtty food={food} qtty={qtty} />
+              <span className="foods-kcal">{getRealKCalQtty(food, qtty)} KCal</span>
             </div>
             <img
                className="diet-item-cross"
