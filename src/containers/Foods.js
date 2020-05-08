@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getRoundedKcal, getMacrosPecent, getRealQtty } from '../utils';
+import { getRoundedKcal } from '../utils/getRoundedKcal';
+import { getMacrosPecent } from '../utils/getMacrosPecent';
+import { getRealQtty } from '../utils/getRealQtty';
 import Pie from '../components/Pie';
 
 class Foods extends React.Component {
@@ -33,7 +35,7 @@ class Foods extends React.Component {
   getRealMacroQtty(food) {
     let qtty = food.eq ? 1 : 100;
     qtty = getRealQtty(food.eq, this.state[food.code] || qtty);
-  
+
     return (
       <span className="diet-title-macros">
         <span className="diet-title-macros-p">{Math.ceil(food.macros.p * qtty)}</span>

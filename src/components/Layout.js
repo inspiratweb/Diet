@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import getDietAvailable from '../selectors/getDietAvailable';
-import { setRouter, fetchDiet, fetchRouter } from '../actions/index';
+import { getDietAvailable } from '../selectors/diet/getDietAvailable';
+import { fetchDiet } from '../actions/diet/fetchDiet';
+import { setRouter } from '../actions/router/setRouter';
+import { fetchRouter } from '../actions/router/fetchRouter';
 
 import Diet from '../containers/Diet';
 import Basket from '../containers/Basket';

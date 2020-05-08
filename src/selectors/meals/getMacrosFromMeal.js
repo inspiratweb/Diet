@@ -1,4 +1,4 @@
-import { getRealQtty } from '../utils';
+import { getRealQtty } from '../../utils/getRealQtty';
 
 const getTotalMacros = (macros, qtty, eq) => {
   const total = getRealQtty(eq, qtty);
@@ -9,7 +9,7 @@ const getTotalMacros = (macros, qtty, eq) => {
   };
 };
 
-export default (meal, foods) => {
+export const getMacrosFromMeal = (meal, foods) => {
   const defaultMacros = {p: 0, ch: 0, f: 0};
 
   return meal
