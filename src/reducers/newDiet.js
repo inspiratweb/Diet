@@ -1,9 +1,15 @@
+import {
+  ADD_DRAGGED_FOOD,
+  REMOVE_DRAGGED_FOOD,
+  CHANGE_FOOD_QUANTITY
+} from '../actions/newDiet/action-types';
+
 export default (state = {}, action) => {
   const {
     type, food, meal, foods, inputQtty
   } = action;
   switch (type) {
-    case 'ADD_DRAGGED_FOOD': {
+    case ADD_DRAGGED_FOOD: {
       const foodObj = Object.values(foods).find((f) => f.code === food);
       const qtty = foodObj.eq ? 1 : 100;
       let newPayload;
@@ -20,7 +26,7 @@ export default (state = {}, action) => {
       return {...state, [meal]: newPayload};
     }
 
-    case 'REMOVE_DRAGGED_FOOD': {
+    case REMOVE_DRAGGED_FOOD: {
       const newSlice = [...state[meal]];
       const filtedMeal = newSlice.filter((f) => f.food !== food.code);
       const filteredState = { ...state, [meal]: [...filtedMeal] };
@@ -28,7 +34,7 @@ export default (state = {}, action) => {
       return filteredState;
     }
 
-    case 'CHANGE_FOOD_QUANTITY': {
+    case CHANGE_FOOD_QUANTITY: {
       const index = state[meal].findIndex((f) => f.food === food);
       const newSlice = [...state[meal]];
       newSlice[index].qtty = inputQtty;

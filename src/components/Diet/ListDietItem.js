@@ -6,6 +6,8 @@ import { getMacrosPecent } from '../../utils/getMacrosPecent';
 import { Pie } from '../Common/Pie';
 import { FoodList } from './FoodList';
 import { getFoodSummary } from '../../utils/getFoodSummary';
+import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
+import { ENTER_KEY_CODE } from '../../consts/keyboard-key-codes';
 
 export const ListDietItem = ({
   mealName, mealFoods, foods, macros
@@ -51,7 +53,13 @@ export const ListDietItem = ({
   return (
     <li
       className={classNames('diet-item', { active: swipe })}
+      role="button"
+      aria-label="Press ENTER Keyboard Key to expand/contract Meal information"
+      tabIndex="0"
       onClick={handleClick}
+      onKeyDown={
+        (e) => applyKeyboardNavigation(e, ENTER_KEY_CODE, handleClick)
+      }
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >

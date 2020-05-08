@@ -1,8 +1,10 @@
 import { createSelector } from 'reselect';
 
-const getMealAndIdFromState = (id, meals) => ({
+const getMealsAndIdFromState = (id, meals) => ({
   id,
   meals,
 });
 
-export const getMealFromId = createSelector([getMealAndIdFromState], mealFromId => mealFromId.meals[mealFromId.id]);
+export const getMealFromId = createSelector(
+  [getMealsAndIdFromState], (mealFromId) => mealFromId.meals[mealFromId.id]
+);

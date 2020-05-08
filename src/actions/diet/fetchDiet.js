@@ -1,5 +1,5 @@
 import { dietsRef } from '../../firebase';
-import { FETCH_DIET } from "./action-types";
+import { FETCH_DIET } from './action-types';
 
 export const fetchDiet = () => async (dispatch) => {
   dietsRef.on('value', (snapshot) => {

@@ -39,7 +39,7 @@ export const ListBasketItem = ({ food }) => {
 
       // Removing this product from basket cookies
       tempBasket.splice(tempBasket.indexOf(food.code), 1);
-      this.setCookie(tempBasket);
+      setCookie(tempBasket);
     }
 
     if (touchEndX - 50 > touchStartX && !swipe) {
@@ -78,4 +78,9 @@ ListBasketItem.propTypes = {
       fs: PropTypes.number,
     })
   })
+};
+
+
+ListBasketItem.defaultProps = {
+  food: {}
 };
