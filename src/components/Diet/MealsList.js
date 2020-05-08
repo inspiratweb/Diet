@@ -1,14 +1,26 @@
-import React from "react";
-import { ListDietItem } from "./ListDietItem";
+import React from 'react';
 import PropTypes from 'prop-types';
-import { getOrderedDiet } from "../../selectors/diet/getOrderedDiet";
+import { useSelector } from 'react-redux';
+import { ListDietItem } from './ListDietItem';
+import { getOrderedDiet } from '../../selectors/diet/getOrderedDiet';
 import { getMealFromId } from '../../selectors/meals/getMealFromId';
-import { getMacrosFromMeal } from '../../selectors/meals/getMacrosFromMeal';
+import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
+import { getDiet } from '../../selectors/diet/getDiet';
+import { getMeals } from '../../selectors/meals/getMeals';
+import { getFoods } from '../../selectors/foods/getFoods';
+import { getSimilars } from '../../selectors/similars/getSimilars';
+import { getRouter } from '../../selectors/router/getRouter';
 
-const MealsList = ({ meals, foods, diets, similars, router }) => {
+export const MealsList = () => {
+  const diets = useSelector(getDiet);
+  const meals = useSelector(getMeals);
+  const foods = useSelector(getFoods);
+  const similars = useSelector(getSimilars);
+  const router = useSelector(getRouter);
   const diet = diets[router];
 
-  return Object.entries(meals).length > 0 && Object.entries(getOrderedDiet(diet, meals)).map((meal) => {
+  return Object.entries(meals).length > 0
+  && Object.entries(getOrderedDiet(diet, meals)).map((meal) => {
     const mealName = getMealFromId(meal[0], meals).desc;
     const mealMacros = getMacrosFromMeal(meal[1], foods);
 
@@ -24,7 +36,6 @@ const MealsList = ({ meals, foods, diets, similars, router }) => {
     );
   });
 };
-
 
 MealsList.propTypes = {
   diets: PropTypes.shape({
@@ -60,5 +71,3 @@ MealsList.defaultProps = {
   similars: [[]],
   router: '',
 };
-
-export { MealsList }

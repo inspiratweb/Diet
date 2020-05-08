@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import cookie from 'react-cookie';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 export const ListBasketItem = ({ food }) => {
-  const  [ touchStartX, setTouchStartX ] = useState(0);
-  const  [ swipe, setSwipe ] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [swipe, setSwipe] = useState(false);
 
   useEffect(() => {
     // Checking basket cookie and load initial list
     if (
-      cookie.load('basket') &&
-      cookie.load('basket').indexOf(food.code) > -1
+      cookie.load('basket')
+      && cookie.load('basket').indexOf(food.code) > -1
     ) {
       setSwipe(true);
     }
@@ -19,7 +19,7 @@ export const ListBasketItem = ({ food }) => {
 
   const handleTouchStart = (e) => {
     setTouchStartX(e.nativeEvent.changedTouches[0].clientX);
-  }
+  };
 
   const setCookie = (newCookie) => {
     const d = new Date();
@@ -27,7 +27,7 @@ export const ListBasketItem = ({ food }) => {
     d.setTime(d.getTime() + minutes * 60 * 1000);
 
     cookie.save('basket', newCookie, { path: '/', expires: d });
-  }
+  };
 
   const handleTouchEnd = (e) => {
     const touchEndX = e.nativeEvent.changedTouches[0].clientX;
@@ -49,7 +49,7 @@ export const ListBasketItem = ({ food }) => {
       tempBasket.push(food.code);
       setCookie(tempBasket);
     }
-  }
+  };
 
   return (
     <li
@@ -61,7 +61,7 @@ export const ListBasketItem = ({ food }) => {
       {food.desc}
     </li>
   );
-}
+};
 
 ListBasketItem.propTypes = {
   food: PropTypes.shape({

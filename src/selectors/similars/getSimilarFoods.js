@@ -1,17 +1,16 @@
-import { getMacrosFromMeal } from '../meals/getMacrosFromMeal';
+import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
 import { getTotalKcal } from '../../utils/getTotalKcal';
 
 const getSimilarArray = (similars, meal) => {
-  const similarArray = similars.find(similar =>
-    similar.indexOf(meal.food) >= 0);
+  const similarArray = similars.find((similar) => similar.indexOf(meal.food) >= 0);
 
   const similarArrayCopy = similarArray && [...similarArray];
-  return similarArrayCopy &&
-    similarArrayCopy.splice(similarArrayCopy.indexOf(meal.food), 1) &&
-    similarArrayCopy;
+  return similarArrayCopy
+    && similarArrayCopy.splice(similarArrayCopy.indexOf(meal.food), 1)
+    && similarArrayCopy;
 };
 
-const getSkipGrams = (foods, food) => Object.values(foods).find(f => f.code === food).skipGrams;
+const getSkipGrams = (foods, food) => Object.values(foods).find((f) => f.code === food).skipGrams;
 
 const getSimilarFoods = (meal, foods, similars) => {
   const similarArray = getSimilarArray(similars, meal);

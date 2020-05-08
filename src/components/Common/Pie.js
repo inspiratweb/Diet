@@ -1,7 +1,7 @@
 // https://hackernoon.com/a-simple-pie-chart-in-svg-dbdd653b6936
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getCoordinatesForPercent } from "../../utils/getCoordinatesForPercent";
+import { getCoordinatesForPercent } from '../../utils/getCoordinatesForPercent';
 
 export const Pie = ({ p, ch, f }) => {
   const slices = [
@@ -37,7 +37,7 @@ export const Pie = ({ p, ch, f }) => {
       })}
     </svg>
   );
-}
+};
 
 Pie.propTypes = {
   p: PropTypes.number.isRequired,

@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
-import classNames from "classnames";
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { getRoundedKcal } from '../../utils/getRoundedKcal';
 import { getMacrosPecent } from '../../utils/getMacrosPecent';
 import { Pie } from '../Common/Pie';
 import { FoodList } from './FoodList';
-import { getFoodSummary } from "../../utils/getFoodSummary";
+import { getFoodSummary } from '../../utils/getFoodSummary';
 
-export const ListDietItem = ({ mealName, mealFoods, foods, macros, similars }) => {
-  const [ visibleItem, setVisibleItem ] = useState(false);
-  const [ touchStartX, setTouchStartX ] = useState(0);
-  const [ swipe, setSwipe ] = useState(false);
-  const [ showLightbox, setShowLightbox ] = useState(false);
+export const ListDietItem = ({
+  mealName, mealFoods, foods, macros
+}) => {
+  const [visibleItem, setVisibleItem] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [swipe, setSwipe] = useState(false);
+  const [showLightbox, setShowLightbox] = useState(false);
   const macrosPercent = getMacrosPecent(macros);
   const kcal = getRoundedKcal(macros);
 
   const handleClick = () => {
     setVisibleItem(!visibleItem);
-  }
+  };
 
   const handleTouchStart = (e) => {
     setTouchStartX(e.nativeEvent.changedTouches[0].clientX);
-  }
+  };
 
   const handleTouchEnd = (e) => {
     const touchEndX = e.nativeEvent.changedTouches[0].clientX;
@@ -34,17 +36,17 @@ export const ListDietItem = ({ mealName, mealFoods, foods, macros, similars }) =
     if (touchEndX - 90 > touchStartX) {
       setSwipe(true);
     }
-  }
+  };
 
   const openLightbox = (e) => {
     e.stopPropagation();
     setShowLightbox(true);
-  }
+  };
 
   const closeLightbox = (e) => {
     e.stopPropagation();
     setShowLightbox(false);
-  }
+  };
 
   return (
     <li
@@ -62,12 +64,19 @@ export const ListDietItem = ({ mealName, mealFoods, foods, macros, similars }) =
       </h3>
       {
         visibleItem
-          ? <FoodList meals={mealFoods} showLightbox={showLightbox} openLightbox={openLightbox} closeLightbox={closeLightbox} />
+          ? (
+            <FoodList
+              meals={mealFoods}
+              showLightbox={showLightbox}
+              openLightbox={openLightbox}
+              closeLightbox={closeLightbox}
+            />
+          )
           : <p className="diet-food-summary">{ getFoodSummary({ meals: mealFoods, foods }) }</p>
       }
     </li>
   );
-}
+};
 
 ListDietItem.propTypes = {
   mealName: PropTypes.string,
@@ -89,10 +98,12 @@ ListDietItem.propTypes = {
     p: PropTypes.number,
     ch: PropTypes.number,
     f: PropTypes.number,
-  }),
-  similars: PropTypes.arrayOf(
-    PropTypes.arrayOf(
-      PropTypes.string,
-    )
-  )
+  })
+};
+
+ListDietItem.defaultProps = {
+  mealName: '',
+  mealFoods: [],
+  foods: {},
+  macros: {}
 };

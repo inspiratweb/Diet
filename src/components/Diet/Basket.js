@@ -13,16 +13,13 @@ const Basket = ({ className }) => {
 
   const diet = diets[router];
   const foodFromDiet = [...new Set(Object.values(diet)
-    .reduce((a, b) =>
-      [...a, ...b], []
-    )
-    .map(food => food.food)
-  )];
+    .reduce((a, b) => [...a, ...b], [])
+    .map((food) => food.food))];
 
   return (
     <ul className={className}>
       { Object.entries(foods).length > 0 && (
-        foodFromDiet.map(ffd => (
+        foodFromDiet.map((ffd) => (
           <ListBasketItem
             key={ffd}
             food={foods[ffd]}

@@ -1,3 +1,3 @@
-import { getTotalKcal } from "./getTotalKcal";
+import { getTotalKcal } from './getTotalKcal';
 
-export const getRoundedKcal = macros => Math.ceil(getTotalKcal(macros));
+export const getRoundedKcal = (macros) => Math.ceil(getTotalKcal(macros));

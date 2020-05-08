@@ -12,7 +12,7 @@ import { BlankSlate } from '../Common/BlankSlate';
 
 export const Layout = ({ location }) => {
   const dietAvailables = useSelector(getDietAvailable);
-  const [ selectedTab, setSelectedTab ] = useState('diet');
+  const [selectedTab, setSelectedTab] = useState('diet');
   const dispatch = useDispatch();
   const normalizedUrl = location.pathname.replace(process.env.PUBLIC_URL, '').replace(/\//g, '');
 
@@ -29,19 +29,15 @@ export const Layout = ({ location }) => {
 
   const handleClickDiet = () => {
     setSelectedTab('diet');
-  }
+  };
 
   const handleClickBasket = () => {
     setSelectedTab('basket');
-  }
+  };
 
-  const renderTabClass = (tab) => {
-    return selectedTab === tab ? 'active' : '';
-  }
+  const renderTabClass = (tab) => (selectedTab === tab ? 'active' : '');
 
-  const renderTab = (tab) => {
-    return selectedTab === tab ? `${tab} active` : tab;
-  }
+  const renderTab = (tab) => (selectedTab === tab ? `${tab} active` : tab);
 
   return dietAvailables ? (
     <div>
@@ -66,7 +62,7 @@ export const Layout = ({ location }) => {
     <BlankSlate />
   );
 
-}
+};
 
 Layout.propTypes = {
   actions: PropTypes.shape({
