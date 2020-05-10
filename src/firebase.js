@@ -1,7 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
 
-const config = {
+const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -10,7 +11,11 @@ const config = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID
 };
 
-firebase.initializeApp(config);
+export const reactReduxFirebaseConfig = {
+  userProfile: 'users'
+};
+
+export const fb = firebase.initializeApp(firebaseConfig);
 export const databaseRef = firebase.database().ref();
 export const dietsRef = databaseRef.child('diets');
 export const foodsRef = databaseRef.child('foods');

@@ -1,0 +1,25 @@
+.user-log-status {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+
+  > span {
+    padding: 12px 7px;
+    display: block;
+    color: $white;
+    font-weight: 900;
+  }
+
+  .not-logged {
+    background: tomato;
+  }
+
+  .logged {
+    background: #31C571;
+  }
+
+  .email-not-verified {
+    background: #C63627;
+  }
+}

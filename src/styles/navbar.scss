@@ -1,0 +1,36 @@
+.navbar {
+  min-height: 40px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .link {
+    display: inline-block;
+    padding: 10px 12px;
+    color: $white;
+    margin-right: 5px;
+  }
+
+  .home {
+    align-self: flex-start;
+    background-color: cornflowerblue;
+  }
+
+  .sign-up {
+    background-color: tomato;
+  }
+
+  .log-in {
+    background-color: coral;
+  }
+
+  .log-out {
+    background-color: coral;
+  }
+
+  .avatar {
+    background-color: indianred;
+    border-radius: 100%;
+  }
+}

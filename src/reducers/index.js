@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { firebaseReducer as firebase } from 'react-redux-firebase';
 import foods from './foods';
 import meals from './meals';
 import diet from './diet';
@@ -13,6 +14,7 @@ const dietApp = combineReducers({
   newDiet,
   similars,
   router,
+  firebase
 });
 
 export default dietApp;
