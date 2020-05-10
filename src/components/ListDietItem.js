@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getFoodFromId from '../selectors/getFoodFromId';
-import getSimilarFoods from '../selectors/getSimilarFoods';
-import {getRoundedKcal, getMacrosPecent} from '../utils/index';
+import { getFoodFromId } from '../selectors/foods/getFoodFromId';
+import { getSimilarFoods } from '../selectors/similars/getSimilarFoods';
+import { getRoundedKcal } from '../utils/getRoundedKcal';
+import { getMacrosPecent } from '../utils/getMacrosPecent';
 import Pie from './Pie';
 
 class ListDietItem extends React.Component {
@@ -209,4 +210,3 @@ ListDietItem.propTypes = {
 };
 
 export default ListDietItem;
-

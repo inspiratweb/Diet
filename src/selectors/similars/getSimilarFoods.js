@@ -1,6 +1,5 @@
-import getMacrosFromMeal from './getMacrosFromMeal';
-import {getTotalKcal} from '../utils/index';
-
+import { getMacrosFromMeal } from '../meals/getMacrosFromMeal';
+import { getTotalKcal } from '../../utils/getTotalKcal';
 
 const getSimilarArray = (similars, meal) => {
   const similarArray = similars.find(similar =>
@@ -27,10 +26,10 @@ const getSimilarFoods = (meal, foods, similars) => {
         const qtty = Math.round(baseKcals / foodKcalsPerGram);
         diff = skipGrams ? `(${qtty})` : `${qtty}g:`;
       }
-      return {food: similar, qtty: diff};
+      return { food: similar, qtty: diff };
     });
   }
   return false;
 };
 
-export default getSimilarFoods;
+export { getSimilarFoods };
