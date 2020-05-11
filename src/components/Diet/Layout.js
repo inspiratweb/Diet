@@ -9,6 +9,8 @@ import { fetchRouter } from '../../actions/router/fetchRouter';
 import { Diet } from './Diet';
 import { Basket } from './Basket';
 import { BlankSlate } from '../Common/BlankSlate';
+import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
+import { B_KEY_CODE, D_KEY_CODE } from '../../consts/keyboard-key-codes';
 
 export const Layout = ({ location }) => {
   const dietAvailables = useSelector(getDietAvailable);
@@ -44,13 +46,25 @@ export const Layout = ({ location }) => {
       <ul className="tabs">
         <li
           className={renderTabClass('diet')}
+          role="tab"
+          aria-label="Press D Keyboard Key to display Diet Tab"
+          tabIndex="0"
           onClick={handleClickDiet}
+          onKeyDown={
+            (e) => applyKeyboardNavigation(e, D_KEY_CODE, handleClickDiet)
+          }
         >
           Diet
         </li>
         <li
           className={renderTabClass('basket')}
+          role="tab"
+          aria-label="Press B Keyboard Key to display Basket Tab"
+          tabIndex="0"
           onClick={handleClickBasket}
+          onKeyDown={
+            (e) => applyKeyboardNavigation(e, B_KEY_CODE, handleClickBasket)
+          }
         >
           Basket
         </li>
@@ -65,13 +79,11 @@ export const Layout = ({ location }) => {
 };
 
 Layout.propTypes = {
-  actions: PropTypes.shape({
-    setRouter: PropTypes.func,
-    fetchDiet: PropTypes.func,
-    fetchRouter: PropTypes.func,
-  }),
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }),
-  dietAvailables: PropTypes.bool,
+};
+
+Layout.defaultProps = {
+  location: {}
 };
