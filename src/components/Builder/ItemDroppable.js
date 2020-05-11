@@ -7,7 +7,7 @@ import { addDraggedFood } from '../../actions/newDiet/addDraggedFood';
 import { removeDraggedFood } from '../../actions/newDiet/removeDraggedFood';
 import { changeFoodQuantity } from '../../actions/newDiet/changeFoodCuantity';
 import { getFoodFromId } from '../../selectors/foods/getFoodFromId';
-import { getNewDietFood } from '../../selectors/newDiet/getNewDietFood';
+import { getNewDietFood } from '../../utils/getNewDietFood';
 import { getNewDiet } from '../../selectors/newDiet/getNewDiet';
 import { getFoods } from '../../selectors/foods/getFoods';
 import { getMacrosPecent } from '../../utils/getMacrosPecent';

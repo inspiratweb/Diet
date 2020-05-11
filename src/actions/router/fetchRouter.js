@@ -1,5 +1,5 @@
 import { routerRef } from '../../firebase';
-import { FETCH_ROUTER } from "./action-types"
+import { FETCH_ROUTER } from './action-types';
 
 export const fetchRouter = () => async (dispatch) => {
   routerRef.on('value', (snapshot) => {
