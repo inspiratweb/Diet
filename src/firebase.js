@@ -13,12 +13,7 @@ const config = {
 };
 
 export const fb = firebase.initializeApp(config);
+
 export const reactReduxFirebaseConfig = {
     userProfile: 'users'
 }
-
-export const databaseRef = firebase.database().ref();
-export const dietsRef = databaseRef.child('diets');
-export const mealsRef = databaseRef.child('meals');
-export const similarsRef = databaseRef.child('similars');
-export const routerRef = databaseRef.child('router');
