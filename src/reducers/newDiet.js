@@ -1,16 +1,18 @@
 export default (state = {}, action) => {
-  const { type, food, meal, foods, inputQtty } = action;
+  const {
+    type, food, meal, foods, inputQtty
+  } = action;
   switch (type) {
     case 'ADD_DRAGGED_FOOD': {
-      const foodObj = Object.values(foods).find(f => f.code === food);
+      const foodObj = Object.values(foods).find((f) => f.code === food);
       const qtty = foodObj.eq ? 1 : 100;
       let newPayload;
       if (state[meal]) {
-        if (state[meal].some(f => f.food === foodObj.code)) {
+        if (state[meal].some((f) => f.food === foodObj.code)) {
           return state;
-        } else {
-          newPayload = [...state[meal], { food: foodObj.code, qtty }];
         }
+        newPayload = [...state[meal], { food: foodObj.code, qtty }];
+
       } else {
         newPayload = [{ food: foodObj.code, qtty }];
       }
@@ -20,7 +22,7 @@ export default (state = {}, action) => {
 
     case 'REMOVE_DRAGGED_FOOD': {
       const newSlice = [...state[meal]];
-      const filtedMeal = newSlice.filter(f => f.food !== food.code);
+      const filtedMeal = newSlice.filter((f) => f.food !== food.code);
       const filteredState = { ...state, [meal]: [...filtedMeal] };
 
       return filteredState;
@@ -30,7 +32,7 @@ export default (state = {}, action) => {
       const index = state[meal].findIndex((f) => f.food === food);
       const newSlice = [...state[meal]];
       newSlice[index].qtty = inputQtty;
-      return {...state, [meal]: newSlice}
+      return { ...state, [meal]: newSlice };
     }
 
     default:

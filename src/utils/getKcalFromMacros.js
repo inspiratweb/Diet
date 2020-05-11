@@ -1,4 +1,4 @@
-export const getKcalFromMacros = ({p, ch, f}) => (
+export const getKcalFromMacros = ({ p, ch, f }) => (
   {
     p: p * 4,
     ch: ch * 4,

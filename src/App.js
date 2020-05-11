@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import Layout from './components/Layout';
-import Foods from './containers/Foods';
-import { BuilderWrapper } from './containers/BuilderWrapper';
+import { useDispatch } from 'react-redux';
+import { Layout } from './components/Diet/Layout';
+import { Foods } from './components/Foods/Foods';
+import { BuilderWrapper } from './components/Builder/BuilderWrapper';
 import { fetchFoods } from './actions/foods/fetchFoods';
 import { fetchMeals } from './actions/meals/fetchMeals';
 import { fetchSimilars } from './actions/similars/fetchSimilars';
-import { useDispatch } from 'react-redux';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchFoods())
-    dispatch(fetchMeals())
-    dispatch(fetchSimilars())
-  });
+    dispatch(fetchFoods());
+    dispatch(fetchMeals());
+    dispatch(fetchSimilars());
+  }, [dispatch]);
 
   return (
     <Router basename="/diet">
@@ -25,7 +25,7 @@ const App = () => {
         <Route exact path="/" component={Layout} />
       </Switch>
     </Router>
-  )
+  );
 };
 
 export { App };

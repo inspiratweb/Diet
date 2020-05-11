@@ -2,7 +2,8 @@ const foods = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'FETCH_FOODS':
-      return {...state, ...payload};
+      return { ...state, ...payload };
+
     default:
       return state;
   }

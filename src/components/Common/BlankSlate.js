@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BlankSlate = () =>
+export const BlankSlate = () => (
   <div className="blankSlate">
     <div className="blankSlate-emoji">
       <div className="blankSlate-emoji-head">
@@ -11,5 +11,4 @@ const BlankSlate = () =>
       </div>
     </div>
   </div>
-
-export default BlankSlate;
+);

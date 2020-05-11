@@ -5,4 +5,6 @@ const getFoodAndIdFromState = (id, foods) => ({
   foods,
 });
 
-export const getFoodFromId = createSelector([getFoodAndIdFromState], foodFromId => foodFromId.foods[foodFromId.id]);
+export const getFoodFromId = createSelector(
+  [getFoodAndIdFromState], (foodFromId) => foodFromId.foods[foodFromId.id]
+);
