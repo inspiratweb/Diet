@@ -5,18 +5,20 @@ import { getRoundedKcal } from '../../utils/getRoundedKcal';
 import { getTotalMacros } from '../../utils/getTotalMacros';
 import { getOrderedDiet } from '../../utils/getOrderedDiet';
 import { MealsList } from './MealsList';
-import { getDiet } from '../../selectors/diet/getDiet';
-import { getMeals } from '../../selectors/meals/getMeals';
-import { getFoods } from '../../selectors/foods/getFoods';
-import { getRouter } from '../../selectors/router/getRouter';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getRouterFromFb } from '../../selectors/firebase/getRouterFromFb';
+import { getDietsFromFb } from '../../selectors/firebase/getDietsFromFb';
+import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
+import { useParams } from 'react-router-dom';
 
 export const Diet = ({ className }) => {
-  const diets = useSelector(getDiet);
-  const meals = useSelector(getMeals);
-  const foods = useSelector(getFoods);
-  const router = useSelector(getRouter);
+  const diets = useSelector(getDietsFromFb);
+  const meals = useSelector(getMealsFromFb);
+  const foods = useSelector(getFoodsFromFb);
+  const router = useSelector(getRouterFromFb);
+  const { selectedDiet } = useParams();
 
-  const diet = diets[router];
+  const diet = diets[selectedDiet] || diets[router];
   const orderedDiet = getOrderedDiet(diet, meals);
   const totalMacros = getTotalMacros(meals, orderedDiet, foods);
 

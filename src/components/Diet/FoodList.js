@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getFoodFromId } from '../../selectors/foods/getFoodFromId';
+import { getFoodFromId } from '../../utils/getFoodFromId';
 import { getSimilarFoods } from '../../utils/getSimilarFoods';
-import { getSimilars } from '../../selectors/similars/getSimilars';
-import { getFoods } from '../../selectors/foods/getFoods';
 import { Meal } from './Meal';
 import { LightBox } from './LightBox';
 import { ESC_KEY_CODE, SPACE_KEY_CODE } from '../../consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getSimilarsFromFb } from '../../selectors/firebase/getSimilarsFromFb';
 
 export const FoodList = ({
   meals, showLightbox, openLightbox, closeLightbox
 }) => {
-  const foods = useSelector(getFoods);
-  const similars = useSelector(getSimilars);
+  const foods = useSelector(getFoodsFromFb);
+  const similars = useSelector(getSimilarsFromFb);
   const lightBoxData = [];
 
   const mealList = meals.map((meal) => {

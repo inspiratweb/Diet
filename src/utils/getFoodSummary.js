@@ -1,4 +1,4 @@
-import { getFoodFromId } from '../selectors/foods/getFoodFromId';
+import { getFoodFromId } from './getFoodFromId';
 
 export const getFoodSummary = ({ meals, foods }) => meals.map((meal, i) => {
   const mealName = getFoodFromId(meal.food, foods);
