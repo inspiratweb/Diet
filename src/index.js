@@ -5,8 +5,10 @@ import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import dietApp from './reducers/index';
 import { App } from './App';
+import { fb as firebase, reactReduxFirebaseConfig } from "./firebase";
 
 import './styles/index.scss';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 
 const store = createStore(
   dietApp,
@@ -18,9 +20,17 @@ const store = createStore(
   )
 );
 
+const reactReduxFirebaseProps = {
+  firebase,
+  config: reactReduxFirebaseConfig,
+  dispatch: store.dispatch
+}
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ReactReduxFirebaseProvider {...reactReduxFirebaseProps}>
+      <App />
+    </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('app')
 );

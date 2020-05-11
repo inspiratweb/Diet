@@ -2,17 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
-import { getDiet } from '../../selectors/diet/getDiet';
-import { getFoods } from '../../selectors/foods/getFoods';
-import { getRouter } from '../../selectors/router/getRouter';
 import { ListBasketItem } from './ListBasketItem';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getRouterFromFb } from '../../selectors/firebase/getRouterFromFb';
+import { getDietsFromFb } from '../../selectors/firebase/getDietsFromFb';
+import { useParams } from 'react-router-dom';
 
 const Basket = ({ className }) => {
-  const diets = useSelector(getDiet);
-  const foods = useSelector(getFoods);
-  const router = useSelector(getRouter);
+  const diets = useSelector(getDietsFromFb);
+  const foods = useSelector(getFoodsFromFb);
+  const router = useSelector(getRouterFromFb);
+  const { selectedDiet } = useParams();
 
-  const diet = diets[router];
+  const diet = diets[selectedDiet] || diets[router];
+
   const foodFromDiet = [...new Set(Object.values(diet)
     .reduce((a, b) => [...a, ...b], [])
     .map((food) => food.food))];

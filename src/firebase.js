@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,11 +12,13 @@ const config = {
   appID: process.env.REACT_APP_APP_ID
 };
 
-firebase.initializeApp(config);
+export const fb = firebase.initializeApp(config);
+export const reactReduxFirebaseConfig = {
+    userProfile: 'users'
+}
 
 export const databaseRef = firebase.database().ref();
 export const dietsRef = databaseRef.child('diets');
-export const foodsRef = databaseRef.child('foods');
 export const mealsRef = databaseRef.child('meals');
 export const similarsRef = databaseRef.child('similars');
 export const routerRef = databaseRef.child('router');

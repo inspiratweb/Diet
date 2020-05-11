@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { getMacrosPecent } from '../../utils/getMacrosPecent';
 import { getRealQtty } from '../../utils/getRealQtty';
 import { Pie } from '../Common/Pie';
-import { getFoods } from '../../selectors/foods/getFoods';
 import { getRealKCalQtty } from '../../utils/getRealKCalQtty';
 import { RealMacroQtty } from '../Common/RealMacroQtty';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
 
 export const Foods = () => {
-  const foods = useSelector(getFoods);
+  const foods = useSelector(getFoodsFromFb);
   const [selectedFood, setSelectedFood] = useState({});
 
   const handleChange = (e) => {

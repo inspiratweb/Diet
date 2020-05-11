@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
 import { getRoundedKcal } from '../../utils/getRoundedKcal';
 import { getNewDiet } from '../../selectors/newDiet/getNewDiet';
-import { getFoods } from '../../selectors/foods/getFoods';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
 
 export const Summary = () => {
   const newDiet = useSelector(getNewDiet);
-  const foods = useSelector(getFoods);
+  const foods = useSelector(getFoodsFromFb);
   const totalMacros = Object.values(newDiet).length && Object.values(newDiet).reduce((acc, val) => {
     const mealMacros = getMacrosFromMeal(val, foods);
     return {
