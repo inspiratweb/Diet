@@ -16,7 +16,7 @@ export const ListBasketItem = ({ food }) => {
     ) {
       setSwipe(true);
     }
-  }, [food.code, cookies.basket]);
+  }, [food, cookies]);
 
   const handleTouchStart = (e) => {
     setTouchStartX(e.nativeEvent.changedTouches[0].clientX);
