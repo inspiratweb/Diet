@@ -5,16 +5,16 @@ import { getFoods } from '../../selectors/foods/getFoods';
 export const LightBox = ({ lightBoxData }) => {
   const foods = useSelector(getFoods);
 
-  return lightBoxData && lightBoxData.map((data) => {
-    const foodName = foods[data[0].food].desc;
-    const {skipGrams} = foods[data[0].food];
-    const foodQtty = data[0].qtty;
+  return lightBoxData && lightBoxData.map(([meal, similarFoods]) => {
+    const foodName = foods[meal.food].desc;
+    const {skipGrams} = foods[meal.food];
+    const foodQtty = meal.qtty;
 
     return (
       <div key={foodName} className="lightBox-item">
         <p className="lightBox-item-title">{skipGrams ? `(${foodQtty}) ${foodName}` : `${foodName} ${foodQtty}g`}</p>
         <ul>
-          {data[1].map((d) => {
+          {similarFoods.map((d) => {
             const food = foods[d.food].desc;
             const { qtty } = d;
             return (
