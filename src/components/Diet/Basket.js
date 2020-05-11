@@ -5,6 +5,7 @@ import { getDiet } from '../../selectors/diet/getDiet';
 import { getFoods } from '../../selectors/foods/getFoods';
 import { getRouter } from '../../selectors/router/getRouter';
 import { ListBasketItem } from './ListBasketItem';
+import { CookiesProvider } from 'react-cookie';
 
 const Basket = ({ className }) => {
   const diets = useSelector(getDiet);
@@ -17,16 +18,18 @@ const Basket = ({ className }) => {
     .map((food) => food.food))];
 
   return (
-    <ul className={className}>
-      { Object.entries(foods).length > 0 && (
-        foodFromDiet.map((ffd) => (
-          <ListBasketItem
-            key={ffd}
-            food={foods[ffd]}
-          />
-        ))
-      )}
-    </ul>
+    <CookiesProvider>
+      <ul className={className}>
+        { Object.entries(foods).length > 0 && (
+          foodFromDiet.map((ffd) => (
+            <ListBasketItem
+              key={ffd}
+              food={foods[ffd]}
+            />
+          ))
+        )}
+      </ul>
+    </CookiesProvider>
   );
 };
 
