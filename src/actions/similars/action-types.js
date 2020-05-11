@@ -1,0 +1,1 @@
+export const FETCH_SIMILARS = 'FETCH_SIMILARS';

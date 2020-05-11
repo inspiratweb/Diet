@@ -3,6 +3,7 @@ const similars = (state = [[]], action) => {
   switch (type) {
     case 'FETCH_SIMILARS':
       return payload;
+
     default:
       return state;
   }
