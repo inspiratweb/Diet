@@ -1,5 +1,5 @@
 import { similarsRef } from '../../firebase';
-import { FETCH_SIMILARS } from "./action-types"
+import { FETCH_SIMILARS } from './action-types';
 
 export const fetchSimilars = () => async (dispatch) => {
   similarsRef.on('value', (snapshot) => {

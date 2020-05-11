@@ -1,5 +1,5 @@
-import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
-import { getTotalKcal } from '../../utils/getTotalKcal';
+import { getMacrosFromMeal } from './getMacrosFromMeal';
+import { getTotalKcal } from './getTotalKcal';
 
 const getSimilarArray = (similars, meal) => {
   const similarArray = similars.find((similar) => similar.indexOf(meal.food) >= 0);
@@ -12,7 +12,7 @@ const getSimilarArray = (similars, meal) => {
 
 const getSkipGrams = (foods, food) => Object.values(foods).find((f) => f.code === food).skipGrams;
 
-const getSimilarFoods = (meal, foods, similars) => {
+export const getSimilarFoods = (meal, foods, similars) => {
   const similarArray = getSimilarArray(similars, meal);
 
   if (similarArray) {
@@ -33,5 +33,3 @@ const getSimilarFoods = (meal, foods, similars) => {
   }
   return false;
 };
-
-export { getSimilarFoods };

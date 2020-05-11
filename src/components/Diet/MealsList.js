@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { ListDietItem } from './ListDietItem';
-import { getOrderedDiet } from '../../selectors/diet/getOrderedDiet';
+import { getOrderedDiet } from '../../utils/getOrderedDiet';
 import { getMealFromId } from '../../selectors/meals/getMealFromId';
 import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
 import { getDiet } from '../../selectors/diet/getDiet';
