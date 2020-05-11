@@ -16,7 +16,7 @@ export const ListBasketItem = ({ food }) => {
     ) {
       setSwipe(true);
     }
-  }, [food]);
+  }, [food.code, cookies.basket]);
 
   const handleTouchStart = (e) => {
     setTouchStartX(e.nativeEvent.changedTouches[0].clientX);
@@ -79,4 +79,9 @@ ListBasketItem.propTypes = {
       fs: PropTypes.number,
     })
   })
+};
+
+
+ListBasketItem.defaultProps = {
+  food: {}
 };

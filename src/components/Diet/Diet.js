@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getRoundedKcal } from '../../utils/getRoundedKcal';
 import { getTotalMacros } from '../../utils/getTotalMacros';
-import { getOrderedDiet } from '../../selectors/diet/getOrderedDiet';
+import { getOrderedDiet } from '../../utils/getOrderedDiet';
 import { MealsList } from './MealsList';
 import { getDiet } from '../../selectors/diet/getDiet';
 import { getMeals } from '../../selectors/meals/getMeals';

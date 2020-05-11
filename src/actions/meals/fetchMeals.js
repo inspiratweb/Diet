@@ -1,5 +1,5 @@
 import { mealsRef } from '../../firebase';
-import { FETCH_MEALS } from "./action-types";
+import { FETCH_MEALS } from './action-types';
 
 export const fetchMeals = () => async (dispatch) => {
   mealsRef.on('value', (snapshot) => {

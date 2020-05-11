@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { CookiesProvider } from 'react-cookie';
 import { getDiet } from '../../selectors/diet/getDiet';
 import { getFoods } from '../../selectors/foods/getFoods';
 import { getRouter } from '../../selectors/router/getRouter';
 import { ListBasketItem } from './ListBasketItem';
-import { CookiesProvider } from 'react-cookie';
 
 const Basket = ({ className }) => {
   const diets = useSelector(getDiet);

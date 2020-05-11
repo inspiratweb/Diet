@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getFoodFromId } from '../../selectors/foods/getFoodFromId';
-import { getSimilarFoods } from '../../selectors/similars/getSimilarFoods';
+import { getSimilarFoods } from '../../utils/getSimilarFoods';
 import { getSimilars } from '../../selectors/similars/getSimilars';
 import { getFoods } from '../../selectors/foods/getFoods';
 import { Meal } from './Meal';
 import { LightBox } from './LightBox';
+import { ESC_KEY_CODE, SPACE_KEY_CODE } from '../../consts/keyboard-key-codes';
+import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
 
 export const FoodList = ({
   meals, showLightbox, openLightbox, closeLightbox
@@ -30,9 +32,38 @@ export const FoodList = ({
 
   return (
     <>
-      <ul className={renderClassDetail(!!lightBoxData.length)} onClick={openLightbox}>{mealList}</ul>
-      <div className={renderLightboxClass()} onClick={closeLightbox}>
-        <div className="lightBox-wrapper" onClick={(e) => e.stopPropagation()}>
+      <ul
+        className={renderClassDetail(!!lightBoxData.length)}
+        role="menuitem"
+        aria-label="Press SPACE Keyboard Key to open light box"
+        tabIndex="0"
+        onClick={openLightbox}
+        onKeyDown={
+          (e) => applyKeyboardNavigation(e, SPACE_KEY_CODE, () => openLightbox(e))
+        }
+      >
+        {mealList}
+      </ul>
+      <div
+        className={renderLightboxClass()}
+        role="menuitem"
+        aria-label="Press ESCAPE Keyboard Key to close light box"
+        tabIndex="0"
+        onClick={closeLightbox}
+        onKeyDown={
+          (e) => applyKeyboardNavigation(e, ESC_KEY_CODE, () => closeLightbox(e))
+        }
+      >
+        <div
+          className="lightBox-wrapper"
+          role="menuitem"
+          aria-label=""
+          tabIndex="0"
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={
+            (e) => applyKeyboardNavigation(e, '', () => {})
+          }
+        >
           <div className="lightBox-inner">
             <LightBox lightBoxData={lightBoxData} />
           </div>
@@ -49,8 +80,14 @@ FoodList.propTypes = {
       qtty: PropTypes.any,
     })
   ),
+  showLightbox: PropTypes.bool,
+  openLightbox: PropTypes.func,
+  closeLightbox: PropTypes.func,
 };
 
 FoodList.defaultProps = {
-  meals: []
+  meals: [],
+  showLightbox: false,
+  openLightbox: () => {},
+  closeLightbox: () => {}
 };
