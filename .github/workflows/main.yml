@@ -15,7 +15,7 @@ jobs:
       run: |
         yarn
         yarn lint
-        yarn test --ci
+        yarn test --watchAll=false
     - name: Build Project
       env:
         REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}

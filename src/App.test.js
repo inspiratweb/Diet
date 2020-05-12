@@ -16,6 +16,6 @@ describe('<App />', () => {
       </Provider>
     );
 
-    expect(wrapper.find(App)).toHaveLength(2);
+    expect(wrapper.find(App)).toHaveLength(1);
   });
 });
