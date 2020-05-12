@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getFoods } from '../../selectors/foods/getFoods';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
 
 export const LightBox = ({ lightBoxData }) => {
-  const foods = useSelector(getFoods);
+  const foods = useSelector(getFoodsFromFb);
 
   return lightBoxData && lightBoxData.map(([meal, similarFoods]) => {
     const foodName = foods[meal.food].desc;

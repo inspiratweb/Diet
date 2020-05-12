@@ -1,33 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { getDietAvailable } from '../../selectors/diet/getDietAvailable';
-import { fetchDiet } from '../../actions/diet/fetchDiet';
-import { setRouter } from '../../actions/router/setRouter';
-import { fetchRouter } from '../../actions/router/fetchRouter';
-
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getAvailableDiet } from '../../selectors/firebase/getAvailableDiet';
 import { Diet } from './Diet';
 import { Basket } from './Basket';
 import { BlankSlate } from '../Common/BlankSlate';
 import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
 import { B_KEY_CODE, D_KEY_CODE } from '../../consts/keyboard-key-codes';
 
-export const Layout = ({ location }) => {
-  const dietAvailables = useSelector(getDietAvailable);
+export const Layout = () => {
+  const availableDiet = useSelector(getAvailableDiet);
   const [selectedTab, setSelectedTab] = useState('diet');
-  const dispatch = useDispatch();
-  const normalizedUrl = location.pathname.replace(process.env.PUBLIC_URL, '').replace(/\//g, '');
-
-  useEffect(() => {
-    if (normalizedUrl) {
-      dispatch(setRouter(normalizedUrl));
-    } else {
-      dispatch(fetchRouter());
-    }
-    dispatch(fetchDiet());
-
-  }, [normalizedUrl, dispatch]);
-
 
   const handleClickDiet = () => {
     setSelectedTab('diet');
@@ -41,7 +23,7 @@ export const Layout = ({ location }) => {
 
   const renderTab = (tab) => (selectedTab === tab ? `${tab} active` : tab);
 
-  return dietAvailables ? (
+  return availableDiet ? (
     <div>
       <ul className="tabs">
         <li
@@ -76,14 +58,4 @@ export const Layout = ({ location }) => {
     <BlankSlate />
   );
 
-};
-
-Layout.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }),
-};
-
-Layout.defaultProps = {
-  location: {}
 };
