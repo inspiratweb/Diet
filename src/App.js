@@ -13,7 +13,6 @@ import { getRouterFromFb } from './selectors/firebase/getRouterFromFb';
 import { getDietsFromFb } from './selectors/firebase/getDietsFromFb';
 
 const App = () => {
-
   useFirebaseConnect([
     'foods', 'similars', 'meals', 'router', 'diets'
   ]);
