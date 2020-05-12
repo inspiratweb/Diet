@@ -1,8 +1,8 @@
 on: push
 name: Build and Publish Frontend
 jobs:
-  build:
-    name: build
+  test:
+    name: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.1.0
@@ -16,14 +16,6 @@ jobs:
         yarn
         yarn lint
         yarn test --watchAll=false
-    - name: Build Project
-      env:
-        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
-        REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
-        REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID }}
-        REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
-      run: |
-        yarn build --if-present
 
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
@@ -36,6 +28,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+
+    - name: Build Project
+      env:
+        REACT_APP_API_KEY: ${{ secrets.REACT_APP_API_KEY }}
+        REACT_APP_PROJECT_ID: ${{ secrets.REACT_APP_PROJECT_ID }}
+        REACT_APP_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_MESSAGING_SENDER_ID }}
+        REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
+      run: |
+        yarn build --if-present
 
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@3.1.0
