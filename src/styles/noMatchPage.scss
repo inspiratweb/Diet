@@ -1,0 +1,12 @@
+.noMatchPage {
+  color: $black;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.5;
+
+  &-shrug {
+    color: $basecolor;
+    font-size: 18px;
+    font-weight: 900;
+  }
+}

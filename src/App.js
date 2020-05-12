@@ -11,6 +11,7 @@ import { getMealsFromFb } from './selectors/firebase/getMealsFromFb';
 import { BlankSlate } from './components/Common/BlankSlate';
 import { getRouterFromFb } from './selectors/firebase/getRouterFromFb';
 import { getDietsFromFb } from './selectors/firebase/getDietsFromFb';
+import { NoMatchPage } from './components/Common/NoMatchPage';
 
 const App = () => {
   useFirebaseConnect([
@@ -37,7 +38,7 @@ const App = () => {
     <Router basename="/diet">
       <Switch>
         <Route exact path="/">
-          <Layout />
+          <Layout selectedDiet={diets[router]} />
         </Route>
         <Route exact path="/foods">
           <Foods />
@@ -45,9 +46,19 @@ const App = () => {
         <Route exact path="/builder">
           <BuilderWrapper />
         </Route>
-        <Route path="/:selectedDiet">
-          <Layout />
-        </Route>
+        <Route
+          path="/:selectedDiet"
+          render={({ match }) => {
+            const { selectedDiet } = match.params;
+            const dietsNames = Object.keys(diets);
+
+            if (dietsNames.indexOf(selectedDiet) >= 0) {
+              return <Layout selectedDiet={diets[selectedDiet]} />;
+            }
+            return <NoMatchPage />;
+
+          }}
+        />
       </Switch>
     </Router>
   );
