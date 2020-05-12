@@ -15,5 +15,5 @@ const config = {
 export const fb = firebase.initializeApp(config);
 
 export const reactReduxFirebaseConfig = {
-    userProfile: 'users'
-}
+  userProfile: 'users'
+};

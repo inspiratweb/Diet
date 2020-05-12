@@ -1,6 +1,6 @@
-import { getDietsFromFb } from "./getDietsFromFb";
-import { getRouterFromFb } from "./getRouterFromFb";
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
+import { getDietsFromFb } from './getDietsFromFb';
+import { getRouterFromFb } from './getRouterFromFb';
 
 export const getAvailableDiet = createSelector(
   getDietsFromFb,

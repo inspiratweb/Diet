@@ -2,7 +2,8 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": "airbnb",
   "rules": {
@@ -48,6 +49,7 @@
     ],
     "jsx-a11y/no-noninteractive-element-to-interactive-role": [
       "off"
-    ]
+    ],
+    "react/jsx-props-no-spreading": "off"
   }
 }

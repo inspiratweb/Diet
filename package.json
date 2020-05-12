@@ -5,6 +5,8 @@
   "homepage": "http://www.verdemontecarlo.com/diet",
   "dependencies": {
     "classnames": "^2.2.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "firebase": "^7.14.3",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
@@ -18,7 +20,9 @@
     "react-redux-firebase": "^3.4.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "react-test-renderer": "^16.13.1",
     "redux": "^4.0.5",
+    "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "sass-mq": "^5.0.1"
@@ -27,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src/",
+    "lint:fix": "eslint ./src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^18.1.0"
   }
 }
