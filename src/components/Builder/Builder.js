@@ -7,15 +7,15 @@ import search from '../../images/search.svg';
 import toggler from '../../images/toggler.svg';
 import { ItemDroppable } from './ItemDroppable';
 import { BlankSlate } from '../Common/BlankSlate';
-import { getFoods } from '../../selectors/foods/getFoods';
-import { getMeals } from '../../selectors/meals/getMeals';
 import { Summary } from './Summary';
 import { F_KEY_CODE } from '../../consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
 
 export const Builder = () => {
-  const foods = useSelector(getFoods);
-  const meals = useSelector(getMeals);
+  const foods = useSelector(getFoodsFromFb);
+  const meals = useSelector(getMealsFromFb);
   const codes = Object.values(foods).map((food) => food.code);
 
   const [filter, setFilter] = React.useState('');

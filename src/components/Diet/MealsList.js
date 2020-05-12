@@ -2,22 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { ListDietItem } from './ListDietItem';
-import { getOrderedDiet } from '../../selectors/diet/getOrderedDiet';
-import { getMealFromId } from '../../selectors/meals/getMealFromId';
+import { getOrderedDiet } from '../../utils/getOrderedDiet';
+import { getMealFromId } from '../../utils/getMealFromId';
 import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
-import { getDiet } from '../../selectors/diet/getDiet';
-import { getMeals } from '../../selectors/meals/getMeals';
-import { getFoods } from '../../selectors/foods/getFoods';
-import { getSimilars } from '../../selectors/similars/getSimilars';
-import { getRouter } from '../../selectors/router/getRouter';
+import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getSimilarsFromFb } from '../../selectors/firebase/getSimilarsFromFb';
+import { getRouterFromFb } from '../../selectors/firebase/getRouterFromFb';
+import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
+import { getDietsFromFb } from '../../selectors/firebase/getDietsFromFb';
+import { useParams } from 'react-router-dom';
 
 export const MealsList = () => {
-  const diets = useSelector(getDiet);
-  const meals = useSelector(getMeals);
-  const foods = useSelector(getFoods);
-  const similars = useSelector(getSimilars);
-  const router = useSelector(getRouter);
-  const diet = diets[router];
+  const diets = useSelector(getDietsFromFb);
+  const meals = useSelector(getMealsFromFb);
+  const foods = useSelector(getFoodsFromFb);
+  const similars = useSelector(getSimilarsFromFb);
+  const router = useSelector(getRouterFromFb);
+  const { selectedDiet } = useParams();
+
+  const diet = diets[selectedDiet] || diets[router];
 
   return Object.entries(meals).length > 0
   && Object.entries(getOrderedDiet(diet, meals)).map((meal) => {
