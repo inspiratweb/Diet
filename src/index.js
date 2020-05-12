@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import dietApp from './reducers/index';
 import { App } from './App';
-import { fb as firebase, reactReduxFirebaseConfig } from "./firebase";
+import { fb as firebase, reactReduxFirebaseConfig } from './firebase';
 
 import './styles/index.scss';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 
 const store = createStore(
   dietApp,
@@ -24,7 +24,7 @@ const reactReduxFirebaseProps = {
   firebase,
   config: reactReduxFirebaseConfig,
   dispatch: store.dispatch
-}
+};
 
 ReactDOM.render(
   <Provider store={store}>

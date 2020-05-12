@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { ListDietItem } from './ListDietItem';
 import { getOrderedDiet } from '../../utils/getOrderedDiet';
 import { getMealFromId } from '../../utils/getMealFromId';
@@ -10,7 +11,6 @@ import { getSimilarsFromFb } from '../../selectors/firebase/getSimilarsFromFb';
 import { getRouterFromFb } from '../../selectors/firebase/getRouterFromFb';
 import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
 import { getDietsFromFb } from '../../selectors/firebase/getDietsFromFb';
-import { useParams } from 'react-router-dom';
 
 export const MealsList = () => {
   const diets = useSelector(getDietsFromFb);

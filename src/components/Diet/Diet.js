@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { getRoundedKcal } from '../../utils/getRoundedKcal';
 import { getTotalMacros } from '../../utils/getTotalMacros';
 import { getOrderedDiet } from '../../utils/getOrderedDiet';
@@ -9,7 +10,6 @@ import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
 import { getRouterFromFb } from '../../selectors/firebase/getRouterFromFb';
 import { getDietsFromFb } from '../../selectors/firebase/getDietsFromFb';
 import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
-import { useParams } from 'react-router-dom';
 
 export const Diet = ({ className }) => {
   const diets = useSelector(getDietsFromFb);

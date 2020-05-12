@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
+import { firebaseReducer as firebase } from 'react-redux-firebase';
 import newDiet from './newDiet';
-import { firebaseReducer as firebase } from "react-redux-firebase";
 
 const dietApp = combineReducers({
   newDiet,
