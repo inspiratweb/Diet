@@ -1,12 +1,15 @@
-.noMatchPage {
-  color: $black;
+.pageNotFound {
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 
-  &-shrug {
-    color: $basecolor;
-    font-size: 18px;
-    font-weight: 900;
+  &-contentWrapper {
+    > * {
+      margin: 10px 0;
+    }
   }
 }

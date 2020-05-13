@@ -11,7 +11,7 @@ import { getMealsFromFb } from './selectors/firebase/getMealsFromFb';
 import { BlankSlate } from './components/Common/BlankSlate';
 import { getRouterFromFb } from './selectors/firebase/getRouterFromFb';
 import { getDietsFromFb } from './selectors/firebase/getDietsFromFb';
-import { NoMatchPage } from './components/Common/NoMatchPage';
+import { PageNotFound } from './components/Common/PageNotFound';
 
 const App = () => {
   useFirebaseConnect([
@@ -55,7 +55,7 @@ const App = () => {
             if (dietsNames.indexOf(selectedDiet) >= 0) {
               return <Layout selectedDiet={diets[selectedDiet]} />;
             }
-            return <NoMatchPage />;
+            return <PageNotFound />;
 
           }}
         />
