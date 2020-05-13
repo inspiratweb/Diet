@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getAvailableDiet } from '../../selectors/firebase/getAvailableDiet';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Diet } from './Diet';
 import { Basket } from './Basket';
-import { BlankSlate } from '../Common/BlankSlate';
 import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
 import { B_KEY_CODE, D_KEY_CODE } from '../../consts/keyboard-key-codes';
+import { setSelectedDiet } from '../../actions/selectedDiet/setSelectedDiet';
 
-export const Layout = () => {
-  const availableDiet = useSelector(getAvailableDiet);
+export const Layout = ({ selectedDiet }) => {
+  const dispatch = useDispatch();
   const [selectedTab, setSelectedTab] = useState('diet');
+
+  useEffect(() => {
+    dispatch(setSelectedDiet(selectedDiet));
+  }, [selectedDiet, dispatch]);
+
 
   const handleClickDiet = () => {
     setSelectedTab('diet');
@@ -23,7 +28,7 @@ export const Layout = () => {
 
   const renderTab = (tab) => (selectedTab === tab ? `${tab} active` : tab);
 
-  return availableDiet ? (
+  return (
     <div>
       <ul className="tabs">
         <li
@@ -54,8 +59,18 @@ export const Layout = () => {
       <Diet className={renderTab('diet')} />
       <Basket className={renderTab('basket')} />
     </div>
-  ) : (
-    <BlankSlate />
   );
+};
 
+Layout.defaultProps = {
+  selectedDiet: {}
+};
+
+Layout.propTypes = {
+  selectedDiet: PropTypes.shape({
+    any: PropTypes.shape({
+      food: PropTypes.string,
+      qtty: PropTypes.string,
+    })
+  })
 };

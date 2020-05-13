@@ -1,25 +1,20 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { MealsList } from './MealsList';
 import { getRoundedKcal } from '../../utils/getRoundedKcal';
 import { getTotalMacros } from '../../utils/getTotalMacros';
 import { getOrderedDiet } from '../../utils/getOrderedDiet';
-import { MealsList } from './MealsList';
 import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
-import { getRouterFromFb } from '../../selectors/firebase/getRouterFromFb';
-import { getDietsFromFb } from '../../selectors/firebase/getDietsFromFb';
 import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
+import { getSelectedDiet } from '../../selectors/selectedDiet/getSelectedDiet';
 
 export const Diet = ({ className }) => {
-  const diets = useSelector(getDietsFromFb);
   const meals = useSelector(getMealsFromFb);
   const foods = useSelector(getFoodsFromFb);
-  const router = useSelector(getRouterFromFb);
-  const { selectedDiet } = useParams();
+  const selectedDiet = useSelector(getSelectedDiet);
 
-  const diet = diets[selectedDiet] || diets[router];
-  const orderedDiet = getOrderedDiet(diet, meals);
+  const orderedDiet = getOrderedDiet(selectedDiet, meals);
   const totalMacros = getTotalMacros(meals, orderedDiet, foods);
 
   return (
@@ -52,28 +47,4 @@ export const Diet = ({ className }) => {
 
 Diet.propTypes = {
   className: PropTypes.string.isRequired,
-  diets: PropTypes.shape({
-    any: PropTypes.arrayOf(
-      PropTypes.number,
-      PropTypes.any,
-    )
-  }),
-  meals: PropTypes.shape({
-    any: PropTypes.shape({
-      time: PropTypes.number,
-      desc: PropTypes.string,
-    })
-  }),
-  foods: PropTypes.shape({
-    any: PropTypes.shape({
-      code: PropTypes.string,
-      desc: PropTypes.string,
-    })
-  }),
-};
-
-Diet.defaultProps = {
-  diets: {},
-  meals: {},
-  foods: {},
 };
