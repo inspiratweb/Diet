@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, FormContext } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { signUp } from '../../actions/firebase/signUp';
 import { EmailInput } from './FormComponents/EmailInput';
 import { PasswordInput } from './FormComponents/PasswordInput';
@@ -9,10 +10,11 @@ import { ConfirmPasswordInput } from './FormComponents/ConfirmPasswordInput';
 export const SignUpForm = () => {
   const methods = useForm();
   const { handleSubmit } = methods;
+  const dispatch = useDispatch();
 
   const onSubmit = ({ email, password }, e) => {
     e.preventDefault();
-    signUp({ email, password });
+    dispatch(signUp({ email, password }));
   };
 
   return (

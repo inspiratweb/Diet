@@ -3,6 +3,7 @@
 import React from 'react';
 import { useForm, FormContext } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { logIn } from '../../actions/firebase/logIn';
 import { EmailInput } from './FormComponents/EmailInput';
 import { PasswordInput } from './FormComponents/PasswordInput';
@@ -10,10 +11,11 @@ import { PasswordInput } from './FormComponents/PasswordInput';
 export const LogInForm = () => {
   const methods = useForm();
   const { handleSubmit } = methods;
+  const dispatch = useDispatch();
 
   const onSubmit = (values, e) => {
     e.preventDefault();
-    logIn(values);
+    dispatch(logIn(values));
   };
 
   return (
