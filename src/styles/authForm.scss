@@ -1,0 +1,82 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+
+  &-label {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-field {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    border: 0;
+    border: 1px solid $basecolor-light;
+    border-radius: 5px;
+    margin: 4px 0 8px;
+    font-size: 18px;
+  }
+
+  &-password {
+    display: flex;
+    border: 1px solid $basecolor-light;
+    border-radius: 5px;
+    margin: 4px 0 8px;
+
+    &-field {
+      font-size: 18px;
+      padding: 10px 14px;
+      margin: 0;
+      border: none;
+      border-radius: 5px;
+      width: 95%;
+    }
+
+    &_type {
+      line-height: 36px;
+      padding-right: 4px;
+      text-decoration: underline;
+      cursor: pointer;
+      background: $white;
+      border-radius: 5px;
+    }
+  }
+
+  &-fieldError {
+    font-size: 12px;
+    color: tomato;
+  }
+
+  &-controlBtns > button {
+    width: 49%;
+  }
+
+  &-submitBtn {
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: $maincolor;
+    font-size: 18px;
+    border-color: transparent;
+    cursor: pointer;
+  }
+
+  &-cancelBtn {
+    padding: 10px 14px;
+    border: 1px solid $basecolor-light;
+    border-radius: 5px;
+    background: $white;
+    margin-left: 2%;
+    font-size: 18px;
+    color: $basecolor;
+    cursor: pointer;
+  }
+
+  &-subForm {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+}

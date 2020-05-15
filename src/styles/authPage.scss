@@ -1,0 +1,63 @@
+.authPage {
+  display: grid;
+  grid-template-rows: 32px 32px auto 32px;
+  grid-template-areas:
+  ". . . . ."
+  ". navigationIcon . . ."
+  ". . mainContent . ."
+  ". . . . ."
+  ;
+  grid-template-columns: 32px auto 80% auto 40px;
+  // TODO: .authPage takes all height space without header
+  min-height: 100vh;
+
+  @include mq(tablet) {
+    grid-template-columns: 32px auto 65% auto 40px;
+  }
+  @include mq(desktop) {
+    grid-template-columns: 32px auto 45% auto 40px;
+  }
+  @include mq(wide) {
+    grid-template-columns: 32px auto 30% auto 40px;
+  }
+
+  &-backArrow {
+    grid-area: navigationIcon;
+    cursor: pointer;
+    padding: 10px;
+    height: 45px;
+  }
+
+  &-main {
+    grid-area: mainContent;
+    display: flex;
+    flex-direction: column;
+    padding-top: 32px;
+
+    &-logo {
+      margin: 32px 0;
+    }
+
+    &-header {
+      margin-top: 32px;
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    &-paragraph {
+      margin: 16px 0;
+      font-size: 18px;
+      line-height: 1.4;
+
+      @include mq(desktop) {
+        font-size: 20px;
+      }
+    }
+
+    &-paragraphLink {
+      color: $basecolor;
+      cursor: pointer;
+      font-weight: 700;
+    }
+  }
+}

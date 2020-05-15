@@ -4,13 +4,14 @@
 }
 
 // common layout classes, used frequenly in some views
-body {
+body, #app {
   font-family: $mainfont;
   font-size: 13px;
   color: $basecolor;
   line-height: 16px;
   text-size-adjust: 100%;
   background-color: $background;
+  min-height: 100vh;
 }
 
 input:-webkit-autofill {
@@ -28,5 +29,3 @@ a {
     margin: 0 auto;
   }
 }
-
-
