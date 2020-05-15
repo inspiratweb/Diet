@@ -26,6 +26,7 @@ export const PasswordInput = ({ message }) => {
           className="authForm-password-field"
           name="password"
           id="password"
+          maxLength={15}
           type={showPassword ? 'text' : 'password'}
           ref={register({
             required: '* Required',

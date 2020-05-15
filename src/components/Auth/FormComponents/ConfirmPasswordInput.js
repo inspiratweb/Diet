@@ -18,6 +18,7 @@ export const ConfirmPasswordInput = () => {
       <input
         className="authForm-field"
         name="repeatPassword"
+        maxLength={15}
         type="password"
         ref={register({
           required: '* Required',
