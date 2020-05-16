@@ -1,4 +1,4 @@
-import { SET_GLOBAL_ERROR, REMOVE_GLOBAL_ERROR } from '../actions/globalErrors/action-types';
+import { SET_GLOBAL_ERROR, REMOVE_GLOBAL_ERROR } from 'actions/globalErrors/action-types';
 
 export default (state = [], action = { type: '', payload: {}}) => {
   const { type, payload } = action;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
 
 export const LightBox = ({ lightBoxData }) => {
   const foods = useSelector(getFoodsFromFb);

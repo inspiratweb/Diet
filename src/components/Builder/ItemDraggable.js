@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
-import { Pie } from '../Common/Pie';
-import dragIcon from '../../images/drag.svg';
+import { Pie } from 'components/Common/Pie';
+import dragIcon from 'images/drag.svg';
 
 export const ItemDraggable = ({ macrosPercent, food }) => {
   const [{ isDragging }, drag] = useDrag({

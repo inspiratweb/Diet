@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getFoodFromId } from '../../utils/getFoodFromId';
-import { getSimilarFoods } from '../../utils/getSimilarFoods';
-import { Meal } from './Meal';
-import { LightBox } from './LightBox';
-import { ESC_KEY_CODE, SPACE_KEY_CODE } from '../../consts/keyboard-key-codes';
-import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
-import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
-import { getSimilarsFromFb } from '../../selectors/firebase/getSimilarsFromFb';
+import { getFoodFromId } from 'utils/getFoodFromId';
+import { getSimilarFoods } from 'utils/getSimilarFoods';
+import { Meal } from 'components/Diet/Meal';
+import { ESC_KEY_CODE, SPACE_KEY_CODE } from 'consts/keyboard-key-codes';
+import { LightBox } from 'components/Diet/LightBox';
+import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getSimilarsFromFb } from 'selectors/firebase/getSimilarsFromFb';
 
 export const FoodList = ({
   meals, showLightbox, openLightbox, closeLightbox

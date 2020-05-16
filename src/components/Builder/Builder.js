@@ -1,17 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { getMacrosPecent } from '../../utils/getMacrosPecent';
-import { ItemDraggable } from './ItemDraggable';
-import search from '../../images/search.svg';
-import toggler from '../../images/toggler.svg';
-import { ItemDroppable } from './ItemDroppable';
-import { BlankSlate } from '../Common/BlankSlate';
-import { Summary } from './Summary';
-import { F_KEY_CODE } from '../../consts/keyboard-key-codes';
-import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
-import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
-import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
+import { getMacrosPecent } from 'utils/getMacrosPecent';
+import { ItemDraggable } from 'components/Builder/ItemDraggable';
+import search from 'images/search.svg';
+import toggler from 'images/toggler.svg';
+import { ItemDroppable } from 'components/Builder/ItemDroppable';
+import { BlankSlate } from 'components/Common/BlankSlate';
+import { Summary } from 'components/Builder/Summary';
+import { F_KEY_CODE } from 'consts/keyboard-key-codes';
+import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
 
 export const Builder = () => {
   const foods = useSelector(getFoodsFromFb);

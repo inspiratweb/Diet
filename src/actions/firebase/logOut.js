@@ -1,6 +1,6 @@
-import { fb } from '../../firebase';
-import { setGlobalError } from '../globalErrors/setGlobalError';
-import { removeGlobalError } from '../globalErrors/removeGlobalError';
+import { fb } from 'firebaseConfig';
+import { setGlobalError } from 'actions/globalErrors/setGlobalError';
+import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
 
 export const logOut = () => (dispatch, getState) => {
   fb.auth().signOut()

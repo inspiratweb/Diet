@@ -1,10 +1,10 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import BackArrowIcon from '../../images/back-arrow.png';
-import MainLogo from '../../images/main-logo.svg';
-import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
-import { B_KEY_CODE } from '../../consts/keyboard-key-codes';
+import BackArrowIcon from 'images/back-arrow.png';
+import MainLogo from 'images/main-logo.svg';
+import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { B_KEY_CODE } from 'consts/keyboard-key-codes';
 
 export const AuthPage = ({
   header, paragraph, link, linkTo, children

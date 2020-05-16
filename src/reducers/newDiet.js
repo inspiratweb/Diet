@@ -2,7 +2,7 @@ import {
   ADD_DRAGGED_FOOD,
   REMOVE_DRAGGED_FOOD,
   CHANGE_FOOD_QUANTITY
-} from '../actions/newDiet/action-types';
+} from 'actions/newDiet/action-types';
 
 export default (state = {}, action) => {
   const {

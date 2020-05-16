@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import {
   EMAIL_ADDRESS_VALIDATOR
-} from '../../../consts/regex-validators';
+} from 'consts/regex-validators';
 
 export const EmailInput = ({ message }) => {
   const { register, errors } = useFormContext();

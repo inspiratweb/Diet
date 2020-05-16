@@ -1,7 +1,7 @@
 // TODO Redesign 404 page
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import PageNotFoundImage from '../../images/errors/404.png';
+import PageNotFoundImage from 'images/errors/404.png';
 
 export const PageNotFound = () => {
   const history = useHistory();
