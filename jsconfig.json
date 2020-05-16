@@ -1,0 +1,8 @@
+// Global Config File to implement Absolute Imports in CRA without ejecting
+// https://medium.com/hackernoon/absolute-imports-with-create-react-app-4c6cfb66c35d
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}

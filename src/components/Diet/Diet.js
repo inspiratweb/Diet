@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { MealsList } from './MealsList';
-import { getRoundedKcal } from '../../utils/getRoundedKcal';
-import { getTotalMacros } from '../../utils/getTotalMacros';
-import { getOrderedDiet } from '../../utils/getOrderedDiet';
-import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
-import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
-import { getSelectedDiet } from '../../selectors/selectedDiet/getSelectedDiet';
+import { MealsList } from 'components/Diet/MealsList';
+import { getRoundedKcal } from 'utils/getRoundedKcal';
+import { getTotalMacros } from 'utils/getTotalMacros';
+import { getOrderedDiet } from 'utils/getOrderedDiet';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { getSelectedDiet } from 'selectors/selectedDiet/getSelectedDiet';
 
 export const Diet = ({ className }) => {
   const meals = useSelector(getMealsFromFb);

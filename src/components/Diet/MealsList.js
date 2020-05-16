@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ListDietItem } from './ListDietItem';
-import { getOrderedDiet } from '../../utils/getOrderedDiet';
-import { getMealFromId } from '../../utils/getMealFromId';
-import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
-import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
-import { getSimilarsFromFb } from '../../selectors/firebase/getSimilarsFromFb';
-import { getMealsFromFb } from '../../selectors/firebase/getMealsFromFb';
-import { getSelectedDiet } from '../../selectors/selectedDiet/getSelectedDiet';
+import { getOrderedDiet } from 'utils/getOrderedDiet';
+import { ListDietItem } from 'components/Diet/ListDietItem';
+import { getMealFromId } from 'utils/getMealFromId';
+import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getSimilarsFromFb } from 'selectors/firebase/getSimilarsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { getSelectedDiet } from 'selectors/selectedDiet/getSelectedDiet';
 
 export const MealsList = () => {
   const meals = useSelector(getMealsFromFb);

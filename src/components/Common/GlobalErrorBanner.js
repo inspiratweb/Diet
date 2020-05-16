@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import removeIcon from '../../images/remove.svg';
-import { removeGlobalError } from '../../actions/globalErrors/removeGlobalError';
-import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
-import { R_KEY_CODE } from '../../consts/keyboard-key-codes';
+import removeIcon from 'images/remove.svg';
+import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
+import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { R_KEY_CODE } from 'consts/keyboard-key-codes';
 
 export const GlobalErrorBanner = ({ message }) => {
   const dispatch = useDispatch();

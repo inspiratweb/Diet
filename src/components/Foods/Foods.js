@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getMacrosPecent } from '../../utils/getMacrosPecent';
-import { getRealQtty } from '../../utils/getRealQtty';
-import { Pie } from '../Common/Pie';
-import { getRealKCalQtty } from '../../utils/getRealKCalQtty';
-import { RealMacroQtty } from '../Common/RealMacroQtty';
-import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getMacrosPecent } from 'utils/getMacrosPecent';
+import { getRealQtty } from 'utils/getRealQtty';
+import { Pie } from 'components/Common/Pie';
+import { getRealKCalQtty } from 'utils/getRealKCalQtty';
+import { RealMacroQtty } from 'components/Common/RealMacroQtty';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
 
 export const Foods = () => {
   const foods = useSelector(getFoodsFromFb);

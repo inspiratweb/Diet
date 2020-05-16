@@ -1,10 +1,10 @@
 /* eslint-disable no-return-assign */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getMacrosFromMeal } from '../../utils/getMacrosFromMeal';
-import { getRoundedKcal } from '../../utils/getRoundedKcal';
-import { getNewDiet } from '../../selectors/newDiet/getNewDiet';
-import { getFoodsFromFb } from '../../selectors/firebase/getFoodsFromFb';
+import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
+import { getRoundedKcal } from 'utils/getRoundedKcal';
+import { getNewDiet } from 'selectors/newDiet/getNewDiet';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
 
 export const Summary = () => {
   const newDiet = useSelector(getNewDiet);

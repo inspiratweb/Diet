@@ -1,6 +1,6 @@
-import { fb } from '../../firebase';
-import { setGlobalError } from '../globalErrors/setGlobalError';
-import { removeGlobalError } from '../globalErrors/removeGlobalError';
+import { setGlobalError } from 'actions/globalErrors/setGlobalError';
+import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
+import { fb } from 'firebaseConfig';
 
 export const signUp = ({ email, password }) => (dispatch, getState) => {
   fb.auth().createUserWithEmailAndPassword(email, password)

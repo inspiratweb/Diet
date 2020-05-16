@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Diet } from './Diet';
-import { Basket } from './Basket';
-import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
-import { B_KEY_CODE, D_KEY_CODE } from '../../consts/keyboard-key-codes';
-import { setSelectedDiet } from '../../actions/selectedDiet/setSelectedDiet';
+import { setSelectedDiet } from 'actions/selectedDiet/setSelectedDiet';
+import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { B_KEY_CODE, D_KEY_CODE } from 'consts/keyboard-key-codes';
+import { Basket } from 'components/Diet/Basket';
+import { Diet } from 'components/Diet/Diet';
 
 export const Layout = ({ selectedDiet }) => {
   const dispatch = useDispatch();

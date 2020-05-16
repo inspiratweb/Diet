@@ -4,9 +4,9 @@ import reduxThunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
-import dietApp from './reducers/index';
-import { App } from './App';
-import { fb as firebase, reactReduxFirebaseConfig } from './firebase';
+import dietApp from 'reducers/index';
+import { App } from 'App';
+import { fb as firebase, reactReduxFirebaseConfig } from 'firebaseConfig';
 
 import './styles/index.scss';
 
