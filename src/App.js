@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import {
+  Route, BrowserRouter as Router, Switch, Redirect
+} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useFirebaseConnect, isLoaded } from 'react-redux-firebase';
 import { Layout } from './components/Diet/Layout';
@@ -12,6 +14,10 @@ import { BlankSlate } from './components/Common/BlankSlate';
 import { getRouterFromFb } from './selectors/firebase/getRouterFromFb';
 import { getDietsFromFb } from './selectors/firebase/getDietsFromFb';
 import { PageNotFound } from './components/Common/PageNotFound';
+import { AuthRoutes } from './components/Auth/AuthRoutes';
+import { GlobalErrorBanner } from './components/Common/GlobalErrorBanner';
+import { getIsUserLoggedOut } from './selectors/firebase/getIsUserLoggedOut';
+import { getGlobalErrors } from './selectors/globalErrors/getGlobalErrors';
 
 const App = () => {
   useFirebaseConnect([
@@ -23,6 +29,8 @@ const App = () => {
   const router = useSelector(getRouterFromFb);
   const meals = useSelector(getMealsFromFb);
   const diets = useSelector(getDietsFromFb);
+  const isUserLoggedOut = useSelector(getIsUserLoggedOut);
+  const globalErrors = useSelector(getGlobalErrors);
 
   if (
     !isLoaded(foods)
@@ -46,6 +54,9 @@ const App = () => {
         <Route exact path="/builder">
           <BuilderWrapper />
         </Route>
+        <Route path="/auth">
+          {!isUserLoggedOut ? <Redirect to="/" /> : <AuthRoutes />}
+        </Route>
         <Route
           path="/:selectedDiet"
           render={({ match }) => {
@@ -56,10 +67,12 @@ const App = () => {
               return <Layout selectedDiet={diets[selectedDiet]} />;
             }
             return <PageNotFound />;
-
           }}
         />
       </Switch>
+      {globalErrors.map(
+        (message) => <GlobalErrorBanner key={message} message={message} />
+      )}
     </Router>
   );
 };
