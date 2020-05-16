@@ -1,0 +1,55 @@
+$offcanvas-size: 240px;
+
+.temp {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  &-wrapper {
+    height: 100%;
+    background: $white;
+  }
+}
+.navigator {
+  position: absolute;
+  left: -$offcanvas-size;
+  width: $offcanvas-size;
+  min-height: 100vh;
+  z-index: 1;
+  overflow: auto;
+}
+
+.layout {
+  min-height: 100vh;
+  overflow: hidden;
+  &-wrapper {
+    transition: all $faster $easing;
+  }
+
+  &.showMenu {
+    background-color: red;
+    .layout-wrapper {
+      transform: translateX($offcanvas-size);
+    }
+
+    .temp {
+      &-wrapper {
+        border-radius: 10px;
+        margin-top: 5vh;
+        height: 90vh;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+@include mq($until: tablet) {
+  .layout {
+    &.showMenu {
+      .layout-wrapper {
+        transform: translateX($offcanvas-size);
+      }
+    }
+  }
+}
