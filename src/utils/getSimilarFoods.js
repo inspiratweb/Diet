@@ -22,10 +22,10 @@ export const getSimilarFoods = (meal = {}, foods = {}, similars = []) => {
     return similarArray.map((similar) => {
       let diff = '';
       const skipGrams = getSkipGrams(foods, similar);
-      const foodKcalsPerGram = getTotalKCal(getMacrosFromMeal([{food: similar, qtty: 1}], foods));
+      const foodKCalsPerGram = getTotalKCal(getMacrosFromMeal([{food: similar, qtty: 1}], foods));
 
-      if (foodKcalsPerGram) {
-        const qtty = Math.round(baseKcals / foodKcalsPerGram);
+      if (foodKCalsPerGram) {
+        const qtty = Math.ceil(baseKcals / foodKCalsPerGram);
         diff = skipGrams ? `(${qtty})` : `${qtty}g:`;
       }
       return { food: similar, qtty: diff };

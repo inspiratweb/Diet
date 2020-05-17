@@ -26,18 +26,17 @@ export const Diet = ({ className }) => {
         </span>
         <span className="diet-title-macros">
           <span className="diet-title-macros-p">
-            {Math.round(totalMacros.p)}
+            {Math.ceil(totalMacros.p)}
             g
           </span>
           <span className="diet-title-macros-ch">
-            {Math.round(totalMacros.ch)}
+            {Math.ceil(totalMacros.ch)}
             g
           </span>
           <span className="diet-title-macros-f">
-            {Math.round(totalMacros.f)}
+            {Math.ceil(totalMacros.f)}
             g
           </span>
-
         </span>
       </h3>
       <MealsList />
