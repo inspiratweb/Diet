@@ -1,7 +1,7 @@
 import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
-import { getTotalKcal } from 'utils/getTotalKcal';
+import { getTotalKCal } from 'utils/getTotalKCal';
 
-const getSimilarArray = (similars, meal) => {
+const getSimilarArray = (similars = [], meal = {}) => {
   const similarArray = similars.find((similar) => similar.indexOf(meal.food) >= 0);
 
   const similarArrayCopy = similarArray && [...similarArray];
@@ -12,17 +12,17 @@ const getSimilarArray = (similars, meal) => {
 
 const getSkipGrams = (foods, food) => Object.values(foods).find((f) => f.code === food).skipGrams;
 
-export const getSimilarFoods = (meal, foods, similars) => {
+export const getSimilarFoods = (meal = {}, foods = {}, similars = []) => {
   const similarArray = getSimilarArray(similars, meal);
 
   if (similarArray) {
     // Total kcal from the compared food
-    const baseKcals = getTotalKcal(getMacrosFromMeal([meal], foods));
+    const baseKcals = getTotalKCal(getMacrosFromMeal([meal], foods));
 
     return similarArray.map((similar) => {
       let diff = '';
       const skipGrams = getSkipGrams(foods, similar);
-      const foodKcalsPerGram = getTotalKcal(getMacrosFromMeal([{food: similar, qtty: 1}], foods));
+      const foodKcalsPerGram = getTotalKCal(getMacrosFromMeal([{food: similar, qtty: 1}], foods));
 
       if (foodKcalsPerGram) {
         const qtty = Math.round(baseKcals / foodKcalsPerGram);

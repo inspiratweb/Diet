@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getMacrosPecent } from 'utils/getMacrosPecent';
+import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { getRealQtty } from 'utils/getRealQtty';
 import { Pie } from 'components/Common/Pie';
 import { getRealKCalQtty } from 'utils/getRealKCalQtty';
@@ -28,7 +28,7 @@ export const Foods = () => {
       {Object.values(foods)
         .filter((food) => !!food.macros)
         .map((food) => {
-          const macrosPercent = getMacrosPecent(food.macros);
+          const macrosPercent = getMacrosPercent(food.macros);
           let qtty = food.eq ? 1 : 100;
           qtty = getRealQtty(food.eq, selectedFood[food.code] || qtty);
 

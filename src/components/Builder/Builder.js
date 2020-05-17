@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { getMacrosPecent } from 'utils/getMacrosPecent';
+import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { ItemDraggable } from 'components/Builder/ItemDraggable';
 import search from 'images/search.svg';
 import toggler from 'images/toggler.svg';
@@ -31,7 +31,7 @@ export const Builder = () => {
     .filter((food) => !!food.macros)
     .filter((food) => food.desc.toLowerCase().indexOf(filter.toLowerCase()) >= 0)
     .filter((food) => {
-      const macrosPercent = getMacrosPecent(food.macros);
+      const macrosPercent = getMacrosPercent(food.macros);
       return (!filterMacros.p && !filterMacros.ch && !filterMacros.f)
           || (
             (filterMacros.p ? macrosPercent.p > 0.3 : true)
@@ -40,7 +40,7 @@ export const Builder = () => {
           );
     })
     .map((food) => {
-      const macrosPercent = getMacrosPecent(food.macros);
+      const macrosPercent = getMacrosPercent(food.macros);
       return <ItemDraggable key={food.code} macrosPercent={macrosPercent} food={food} />;
     });
 

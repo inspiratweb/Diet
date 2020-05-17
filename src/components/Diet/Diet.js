@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MealsList } from 'components/Diet/MealsList';
-import { getRoundedKcal } from 'utils/getRoundedKcal';
+import { getRoundedKCal } from 'utils/getRoundedKCal';
 import { getTotalMacros } from 'utils/getTotalMacros';
 import { getOrderedDiet } from 'utils/getOrderedDiet';
 import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
@@ -21,7 +21,7 @@ export const Diet = ({ className }) => {
     <ul className={className}>
       <h3 className="diet-title">
         <span className="diet-title-kcal">
-          {getRoundedKcal(totalMacros)}
+          {getRoundedKCal(totalMacros)}
           KCal
         </span>
         <span className="diet-title-macros">

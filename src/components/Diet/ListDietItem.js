@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { getRoundedKcal } from 'utils/getRoundedKcal';
-import { getMacrosPecent } from 'utils/getMacrosPecent';
+import { getRoundedKCal } from 'utils/getRoundedKCal';
+import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { Pie } from 'components/Common/Pie';
 import { FoodList } from 'components/Diet/FoodList';
 import { getFoodSummary } from 'utils/getFoodSummary';
@@ -16,8 +16,8 @@ export const ListDietItem = ({
   const [touchStartX, setTouchStartX] = useState(0);
   const [swipe, setSwipe] = useState(false);
   const [showLightbox, setShowLightbox] = useState(false);
-  const macrosPercent = getMacrosPecent(macros);
-  const kcal = getRoundedKcal(macros);
+  const macrosPercent = getMacrosPercent(macros);
+  const kcal = getRoundedKCal(macros);
 
   const handleClick = () => {
     setVisibleItem(!visibleItem);
