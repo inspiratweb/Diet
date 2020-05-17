@@ -1,4 +1,4 @@
-import { getMacrosFromMeal } from './getMacrosFromMeal';
+import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
 
 export const getTotalMacros = (meals, orderedDiet, foods) => Object.entries(meals).length > 0
   && Object.entries(orderedDiet)

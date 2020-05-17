@@ -2,10 +2,10 @@ import React from 'react';
 import { useForm, FormContext } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../actions/firebase/signUp';
-import { EmailInput } from './FormComponents/EmailInput';
-import { PasswordInput } from './FormComponents/PasswordInput';
-import { ConfirmPasswordInput } from './FormComponents/ConfirmPasswordInput';
+import { ConfirmPasswordInput } from 'components/Auth/FormComponents/ConfirmPasswordInput';
+import { PasswordInput } from 'components/Auth/FormComponents/PasswordInput';
+import { EmailInput } from 'components/Auth/FormComponents/EmailInput';
+import { signUp } from 'actions/firebase/signUp';
 
 export const SignUpForm = () => {
   const methods = useForm();

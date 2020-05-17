@@ -4,20 +4,20 @@ import {
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useFirebaseConnect, isLoaded } from 'react-redux-firebase';
-import { Layout } from './components/Diet/Layout';
-import { Foods } from './components/Foods/Foods';
-import { BuilderWrapper } from './components/Builder/BuilderWrapper';
-import { getFoodsFromFb } from './selectors/firebase/getFoodsFromFb';
-import { getSimilarsFromFb } from './selectors/firebase/getSimilarsFromFb';
-import { getMealsFromFb } from './selectors/firebase/getMealsFromFb';
-import { BlankSlate } from './components/Common/BlankSlate';
-import { getRouterFromFb } from './selectors/firebase/getRouterFromFb';
-import { getDietsFromFb } from './selectors/firebase/getDietsFromFb';
-import { PageNotFound } from './components/Common/PageNotFound';
-import { AuthRoutes } from './components/Auth/AuthRoutes';
-import { GlobalErrorBanner } from './components/Common/GlobalErrorBanner';
-import { getIsUserLoggedOut } from './selectors/firebase/getIsUserLoggedOut';
-import { getGlobalErrors } from './selectors/globalErrors/getGlobalErrors';
+import { AuthRoutes } from 'components/Auth/AuthRoutes';
+import { GlobalErrorBanner } from 'components/Common/GlobalErrorBanner';
+import { getIsUserLoggedOut } from 'selectors/firebase/getIsUserLoggedOut';
+import { getGlobalErrors } from 'selectors/globalErrors/getGlobalErrors';
+import { Layout } from 'components/Diet/Layout';
+import { Foods } from 'components/Foods/Foods';
+import { BuilderWrapper } from 'components/Builder/BuilderWrapper';
+import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getSimilarsFromFb } from 'selectors/firebase/getSimilarsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { BlankSlate } from 'components/Common/BlankSlate';
+import { getRouterFromFb } from 'selectors/firebase/getRouterFromFb';
+import { getDietsFromFb } from 'selectors/firebase/getDietsFromFb';
+import { PageNotFound } from 'components/Common/PageNotFound';
 
 const App = () => {
   useFirebaseConnect([

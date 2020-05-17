@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { getRoundedKcal } from '../../utils/getRoundedKcal';
-import { getMacrosPecent } from '../../utils/getMacrosPecent';
-import { Pie } from '../Common/Pie';
-import { FoodList } from './FoodList';
-import { getFoodSummary } from '../../utils/getFoodSummary';
-import { applyKeyboardNavigation } from '../../utils/applyKeyboardNavigation';
-import { ENTER_KEY_CODE } from '../../consts/keyboard-key-codes';
+import { getRoundedKcal } from 'utils/getRoundedKcal';
+import { getMacrosPecent } from 'utils/getMacrosPecent';
+import { Pie } from 'components/Common/Pie';
+import { FoodList } from 'components/Diet/FoodList';
+import { getFoodSummary } from 'utils/getFoodSummary';
+import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { ENTER_KEY_CODE } from 'consts/keyboard-key-codes';
 
 export const ListDietItem = ({
   mealName, mealFoods, foods, macros

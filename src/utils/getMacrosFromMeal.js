@@ -1,4 +1,4 @@
-import { getRealQtty } from './getRealQtty';
+import { getRealQtty } from 'utils/getRealQtty';
 
 const getTotalMacros = (macros, qtty, eq) => {
   const total = getRealQtty(eq, qtty);

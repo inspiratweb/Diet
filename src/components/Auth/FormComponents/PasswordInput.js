@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
-import { PASSWORD_VALIDATOR } from '../../../consts/regex-validators';
-import { applyKeyboardNavigation } from '../../../utils/applyKeyboardNavigation';
-import { SPACE_KEY_CODE } from '../../../consts/keyboard-key-codes';
+import { PASSWORD_VALIDATOR } from 'consts/regex-validators';
+import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { SPACE_KEY_CODE } from 'consts/keyboard-key-codes';
 
 export const PasswordInput = ({ message }) => {
   const { register, errors } = useFormContext();

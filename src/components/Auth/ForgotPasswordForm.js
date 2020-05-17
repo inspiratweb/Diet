@@ -2,8 +2,8 @@ import React from 'react';
 import { useForm, FormContext } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { resetPassword } from '../../actions/firebase/resetPassword';
-import { EmailInput } from './FormComponents/EmailInput';
+import { EmailInput } from 'components/Auth/FormComponents/EmailInput';
+import { resetPassword } from 'actions/firebase/resetPassword';
 
 export const ForgotPasswordForm = () => {
   const methods = useForm();
