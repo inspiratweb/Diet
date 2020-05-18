@@ -1,5 +1,5 @@
-import { getTotalKCal } from 'utils/getTotalKCal';
-import { getKCalFromMacros } from 'utils/getKCalFromMacros';
+import { getTotalKCal } from 'utils/getTotalKCals';
+import { getKCalFromMacros } from 'utils/getKCalFromMacro';
 
 export const getMacrosPercent = (macros = {}) => {
   const { p = 0, ch = 0, f = 0 } = getKCalFromMacros(macros);

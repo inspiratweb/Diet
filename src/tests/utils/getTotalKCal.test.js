@@ -1,4 +1,4 @@
-import { getTotalKCal } from 'utils/getTotalKCal';
+import { getTotalKCal } from 'utils/getTotalKCals';
 
 describe('getTotalKCal util', () => {
   afterEach(() => {

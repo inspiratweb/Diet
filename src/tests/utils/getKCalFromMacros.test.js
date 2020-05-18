@@ -1,4 +1,4 @@
-import { getKCalFromMacros } from 'utils/getKCalFromMacros';
+import { getKCalFromMacros } from 'utils/getKCalFromMacro';
 
 describe('getKCalFromMacros util', () => {
   afterEach(() => {

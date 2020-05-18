@@ -1,5 +1,5 @@
 import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
-import { getTotalKCal } from 'utils/getTotalKCal';
+import { getTotalKCal } from 'utils/getTotalKCals';
 
 const getSimilarArray = (similars = [], meal = {}) => {
   const similarArray = similars.find((similar) => similar.indexOf(meal.food) >= 0);
