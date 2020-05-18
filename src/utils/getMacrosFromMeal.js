@@ -1,16 +1,20 @@
 import { getRealQtty } from 'utils/getRealQtty';
 
-const getTotalMacros = (macros, qtty, eq) => {
+const getTotalMacros = (macros = {}, qtty = 0, eq = 0) => {
+  const { p = 0, ch = 0, f = 0, } = macros;
   const total = getRealQtty(eq, qtty);
 
   return {
-    p: macros.p * total,
-    ch: macros.ch * total,
-    f: macros.f * total,
+    p: p * total,
+    ch: ch * total,
+    f: f * total,
   };
 };
 
-export const getMacrosFromMeal = (meal, foods) => {
+export const getMacrosFromMeal = (
+  meal = [],
+  foods = {}
+) => {
   const defaultMacros = { p: 0, ch: 0, f: 0 };
 
   return meal

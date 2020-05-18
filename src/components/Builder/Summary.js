@@ -2,41 +2,41 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
-import { getRoundedKcal } from 'utils/getRoundedKcal';
+import { getRoundedKCal } from 'utils/getRoundedKCal';
 import { getNewDiet } from 'selectors/newDiet/getNewDiet';
 import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
 
 export const Summary = () => {
   const newDiet = useSelector(getNewDiet);
   const foods = useSelector(getFoodsFromFb);
-  const totalMacros = Object.values(newDiet).length && Object.values(newDiet).reduce((acc, val) => {
-    const mealMacros = getMacrosFromMeal(val, foods);
-    return {
-      p: acc.p += mealMacros.p,
-      ch: acc.ch += mealMacros.ch,
-      f: acc.f += mealMacros.f
-    };
-  }, { p: 0, ch: 0, f: 0 });
-  return !!getRoundedKcal(totalMacros) && (
+  const totalMacros = (Object.values(newDiet).length
+    && Object.values(newDiet).reduce((acc, val) => {
+      const mealMacros = getMacrosFromMeal(val, foods);
+      return {
+        p: acc.p += Math.ceil(mealMacros.p),
+        ch: acc.ch += Math.ceil(mealMacros.ch),
+        f: acc.f += Math.ceil(mealMacros.f)
+      };
+    }, { p: 0, ch: 0, f: 0 })) || { p: 0, ch: 0, f: 0 };
+  return (
     <h3 className="diet-titleSimple">
       <span className="diet-title-kcal highlight">
-        {getRoundedKcal(totalMacros)}
+        {getRoundedKCal(totalMacros)}
         KCal
       </span>
       <span className="diet-title-macros">
         <span className="diet-title-macros-p">
-          {Math.round(totalMacros.p)}
+          {Math.ceil(totalMacros.p)}
           g
         </span>
         <span className="diet-title-macros-ch">
-          {Math.round(totalMacros.ch)}
+          {Math.ceil(totalMacros.ch)}
           g
         </span>
         <span className="diet-title-macros-f">
-          {Math.round(totalMacros.f)}
+          {Math.ceil(totalMacros.f)}
           g
         </span>
-
       </span>
     </h3>
   );

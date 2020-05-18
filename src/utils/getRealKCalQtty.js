@@ -1,7 +1,8 @@
+import { getRoundedKCal } from 'utils/getRoundedKCal';
 
-import { getRoundedKcal } from 'utils/getRoundedKcal';
+export const getRealKCalQtty = (food = { macros: {}}, qtty = 0) => {
+  const { p = 0, ch = 0, f = 0 } = food.macros;
+  const macros = { p: p * qtty, ch: ch * qtty, f: f * qtty };
 
-export const getRealKCalQtty = (food, qtty) => {
-  const macros = { p: food.macros.p * qtty, ch: food.macros.ch * qtty, f: food.macros.f * qtty };
-  return getRoundedKcal(macros);
+  return getRoundedKCal(macros);
 };

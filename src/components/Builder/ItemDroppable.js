@@ -11,7 +11,7 @@ import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
 import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
 import { Pie } from 'components/Common/Pie';
 import removeIcon from 'images/remove.svg';
-import { getMacrosPecent } from 'utils/getMacrosPecent';
+import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { addDraggedFood } from 'actions/newDiet/addDraggedFood';
 import { removeDraggedFood } from 'actions/newDiet/removeDraggedFood';
 import { changeFoodQuantity } from 'actions/newDiet/changeFoodCuantity';
@@ -51,7 +51,7 @@ export const ItemDroppable = ({ foodCodes, meal }) => {
         {newDiet[mealName] && newDiet[mealName].length
           ? newDiet[mealName].map((newDietMeal) => {
             const food = getFoodFromId(newDietMeal.food, foods);
-            const { p, ch, f } = getMacrosPecent(food.macros);
+            const { p, ch, f } = getMacrosPercent(food.macros);
             const newDietFoodQtty = getNewDietFood(newDiet, mealName, food.code).qtty;
             const qtty = getRealQtty(food.eq, newDietFoodQtty);
 
