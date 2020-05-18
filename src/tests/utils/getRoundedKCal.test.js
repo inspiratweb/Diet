@@ -1,4 +1,4 @@
-import { getRoundedKCal } from 'utils/getRoundedKCals';
+import { getRoundedKCal } from 'utils/getRoundedKCal';
 
 describe('getRoundedKCal util', () => {
   afterEach(() => {

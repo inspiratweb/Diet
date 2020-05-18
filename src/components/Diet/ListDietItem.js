@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { getRoundedKCal } from 'utils/getRoundedKCals';
+import { getRoundedKCal } from 'utils/getRoundedKCal';
 import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { Pie } from 'components/Common/Pie';
 import { FoodList } from 'components/Diet/FoodList';

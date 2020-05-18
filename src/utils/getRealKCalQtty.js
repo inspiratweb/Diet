@@ -1,4 +1,4 @@
-import { getRoundedKCal } from 'utils/getRoundedKCals';
+import { getRoundedKCal } from 'utils/getRoundedKCal';
 
 export const getRealKCalQtty = (food = { macros: {}}, qtty = 0) => {
   const { p = 0, ch = 0, f = 0 } = food.macros;

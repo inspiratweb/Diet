@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { MealsList } from 'components/Diet/MealsList';
-import { getRoundedKCal } from 'utils/getRoundedKCals';
+import { getRoundedKCal } from 'utils/getRoundedKCal';
 import { getTotalMacros } from 'utils/getTotalMacros';
 import { getOrderedDiet } from 'utils/getOrderedDiet';
 import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
