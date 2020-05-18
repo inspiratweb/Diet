@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { ForgotPasswordForm } from 'components/Auth/ForgotPasswordForm';
-import { AuthPage } from 'components/Auth//AuthPage';
-import { LogInForm } from 'components/Auth/LogInForm';
-import { SignUpForm } from 'components/Auth/SignUpForm';
+import { ForgotPasswordForm } from 'components/Auth/Forms/ForgotPasswordForm';
+import { AuthPage } from 'components/Auth/AuthPage';
+import { LogInForm } from 'components/Auth/Forms/LogInForm';
+import { SignUpForm } from 'components/Auth/Forms/SignUpForm';
 
 export const AuthRoutes = () => (
   <Switch>
