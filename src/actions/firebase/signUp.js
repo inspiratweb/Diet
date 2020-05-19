@@ -1,11 +1,12 @@
 import { setGlobalError } from 'actions/globalErrors/setGlobalError';
 import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
 import { fb } from 'firebaseConfig';
+import { sendEmailVerification } from './sendEmailVerification';
 
 export const signUp = ({ email, password }) => (dispatch, getState) => {
   fb.auth().createUserWithEmailAndPassword(email, password)
-    .then((user) => {
-      console.log('Successfully Signed Up', user);
+    .then(() => {
+      dispatch(sendEmailVerification());
     })
     .catch((error) => {
       dispatch(setGlobalError(error));
