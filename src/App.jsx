@@ -1,78 +1,37 @@
 import React from 'react';
 import {
-  Route, BrowserRouter as Router, Switch, Redirect
+  Route, BrowserRouter as Router, Switch,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useFirebaseConnect, isLoaded } from 'react-redux-firebase';
+import { useDispatch } from 'react-redux';
 import { AuthRoutes } from 'components/Auth/AuthRoutes';
-import { GlobalErrorBanner } from 'components/Common/GlobalErrorBanner';
-import { getIsUserLoggedOut } from 'selectors/firebase/getIsUserLoggedOut';
-import { getGlobalErrors } from 'selectors/globalErrors/getGlobalErrors';
-import { Layout } from 'components/Diet/Layout';
-import { Foods } from 'components/Foods/Foods';
 import { BuilderWrapper } from 'components/Builder/BuilderWrapper';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
-import { getSimilarsFromFb } from 'selectors/firebase/getSimilarsFromFb';
-import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
-import { BlankSlate } from 'components/Common/BlankSlate';
-import { getRouterFromFb } from 'selectors/firebase/getRouterFromFb';
-import { getDietsFromFb } from 'selectors/firebase/getDietsFromFb';
-import { PageNotFound } from 'components/Common/PageNotFound';
+import { logOut } from 'actions/firebase/logOut';
+import { GlobalErrors } from 'components/Common/GlobalErrors';
+import { DietRoutes } from 'components/Diet/DietRoutes';
+import { Foods } from 'components/Foods/Foods';
+import { Url } from 'consts/urls';
 
 const App = () => {
-  useFirebaseConnect([
-    'foods', 'similars', 'meals', 'router', 'diets'
-  ]);
-
-  const foods = useSelector(getFoodsFromFb);
-  const similars = useSelector(getSimilarsFromFb);
-  const router = useSelector(getRouterFromFb);
-  const meals = useSelector(getMealsFromFb);
-  const diets = useSelector(getDietsFromFb);
-  const isUserLoggedOut = useSelector(getIsUserLoggedOut);
-  const globalErrors = useSelector(getGlobalErrors);
-
-  if (
-    !isLoaded(foods)
-    || !isLoaded(similars)
-    || !isLoaded(meals)
-    || !isLoaded(diets)
-    || !isLoaded(router)
-  ) {
-    return <BlankSlate />;
-  }
+  const dispatch = useDispatch();
 
   return (
-    <Router basename="/diet">
+    <Router>
+      <button type="button" onClick={() => dispatch(logOut())}>Log Out</button>
       <Switch>
-        <Route exact path="/">
-          <Layout selectedDiet={diets[router]} />
-        </Route>
-        <Route exact path="/foods">
+        <Route exact path={Url.foods()}>
           <Foods />
         </Route>
-        <Route exact path="/builder">
+        <Route exact path={Url.builder()}>
           <BuilderWrapper />
         </Route>
-        <Route path="/auth">
-          {!isUserLoggedOut ? <Redirect to="/" /> : <AuthRoutes />}
+        <Route path={Url.auth()}>
+          <AuthRoutes />
         </Route>
-        <Route
-          path="/:selectedDiet"
-          render={({ match }) => {
-            const { selectedDiet } = match.params;
-            const dietsNames = Object.keys(diets);
-
-            if (dietsNames.indexOf(selectedDiet) >= 0) {
-              return <Layout selectedDiet={diets[selectedDiet]} />;
-            }
-            return <PageNotFound />;
-          }}
-        />
+        <Route path={Url.index()}>
+          <DietRoutes />
+        </Route>
       </Switch>
-      {globalErrors.map(
-        (message) => <GlobalErrorBanner key={message} message={message} />
-      )}
+      <GlobalErrors />
     </Router>
   );
 };

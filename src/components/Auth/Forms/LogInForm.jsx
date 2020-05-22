@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { PasswordInput } from 'components/Auth/FormComponents/PasswordInput';
 import { logIn } from 'actions/firebase/logIn';
 import { EmailInput } from 'components/Auth/FormComponents/EmailInput';
+import { Url } from 'consts/urls';
 
 export const LogInForm = () => {
   const methods = useForm();
@@ -34,14 +35,14 @@ export const LogInForm = () => {
         </button>
         <p className="authForm-terms">
           By continuing, you agree to our&nbsp;
-          <Link to="/">Privacy Policy</Link>
+          <Link to={Url.index()}>Privacy Policy</Link>
         &nbsp;and our&nbsp;
-          <Link to="/">Terms of Service</Link>
+          <Link to={Url.index()}>Terms of Service</Link>
         </p>
         <div className="authForm-subForm">
-          <Link to="/auth/forgot-password">Forgot your account?</Link>
+          <Link to={Url.forgotPassword()}>Forgot your account?</Link>
           &nbsp;&nbsp;•&nbsp;&nbsp;
-          <Link to="/auth/sign-up">Sign Up for Fuel For Live</Link>
+          <Link to={Url.signUp()}>Sign Up for Fuel For Live</Link>
         </div>
       </form>
     </FormContext>

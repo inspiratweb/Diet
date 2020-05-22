@@ -7,10 +7,22 @@ import { Pie } from 'components/Common/Pie';
 import { getRealKCalQtty } from 'utils/getRealKCalQtty';
 import { RealMacroQtty } from 'components/Common/RealMacroQtty';
 import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { useFirebaseConnect, isLoaded } from 'react-redux-firebase';
+import { BlankSlate } from 'components/Common/BlankSlate';
 
 export const Foods = () => {
+  useFirebaseConnect([
+    'foods',
+  ]);
+
   const foods = useSelector(getFoodsFromFb);
   const [selectedFood, setSelectedFood] = useState({});
+
+  if (
+    !isLoaded(foods)
+  ) {
+    return <BlankSlate />;
+  }
 
   const handleChange = (e) => {
     const grams = e.currentTarget.name;
