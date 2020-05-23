@@ -16,6 +16,7 @@ $mq-breakpoints: (
 @import './basket';
 @import './foods';
 @import './builder';
+@import './builderHeader';
 @import './pie';
 @import './lightBox';
 @import './blankSlate';
@@ -23,3 +24,5 @@ $mq-breakpoints: (
 @import './authPage';
 @import './authForm';
 @import './globalErrorBanner';
+@import './hamburgerIcon';
+@import './mainHeader';

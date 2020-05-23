@@ -1,10 +1,10 @@
 import React from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import BackArrowIcon from 'images/back-arrow.png';
-import MainLogo from 'images/main-logo.svg';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
 import { B_KEY_CODE } from 'consts/keyboard-key-codes';
+import { MainLogo } from 'components/Common/Icons/MainLogo';
+import { BackArrowIcon } from 'components/Common/Icons/BackArrowIcon';
 
 export const AuthPage = ({
   header, paragraph, link, linkTo, children
@@ -16,23 +16,17 @@ export const AuthPage = ({
 
   return (
     <div className="authPage">
-      <img
+      <BackArrowIcon
         className="authPage-backArrow"
-        role="button"
-        aria-label="Press B Keyboard Key to go back"
+        ariaLabel="Press B Keyboard Key to go back"
         onKeyDown={
           (e) => applyKeyboardNavigation(e, B_KEY_CODE, handleClick)
         }
-        tabIndex="0"
         onClick={handleClick}
-        alt="Back Arrow Icon"
-        src={BackArrowIcon}
       />
       <div className="authPage-main">
-        <img
+        <MainLogo
           className="authPage-main-logo"
-          alt="Main Logo"
-          src={MainLogo}
         />
         <h1 className="authPage-main-header">{header}</h1>
         <p className="authPage-main-paragraph">

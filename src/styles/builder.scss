@@ -1,249 +1,148 @@
 $offcanvas: 240px;
-$headerHeight: 170px;
+$headerHeight: 90px;
+$bannerHeight: 170px;
 
 .builder {
-  min-height: 100vh;
-  overflow: hidden;
+  display: grid;
+  grid-template-rows: $bannerHeight minmax(0, 1fr);
+  user-select:none;
 
-  .diet-food-summary {
-    min-width: 0;
-    margin-bottom: 0;
-  }
+  .builder-wrapper {
+    display: grid;
+    grid-template-columns: $offcanvas minmax(0, 1fr);
 
-  &-header {
-    padding: 25px 10px;
-    font-size: 14px;
+    .builder-foods {
+      max-height: calc(100vh - (#{$headerHeight} + #{$bannerHeight}));
+      overflow-y: auto;
+      margin: 5px 0;
+      border-right: solid 5px $basecolor-lighter;
+      position: relative;
 
-    &-title {
-      color: $white;
-      font-weight: $book-weight;
-      font-size: 34px;
-      line-height: 30px;
-      p {
-        font-weight: $black-weight;
-        margin-left: 1px;
+      .diet-item {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        height: 59px;
+
+        .diet-food-summary {
+          min-width: 0;
+          margin-bottom: 0;
+        }
       }
     }
 
-    &-filter {
-      margin-top: 20px;
-      margin-left: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .builder-diet {
+      max-height: calc(100vh - (#{$headerHeight} + #{$bannerHeight}));
+      padding: 10px 5px;
+      overflow-y: auto;
+      position: relative;
 
-      &-input {
-        min-width: 200px;
-        text-overflow: ellipsis;
-        background-color: transparent;
-        border: 0;
-        font-size: 14px;
-        color: $white;
-        &::placeholder {
-          color: rgba($white, 0.7);
+      &-list {
+        padding-bottom: 30px;
+
+        > li:not(:first-child) {
+          margin-top: 15px;
         }
       }
 
-      label {
-        cursor: pointer;
-        display: inline-block;
+      &-meals {
         position: relative;
-        width: 30px;
-        height: 30px;
-        margin-left: 10px;
+        margin-top: 10px;
+
+        .diet-food-summary {
+          margin-bottom: 5px;
+        }
+
+        > li {
+          margin: 5px 0;
+
+          &.diet-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .diet-item-cross {
+              margin-left: 5px;
+              padding: 8px;
+              height: 28px;
+              width: 28px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              cursor: pointer;
+              border-radius: 50%;
+              background: $maincolor;
+            }
+          }
+
+          &.empty {
+            color: $basecolor-light;
+            display: flex;
+            align-items: center;
+            min-height: 60px;
+            border: solid 1px $basecolor-lighter;
+            padding: 10px;
+            background-color: $white;
+          }
+        }
+
+        &.canDrop:before {
+          content: "";
+          position: absolute;
+          top: -5px;
+          left: -5px;
+          right: -5px;
+          bottom: -5px;
+          background-color: rgba($maincolor, 0.2);
+          border: dashed 2px rgba($maincolor, 0.5);
+          border-radius: 4px;
+          z-index: 1;
+        }
+
+        &.isOver {
+          cursor: copy;
+          &:before {
+            background-color: rgba($maincolor, 0.5);
+            border: dashed 2px $maincolor;
+          }
+        }
+      }
+
+      &-toggler {
+        position: relative;
+        margin-top: -5px;
+        margin-bottom: 10px;
         &:before {
           content: "";
-          z-index: 1;
           position: absolute;
-          left: calc(50% - 8px);
-          top: calc(50% - 8px);
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-        }
-
-        &.checkbox-p:before {
-          background-color: #EE0D6E;
-        }
-        &.checkbox-ch:before {
-          background-color: #8457F7;
-        }
-        &.checkbox-f:before {
-          background-color: #B0FF01;
-        }
-
-        &.active:after {
-          content: "";
-          position: absolute;
-          top: 0;
           left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba($maincolor, .4);
-          border-radius: 50%;
-          box-shadow: inset 6px 6px 5px 0 rgba($black, 0.2), inset -6px -6px 5px 0 rgba($white, 0.3);
+          top: 10px;
+          bottom: 10px;
+          width: 3px;
+          background-color: $basecolor;
         }
-      }
-
-      &-checkbox {
-        position: absolute;
-        opacity: 0;
-        left: -99999px;
-      }
-
-      &-icon {
-        vertical-align: middle;
-        height: 14px;
-        margin-right: 4px;
+        &-icon {
+          cursor: pointer;
+          height: 40px;
+          width: 36px;
+          padding: 10px;
+          display: block;
+          transform: rotate(180deg);
+          transition: transform $faster $easing;
+          position: relative;
+        }
       }
     }
-  }
-
-  &-header {
-    background: linear-gradient(to right, rgba(#8457F7,1) 0%,rgba($maincolor,1) 100%);
   }
 
   &.collapsed {
     .builder-wrapper {
-      transform: translateX(0);
-    }
-    .builder-diet {
-      width: 100%;
-
-      &-toggler-icon {
-        transform: rotate(0deg);
-      }
-    }
-  }
-
-  .builder-wrapper {
-    transform: translateX($offcanvas);
-    transition: transform $faster $easing;
-  }
-
-  &-foods {
-    position: absolute;
-    left: -$offcanvas;
-    width: $offcanvas;
-    height: 100%;
-    min-height: 100vh;
-    overflow: auto;
-    margin: 5px 0;
-    border-right: solid 5px $basecolor-lighter;
-    padding-bottom: $headerHeight;
-
-    .diet-item {
-      display: flex;
-      align-content: center;
-      align-items: center;
-      justify-content: space-between;
-      height: 59px;
-    }
-  }
-
-  &-diet {
-    padding: 10px 5px;
-    height: 100%;
-    min-height: 100vh;
-    position: absolute;
-    width: 100%;
-    overflow: auto;
-    padding-bottom: $headerHeight;
-
-    &-list > li:not(:first-child) {
-      margin-top: 15px;
+      grid-template-columns: 0px minmax(0, 1fr);
     }
 
-    &-meals {
-      position: relative;
-      margin-top: 10px;
-
-      .diet-food-summary {
-        margin-bottom: 5px;
-      }
-
-      > li {
-        margin: 5px 0;
-
-        &.diet-item {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          .diet-item-cross {
-            margin-left: 5px;
-            padding: 8px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            border-radius: 50%;
-            background: $maincolor;
-          }
-        }
-
-        &.empty {
-          color: $basecolor-light;
-          display: flex;
-          align-items: center;
-          min-height: 60px;
-          border: solid 1px $basecolor-lighter;
-          padding: 10px;
-          background-color: $white;
-        }
-      }
-
-      &.canDrop:before {
-        content: "";
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        background-color: rgba($maincolor, 0.2);
-        border: dashed 2px rgba($maincolor, 0.5);
-        border-radius: 4px;
-        z-index: 1;
-      }
-
-      &.isOver {
-        cursor: copy;
-        &:before {
-          background-color: rgba($maincolor, 0.5);
-          border: dashed 2px $maincolor;
-        }
-      }
-    }
-
-    &-toggler {
-      position: relative;
-      margin-top: -5px;
-      margin-bottom: 10px;
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 10px;
-        bottom: 10px;
-        width: 3px;
-        background-color: $basecolor;
-      }
-      &-icon {
-        cursor: pointer;
-        height: 36px;
-        padding: 10px;
-        display: block;
-        transform: rotate(180deg);
-        transition: transform $faster $easing;
-        position: relative;
-      }
-    }
-  }
-}
-
-@include mq($from: tablet) {
-  .builder {
-    &-diet {
-      width: calc(100% - #{$offcanvas});
+    .builder-diet-toggler-icon {
+      transform: rotate(0deg);
     }
   }
 }

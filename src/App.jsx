@@ -8,9 +8,11 @@ import { GlobalErrors } from 'components/Common/GlobalErrors';
 import { DietRoutes } from 'components/Diet/DietRoutes';
 import { Foods } from 'components/Foods/Foods';
 import { Url } from 'consts/urls';
+import { MainHeader } from 'components/Common/MainHeader';
 
 const App = () => (
   <Router>
+    <MainHeader />
     <Switch>
       <Route exact path={Url.foods()}>
         <Foods />

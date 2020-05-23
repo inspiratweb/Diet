@@ -4,7 +4,7 @@
   &.active {
     display: block;
   }
-  
+
   &-title {
     font-weight: $bold-weight;
     text-align: right;
@@ -52,14 +52,14 @@
     padding: 10px 0;
     z-index: 1;
     color: $basecolor-light;
-    
+
     .highlight {
       color: $basecolor;
       font-weight: $black-weight;
       font-size: 14px;
     }
   }
-  
+
   &-item {
     position: relative;
     border: solid 1px $basecolor-lighter;
@@ -175,7 +175,7 @@
           z-index: -1;
         }
       }
-      
+
       &.withLightbox {
         cursor: pointer;
         &:before {

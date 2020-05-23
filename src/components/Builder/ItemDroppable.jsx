@@ -10,7 +10,6 @@ import { R_KEY_CODE } from 'consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
 import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
 import { Pie } from 'components/Common/Pie';
-import removeIcon from 'images/remove.svg';
 import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { addDraggedFood } from 'actions/newDiet/addDraggedFood';
 import { removeDraggedFood } from 'actions/newDiet/removeDraggedFood';
@@ -18,6 +17,7 @@ import { changeFoodQuantity } from 'actions/newDiet/changeFoodCuantity';
 import { getFoodFromId } from 'utils/getFoodFromId';
 import { getNewDietFood } from 'utils/getNewDietFood';
 import { getNewDiet } from 'selectors/newDiet/getNewDiet';
+import { RemoveIcon } from 'components/Common/Icons/RemoveIcon';
 
 export const ItemDroppable = ({ foodCodes, meal }) => {
   const dispatch = useDispatch();
@@ -74,13 +74,9 @@ export const ItemDroppable = ({ foodCodes, meal }) => {
                     &nbsp;KCal
                   </span>
                 </div>
-                <img
-                  role="button"
-                  aria-label="Press R Keyboard Key to remove food from your diet"
-                  tabIndex="0"
+                <RemoveIcon
+                  ariaLabel="Press R Keyboard Key to remove food from your diet"
                   className="diet-item-cross"
-                  alt={`remove ${food} from ${mealName} icon`}
-                  src={removeIcon}
                   onClick={() => removeFood(food, mealName)}
                   onKeyDown={
                     (e) => applyKeyboardNavigation(e, R_KEY_CODE, () => removeFood(food, mealName))

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDrag } from 'react-dnd';
 import { Pie } from 'components/Common/Pie';
-import dragIcon from 'images/drag.svg';
+import { DragIcon } from 'components/Common/Icons/DragIcon';
 
 export const ItemDraggable = ({ macrosPercent, food }) => {
   const [{ isDragging }, drag] = useDrag({
@@ -16,7 +16,10 @@ export const ItemDraggable = ({ macrosPercent, food }) => {
     <li className={isDragging ? 'diet-item dragging' : 'diet-item'}>
       <Pie p={macrosPercent.p} ch={macrosPercent.ch} f={macrosPercent.f} />
       <p className="diet-food-summary">{food.desc}</p>
-      <img alt="drag me!" ref={drag} src={dragIcon} className="diet-food-summary-drag" />
+      <DragIcon
+        ref={drag}
+        className="diet-food-summary-drag"
+      />
     </li>
   );
 };

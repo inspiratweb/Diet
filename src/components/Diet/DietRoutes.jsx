@@ -47,7 +47,7 @@ export const DietRoutes = () => {
           return <PageNotFound />;
         }}
       />
-      <Route exact path={Url.index()}>
+      <Route exact path={[Url.diet(), Url.index()]}>
         <Layout selectedDiet={diets[router]} />
       </Route>
       <Route path={Url.index()}>
