@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 import { Url } from 'consts/urls';
 import { ENTER_KEY_CODE } from 'consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
+import { isLoaded } from 'react-redux-firebase';
+import { getUserDataFromFb } from 'selectors/firebase/getUserDataFromFb';
 import { AvatarPlaceholder } from './AvatarPlaceholder';
 
 export const LogBubble = () => {
   const dispatch = useDispatch();
   const [showLogOut, setShowLogOut] = useState(false);
   const isUserLoggedOut = useSelector(getIsUserLoggedOut);
+  const useData = useSelector(getUserDataFromFb);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -31,6 +34,10 @@ export const LogBubble = () => {
   const onAvatarClick = () => {
     setShowLogOut(!showLogOut);
   };
+
+  if (!isLoaded(useData)) {
+    return null;
+  }
 
   if (isUserLoggedOut) {
     return (
