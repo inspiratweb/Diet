@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { logOut } from 'actions/firebase/logOut';
-import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Url } from 'consts/urls';
-import { HambugerIcon } from './Icons/HamburgerIcon';
-import { MainLogo } from './Icons/MainLogo';
+import { HambugerIcon } from 'components/Common/Icons/HamburgerIcon';
+import { MainLogo } from 'components/Common/Icons/MainLogo';
+import { LogBubble } from 'components/Common/LogBubble';
+import { isPathInUrl } from 'utils/isPathInUrl';
 
 export const MainHeader = () => {
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
-  if (pathname === Url.auth()) {
+  if (isPathInUrl(pathname, Url.auth())) {
     return null;
   }
 
@@ -25,8 +24,10 @@ export const MainHeader = () => {
         isSideMenuOpen={isSideMenuOpen}
         onIconClick={handleIconToggle}
       />
-      <MainLogo />
-      <button type="button" onClick={() => dispatch(logOut())}>Log Out</button>
+      <MainLogo
+        className="mainHeader-logo"
+      />
+      <LogBubble />
     </header>
   );
 };

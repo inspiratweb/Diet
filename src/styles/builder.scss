@@ -5,7 +5,7 @@ $bannerHeight: 170px;
 .builder {
   display: grid;
   grid-template-rows: $bannerHeight minmax(0, 1fr);
-  user-select:none;
+  user-select: none;
 
   .builder-wrapper {
     display: grid;
@@ -49,6 +49,10 @@ $bannerHeight: 170px;
       &-meals {
         position: relative;
         margin-top: 10px;
+
+        @include mq($until: tablet) {
+          width: calc(100% + #{$offcanvas});
+        }
 
         .diet-food-summary {
           margin-bottom: 5px;
@@ -141,8 +145,16 @@ $bannerHeight: 170px;
       grid-template-columns: 0px minmax(0, 1fr);
     }
 
-    .builder-diet-toggler-icon {
-      transform: rotate(0deg);
+    .builder-diet {
+      &-toggler-icon {
+        transform: rotate(0deg);
+      }
+
+      &-meals {
+        @include mq($until: tablet) {
+          width: 100%;
+        }
+      }
     }
   }
 }

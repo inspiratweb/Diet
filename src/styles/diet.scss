@@ -52,6 +52,8 @@
     padding: 10px 0;
     z-index: 1;
     color: $basecolor-light;
+    display: flex;
+    justify-content: center;
 
     .highlight {
       color: $basecolor;

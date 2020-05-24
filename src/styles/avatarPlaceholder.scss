@@ -1,0 +1,113 @@
+$spacing: 8px;
+
+$avatarPlaceholder-sizes: (
+  s: (
+    font-size: 10px,
+    line-height: 12px,
+    top-correction: 1px,
+    size: $spacing * 3,
+  ),
+  m: (
+    font-size: 14px,
+    line-height: 16px,
+    top-correction: 1px,
+    size: $spacing * 4,
+  ),
+  l: (
+    font-size: 14px,
+    line-height: 16px,
+    top-correction: 1px,
+    size: $spacing * 6,
+  ),
+  xl: (
+    font-size: 28px,
+    line-height: 32px,
+    top-correction: 1px,
+    size: $spacing * 12,
+  ),
+);
+
+.avatarPlaceholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &_initials {
+    position: absolute;
+    width: 100%;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+
+  @each $size-key, $size-value in $avatarPlaceholder-sizes {
+    &-#{$size-key} {
+      width: map-get($size-value, size);
+      height: map-get($size-value, size);
+      .avatarPlaceholder_initials {
+        margin-top: map-get($size-value, top-correction);
+        font-size: map-get($size-value, font-size);
+        line-height: map-get($size-value, line-height);
+      }
+    }
+  }
+
+  // Background Colors
+  &-0 {
+    background-color: #F77FAF;
+  }
+
+  &-1 {
+    background-color: #FCB1BC;
+  }
+
+  &-2 {
+    background-color: #FFBF9C;
+  }
+
+  &-3 {
+    background-color: #FFD472;
+  }
+
+  &-4 {
+    background-color: #FEA277;
+  }
+
+  &-5 {
+    background-color: #D39B75;
+  }
+
+  &-6 {
+    background-color: #6C6C8E;
+  }
+
+  &-7 {
+    background-color: #FF8383;
+  }
+
+  &-8 {
+    background-color: #8BDBFF;
+  }
+
+  &-9 {
+    background-color: #A3AED5;
+  }
+
+  &-10 {
+    background-color: #64B0D2;
+  }
+
+  &-11 {
+    background-color: #A3D5C8;
+  }
+}
