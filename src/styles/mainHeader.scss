@@ -1,0 +1,15 @@
+.mainHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  max-height: 90px;
+  min-height: 90px;
+
+  &-logo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}

@@ -1,0 +1,55 @@
+.logBubble {
+  &.logBubble-avatar {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 5px;
+
+    .logBubble-logOut {
+      position: absolute;
+      right: 0px;
+      top: 40px;
+      display: none;
+      width: 300%;
+      background: $white;
+      border: none;
+      text-align: right;
+      padding: 10px 12px;
+      box-shadow: 1px 1px 2px 0px rgba(63, 63, 63, 0.438);
+      border-radius: 5px;
+      border-top-right-radius: 0px;
+      color: $basecolor;
+      font-weight: 600;
+      cursor: pointer;
+
+      &.showLogOut {
+        display: block;
+      }
+    }
+  }
+
+  &.logBubble-avatar:hover {
+    .logBubble-logOut {
+      display: block;
+    }
+  }
+
+  &.logBubble-sign-links {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+
+    > a  {
+      padding: 5px;
+      margin: 0 5px;
+      cursor: pointer;
+      color: $basecolor;
+      font-size: 16px;
+      border-bottom: 2px solid transparent;
+
+      &:hover {
+        border-bottom: 2px solid $maincolor;
+      }
+    }
+  }
+}

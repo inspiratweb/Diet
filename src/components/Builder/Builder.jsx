@@ -3,8 +3,6 @@ import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { ItemDraggable } from 'components/Builder/ItemDraggable';
-import search from 'images/search.svg';
-import toggler from 'images/toggler.svg';
 import { ItemDroppable } from 'components/Builder/ItemDroppable';
 import { BlankSlate } from 'components/Common/BlankSlate';
 import { Summary } from 'components/Builder/Summary';
@@ -12,6 +10,8 @@ import { F_KEY_CODE } from 'consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
 import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
 import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { SearchIcon } from 'components/Common/Icons/SearchIcon';
+import { ToggleIcon } from 'components/Common/Icons/ToggleIcon';
 
 export const Builder = () => {
   const foods = useSelector(getFoodsFromFb);
@@ -53,7 +53,9 @@ export const Builder = () => {
         </h3>
         <div className="builder-header-filter">
           <div>
-            <img alt="search" src={search} className="builder-header-filter-icon" />
+            <SearchIcon
+              className="builder-header-filter-icon"
+            />
             <input
               className="builder-header-filter-input"
               name="search"
@@ -88,17 +90,13 @@ export const Builder = () => {
         </div>
         <div className="builder-diet">
           <div className="builder-diet-toggler">
-            <img
-              role="switch"
-              aria-checked={collapsed}
-              aria-label="Press F Keyboard Key to expand or collapse the foods side tab"
+            <ToggleIcon
+              ariaChecked={collapsed}
+              ariaLabel="Press F Keyboard Key to expand or collapse the foods side tab"
               onClick={() => setCollapsed(!collapsed)}
-              tabIndex="0"
               onKeyDown={
                 (e) => applyKeyboardNavigation(e, F_KEY_CODE, () => setCollapsed(!collapsed))
               }
-              alt="toggle menu"
-              src={toggler}
               className="builder-diet-toggler-icon"
             />
           </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useCookies } from 'react-cookie';
 import classNames from 'classnames';
+import { Url } from 'consts/urls';
 
 export const ListBasketItem = ({ food }) => {
   const [touchStartX, setTouchStartX] = useState(0);
@@ -27,7 +28,7 @@ export const ListBasketItem = ({ food }) => {
     const minutes = 60 * 24 * 10;
     d.setTime(d.getTime() + minutes * 60 * 1000);
 
-    setCookies('basket', newCookie, { path: '/', expires: d });
+    setCookies('basket', newCookie, { path: Url.index(), expires: d });
   };
 
   const handleTouchEnd = (e) => {
@@ -80,7 +81,6 @@ ListBasketItem.propTypes = {
     })
   })
 };
-
 
 ListBasketItem.defaultProps = {
   food: {}

@@ -2,13 +2,14 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PageNotFoundImage from 'images/errors/404.png';
+import { Url } from 'consts/urls';
 
 export const PageNotFound = () => {
   const history = useHistory();
 
   useEffect(() => {
     setTimeout(() => {
-      history.push('/');
+      history.push(Url.index());
     }, 3000);
   });
 

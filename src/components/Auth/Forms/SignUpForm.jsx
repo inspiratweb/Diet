@@ -6,6 +6,7 @@ import { ConfirmPasswordInput } from 'components/Auth/FormComponents/ConfirmPass
 import { PasswordInput } from 'components/Auth/FormComponents/PasswordInput';
 import { EmailInput } from 'components/Auth/FormComponents/EmailInput';
 import { signUp } from 'actions/firebase/signUp';
+import { Url } from 'consts/urls';
 
 export const SignUpForm = () => {
   const methods = useForm();
@@ -36,7 +37,7 @@ export const SignUpForm = () => {
           Submit
         </button>
         <div className="authForm-subForm">
-          <Link to="/auth/log-in">Log In to join Fuel For Live</Link>
+          <Link to={Url.logIn()}>Log In to join Fuel For Live</Link>
         </div>
       </form>
     </FormContext>
