@@ -1,9 +1,8 @@
-import { fb } from 'firebaseConfig';
 import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
 import { setGlobalError } from 'actions/globalErrors/setGlobalError';
 
-export const sendEmailVerification = () => (dispatch, getState) => {
-  const user = fb.auth().currentUser;
+export const sendEmailVerification = () => (dispatch, getState, getFirebase) => {
+  const user = getFirebase().auth().currentUser;
 
   user.sendEmailVerification().then(() => {
     // TODO: Dispatch an action when the email is sent;

@@ -9,6 +9,7 @@ import { DietRoutes } from 'components/Diet/DietRoutes';
 import { Foods } from 'components/Foods/Foods';
 import { Url } from 'consts/urls';
 import { MainHeader } from 'components/Common/MainHeader';
+import { SettingsRoutes } from 'components/Settings/SettingsRoutes';
 
 const App = () => (
   <Router>
@@ -19,6 +20,9 @@ const App = () => (
       </Route>
       <Route exact path={Url.builder()}>
         <BuilderWrapper />
+      </Route>
+      <Route path={Url.settings()}>
+        <SettingsRoutes />
       </Route>
       <Route path={Url.auth()}>
         <AuthRoutes />

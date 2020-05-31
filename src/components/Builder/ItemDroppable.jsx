@@ -8,7 +8,7 @@ import { getRealKCalQtty } from 'utils/getRealKCalQtty';
 import { getRealQtty } from 'utils/getRealQtty';
 import { R_KEY_CODE } from 'consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
 import { Pie } from 'components/Common/Pie';
 import { getMacrosPercent } from 'utils/getMacrosPercent';
 import { addDraggedFood } from 'actions/newDiet/addDraggedFood';

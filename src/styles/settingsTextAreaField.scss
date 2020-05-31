@@ -1,0 +1,31 @@
+.settingsTextAreaField {
+  &-titleRow {
+    min-height: 16px;
+    font-weight: 600;
+    width: 50%;
+    font-size: 15px;
+    margin: 10px 0 5px;
+  }
+
+  &-title {
+    padding: 5px 0;
+    margin: 5px 0;
+    font-weight: 600;
+    font-size: 15px;
+    min-height: 16px;
+    font-weight: 600;
+  }
+
+  &-error {
+    color: tomato;
+    font-size: 14px;
+  }
+
+  &-textarea {
+    display: block;
+    border-radius: 5px;
+    width: 50%;
+    padding: 8px 11px;
+    border: 1px solid black;
+  }
+}

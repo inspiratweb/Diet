@@ -1,16 +1,8 @@
-import { fb } from 'firebaseConfig';
 import { setGlobalError } from 'actions/globalErrors/setGlobalError';
 import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
 
-export const updateUserProfile = (
-  { displayName, photoURL }
-) => (dispatch, getState) => {
-  const user = fb.auth().currentUser;
-
-  user.updateProfile({
-    displayName,
-    photoURL
-  }).then(() => {
+export const updateUserProfile = (values) => (dispatch, getState, getFirebase) => {
+  getFirebase().updateProfile(values).then(() => {
     // TODO: Dispatch action to notify the Global State the data was updated
   }).catch((error) => {
     dispatch(setGlobalError(error));

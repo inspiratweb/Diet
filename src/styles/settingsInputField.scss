@@ -1,0 +1,30 @@
+.settingsInputField {
+  &-label {
+    display: block;
+    padding: 5px 0;
+    margin: 5px 0;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  &-titleRow {
+    min-height: 16px;
+    font-weight: 600;
+    width: 50%;
+    margin: 10px 0 5px;
+    font-size: 15px;
+  }
+
+  &-error {
+    color: tomato;
+    font-size: 14px;
+  }
+
+  &-input {
+    display: block;
+    border-radius: 5px;
+    width: 50%;
+    padding: 8px 11px;
+    border: 1px solid black;
+  }
+}

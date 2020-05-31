@@ -6,7 +6,7 @@ import { getRealQtty } from 'utils/getRealQtty';
 import { Pie } from 'components/Common/Pie';
 import { getRealKCalQtty } from 'utils/getRealKCalQtty';
 import { RealMacroQtty } from 'components/Common/RealMacroQtty';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
 import { useFirebaseConnect, isLoaded } from 'react-redux-firebase';
 import { BlankSlate } from 'components/Common/BlankSlate';
 

@@ -1,0 +1,18 @@
+.settings {
+  display: grid;
+  margin: 30px auto;
+  grid-template-columns: auto 150px minmax(0, 600px) auto;
+  position: relative;
+  grid-template-areas:
+  ". . . ."
+  ". sidebar content ."
+  ". . . .";
+
+  .pageNotFound {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+}

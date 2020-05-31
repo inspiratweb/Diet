@@ -4,14 +4,14 @@ import { ForgotPasswordForm } from 'components/Auth/Forms/ForgotPasswordForm';
 import { AuthPage } from 'components/Auth/AuthPage';
 import { LogInForm } from 'components/Auth/Forms/LogInForm';
 import { SignUpForm } from 'components/Auth/Forms/SignUpForm';
-import { getIsUserLoggedOut } from 'selectors/firebase/getIsUserLoggedOut';
+import { getIsUserLoggedIn } from 'selectors/firebase/auth/getIsUserLoggedIn';
 import { useSelector } from 'react-redux';
 import { Url } from 'consts/urls';
 
 export const AuthRoutes = () => {
-  const isUserLoggedOut = useSelector(getIsUserLoggedOut);
+  const isUserLoggedIn = useSelector(getIsUserLoggedIn);
 
-  if (!isUserLoggedOut) {
+  if (isUserLoggedIn) {
     return <Redirect to={Url.index()} />;
   }
 

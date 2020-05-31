@@ -1,12 +1,12 @@
-import { fb } from 'firebaseConfig';
 import { setGlobalError } from 'actions/globalErrors/setGlobalError';
 import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
 
-export const resetPassword = (email) => (dispatch, getState) => {
-  fb.auth().sendPasswordResetEmail(email)
+export const resetPassword = (email) => (dispatch, getState, getFirebase) => {
+  getFirebase().auth().sendPasswordResetEmail(email)
     .then(() => {
     // TODO: Add tracking event;
-    }).catch((error) => {
+    })
+    .catch((error) => {
       dispatch(setGlobalError(error));
 
       setTimeout(() => {

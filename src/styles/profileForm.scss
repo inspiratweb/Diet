@@ -1,0 +1,13 @@
+.profileForm {
+  padding: 20px 30px;
+  margin: 30px 0;
+  box-shadow: 1px 1px 5px 0px rgba(177, 177, 177, 0.75);
+
+  &-submit {
+    margin-top: 20px;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    background: $maincolor;
+  }
+}

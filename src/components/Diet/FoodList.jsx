@@ -7,8 +7,8 @@ import { Meal } from 'components/Diet/Meal';
 import { ESC_KEY_CODE, SPACE_KEY_CODE } from 'consts/keyboard-key-codes';
 import { LightBox } from 'components/Diet/LightBox';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
-import { getSimilarsFromFb } from 'selectors/firebase/getSimilarsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
+import { getSimilarsFromFb } from 'selectors/firebase/data/getSimilarsFromFb';
 
 export const FoodList = ({
   meals, showLightbox, openLightbox, closeLightbox
