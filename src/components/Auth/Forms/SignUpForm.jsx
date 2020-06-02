@@ -29,7 +29,6 @@ export const SignUpForm = () => {
           message="Your password does not meet our minimum strength requirements"
         />
         <ConfirmPasswordInput />
-
         <button
           className="authForm-submitBtn"
           type="submit"

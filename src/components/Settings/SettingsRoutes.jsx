@@ -6,6 +6,7 @@ import { Profile } from 'components/Settings/Sections/Profile';
 import { PageNotFound } from 'components/Common/PageNotFound';
 import { getIsUserLoggedIn } from 'selectors/firebase/auth/getIsUserLoggedIn';
 import { useSelector } from 'react-redux';
+import { Account } from './Sections/Account';
 
 export const SettingsRoutes = () => {
   const isUserLoggedIn = useSelector(getIsUserLoggedIn);
@@ -21,20 +22,17 @@ export const SettingsRoutes = () => {
           <SettingsSidebar selectedSection="Profile" />
           <Profile />
         </Route>
-        {/* <Route exact path={Url.settingsAccount()}>
+        <Route exact path={Url.settingsAccount()}>
           <SettingsSidebar selectedSection="Account" />
           <Account />
         </Route>
+        {/*
         <Route exact path={Url.settingsDietPlan()}>
           <SettingsSidebar selectedSection="Diet Plan" />
           <DietPlan />
         </Route>
         <Route exact path={Url.settingsNotifications()}>
           <SettingsSidebar selectedSection="Notifications" />
-          <Profile />
-        </Route>
-        <Route exact path={Url.settingsSecurity()}>
-          <SettingsSidebar selectedSection="Security" />
           <Profile />
         </Route>
         <Route exact path={Url.settingsSocial()}>

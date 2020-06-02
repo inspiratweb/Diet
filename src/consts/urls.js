@@ -20,7 +20,6 @@ export const Url = withBaseUrl({
   settingsProfile: '/settings/profile',
   settingsAccount: '/settings/account',
   settingsDietPlan: '/settings/diet-plan',
-  settingsSecurity: '/settings/security',
   settingsNotifications: '/settings/notifications',
   settingsSocial: '/settings/social',
   settingsIntegrations: '/settings/integrations',

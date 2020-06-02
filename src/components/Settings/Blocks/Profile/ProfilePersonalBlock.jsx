@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBioFromFb } from 'selectors/firebase/profile/getBioFromFb';
 import { getLocationFromFb } from 'selectors/firebase/profile/getLocationFromFb';
 import { getDobFromFb } from 'selectors/firebase/profile/getDobFromFb';
-import { SettingsInputField } from './FormComponents/SettingsInputField';
-import { SettingsTextAreaField } from './FormComponents/SettingsTextAreaField';
-import { SettingsDobField } from './FormComponents/SettingsDobField';
+import { SettingsDobField } from 'components/Settings/FormComponents/SettingsDobField';
+import { SettingsInputField } from 'components/Settings/FormComponents/SettingsInputField';
+import { SettingsTextAreaField } from 'components/Settings/FormComponents/SettingsTextAreaField';
 
 export const ProfilePersonalBlock = () => {
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ export const ProfilePersonalBlock = () => {
 
   return (
     <div className="profileForm">
+      <h2 className="profileForm-title">Personal Profile</h2>
       <FormContext {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
