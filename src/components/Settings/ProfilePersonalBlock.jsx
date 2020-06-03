@@ -3,7 +3,6 @@ import { useForm, FormContext } from 'react-hook-form';
 import { updateUserProfile } from 'actions/firebase/updateUserProfile';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBioFromFb } from 'selectors/firebase/profile/getBioFromFb';
-import { formatDate } from 'utils/formatDate';
 import { getLocationFromFb } from 'selectors/firebase/profile/getLocationFromFb';
 import { getDobFromFb } from 'selectors/firebase/profile/getDobFromFb';
 import { SettingsInputField } from './FormComponents/SettingsInputField';
@@ -23,7 +22,6 @@ export const ProfilePersonalBlock = () => {
     bio, location, dateOfBirth
   }, e) => {
     e.preventDefault();
-    const dob = formatDate(dateOfBirth);
 
     let values = {};
 
@@ -35,8 +33,8 @@ export const ProfilePersonalBlock = () => {
       values = {...values, location};
     }
 
-    if (initialDob !== dob) {
-      values = {...values, dateOfBirth: dob };
+    if (initialDob !== dateOfBirth) {
+      values = {...values, dateOfBirth };
     }
 
     dispatch(updateUserProfile(values));
@@ -61,7 +59,7 @@ export const ProfilePersonalBlock = () => {
           <SettingsDobField
             label="Date of birth"
             name="dateOfBirth"
-            selected={initialDob}
+            initialValue={initialDob}
           />
           <button
             type="submit"

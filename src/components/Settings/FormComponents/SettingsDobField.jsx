@@ -1,15 +1,17 @@
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ReactDatePicker from 'react-datepicker';
-import { Controller, useFormContext } from 'react-hook-form';
-import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useFormContext } from 'react-hook-form';
 
 export const SettingsDobField = ({
-  name, label, selected
+  name, label, initialValue
 }) => {
-  const { control } = useFormContext();
+  const { register } = useFormContext();
+  const [value, setValue] = useState(initialValue);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
 
   return (
     <label
@@ -19,15 +21,12 @@ export const SettingsDobField = ({
       <div className="settingsDobField-titleRow">
         <span className="settingsDobField-title">{label}</span>
       </div>
-      <Controller
-        as={ReactDatePicker}
-        control={control}
-        valueName="selected"
-        onChange={([selectedVal]) => selectedVal}
-        defaultValue={selected ? moment(selected, 'MM/DD/YYY')._d : null}
+      <input
+        type="date"
+        value={value}
+        onChange={handleChange}
         name={name}
-        placeholderText="Select date"
-        showPopperArrow={false}
+        ref={register}
       />
     </label>
   );
@@ -36,11 +35,11 @@ export const SettingsDobField = ({
 SettingsDobField.defaultProps = {
   name: '',
   label: '',
-  selected: '',
+  initialValue: '',
 };
 
 SettingsDobField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
-  selected: PropTypes.string,
+  initialValue: PropTypes.string,
 };
