@@ -40,7 +40,7 @@ export const AuthRoutes = () => {
           : (
             <AuthPage
               header="Log in."
-              paragraph="Enter jour cedentials to join Fuel For Live or "
+              paragraph="Enter your credentials to join Fuel For Live or "
               link="create a new account."
               linkTo={Url.signUp()}
             >
