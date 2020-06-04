@@ -16,6 +16,7 @@ $mq-breakpoints: (
 @import './basket';
 @import './foods';
 @import './builder';
+@import './builderHeader';
 @import './pie';
 @import './lightBox';
 @import './blankSlate';
@@ -23,3 +24,18 @@ $mq-breakpoints: (
 @import './authPage';
 @import './authForm';
 @import './globalErrorBanner';
+@import './hamburgerIcon';
+@import './mainHeader';
+@import './avatarPlaceholder';
+@import './logBubble';
+@import './settings';
+@import './settingsSidebar';
+@import './profile';
+@import './profileForm';
+@import './settingsInputField';
+@import './settingsChooseFileField';
+@import './settingsTextAreaField';
+@import './settingsDobField';
+@import './settingsCheckbox';
+@import './settingsConfirmationLayer';
+@import './deleteAccount';

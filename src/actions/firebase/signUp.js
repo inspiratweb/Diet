@@ -1,11 +1,19 @@
 import { setGlobalError } from 'actions/globalErrors/setGlobalError';
 import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
-import { fb } from 'firebaseConfig';
+import { sendEmailVerification } from './sendEmailVerification';
+import { uploadUserProfilePicture } from './uploadUserProfilePicture';
 
-export const signUp = ({ email, password }) => (dispatch, getState) => {
-  fb.auth().createUserWithEmailAndPassword(email, password)
-    .then((user) => {
-      console.log('Successfully Signed Up', user);
+export const signUp = ({ email, password }) => (dispatch, getState, getFirebase) => {
+  getFirebase().auth().createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      dispatch(sendEmailVerification());
+
+      const photoURL = `${process.env.PUBLIC_URL}/assets/images/default-avatar.jpg`;
+      fetch(photoURL)
+        .then((res) => res.blob())
+        .then((blob) => {
+          dispatch(uploadUserProfilePicture(blob));
+        });
     })
     .catch((error) => {
       dispatch(setGlobalError(error));

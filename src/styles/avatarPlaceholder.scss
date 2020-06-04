@@ -1,0 +1,38 @@
+$spacing: 8px;
+
+$avatarPlaceholder-sizes: (
+  s: (
+    size: $spacing * 3,
+  ),
+  m: (
+    size: $spacing * 4,
+  ),
+  l: (
+    size: $spacing * 6,
+  ),
+  xl: (
+    size: $spacing * 12,
+  ),
+);
+
+.avatarPlaceholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  @each $size-key, $size-value in $avatarPlaceholder-sizes {
+    &-#{$size-key} {
+      width: map-get($size-value, size);
+      height: map-get($size-value, size);
+    }
+  }
+}

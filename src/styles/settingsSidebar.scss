@@ -1,0 +1,26 @@
+.settings-sidebar {
+  display: flex;
+  flex-direction: column;
+  grid-area: sidebar;
+
+  > .sidebar-link {
+    font-size: 16px;
+    padding: 16px 12px;
+    font-weight: 600;
+    color: $basecolor;
+    border: 1px solid transparent;
+    margin: 1px;
+    border-left: 3px solid transparent;
+
+    &:hover {
+      background: $basecolor-lighter;
+    }
+
+    &.isSectionSelected {
+      color: #8457F7;
+      border-left: 3px solid $maincolor;
+      background: $basecolor-lighter;
+    }
+  }
+
+}
