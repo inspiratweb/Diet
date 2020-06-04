@@ -5,12 +5,10 @@ import { buildAvatarClass } from 'utils/buildAvatarClass';
 import { useSelector } from 'react-redux';
 import { getUserPhotoFromFb } from 'selectors/firebase/profile/getUserPhotoFromFb';
 import { avatarPlaceholderSize } from 'consts/avatarPlaceholderSizes';
-import { getDisplayNameFromFb } from 'selectors/firebase/profile/getDisplayNameFromFb';
 
 export const AvatarPlaceholder = ({
   id, className, size, onClick, onKeyDown
 }) => {
-  const userFullName = useSelector(getDisplayNameFromFb);
   const userPhotoURL = useSelector(getUserPhotoFromFb);
 
   return (
@@ -27,7 +25,7 @@ export const AvatarPlaceholder = ({
     >
       {userPhotoURL && (
         <img
-          alt={`${userFullName} avatar`}
+          alt="User avatar"
           className="avatarPlaceholder_image"
           src={userPhotoURL}
         />
