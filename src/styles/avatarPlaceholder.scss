@@ -27,6 +27,9 @@ $avatarPlaceholder-sizes: (
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    // https://stackoverflow.com/questions/12667926/hide-alt-tag-in-firefox
+    // color - transparent hides alt when img is loading
+    color: transparent;
   }
 
   @each $size-key, $size-value in $avatarPlaceholder-sizes {
