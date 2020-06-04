@@ -2,19 +2,16 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { buildAvatarClass } from 'utils/buildAvatarClass';
-import { buildAvatarInitials } from 'utils/buildAvatarInitials';
 import { useSelector } from 'react-redux';
-import { getUserNameFromFb } from 'selectors/firebase/getUserNameFromFb';
-import { getUserPhotoFromFb } from 'selectors/firebase/getUserPhotoFromFb';
+import { getUserPhotoFromFb } from 'selectors/firebase/profile/getUserPhotoFromFb';
 import { avatarPlaceholderSize } from 'consts/avatarPlaceholderSizes';
+import { getDisplayNameFromFb } from 'selectors/firebase/profile/getDisplayNameFromFb';
 
 export const AvatarPlaceholder = ({
   id, className, size, onClick, onKeyDown
 }) => {
-  const userFullName = useSelector(getUserNameFromFb);
+  const userFullName = useSelector(getDisplayNameFromFb);
   const userPhotoURL = useSelector(getUserPhotoFromFb);
-
-  const initials = buildAvatarInitials(userFullName);
 
   return (
     <figure
@@ -28,7 +25,6 @@ export const AvatarPlaceholder = ({
         size,
       )}
     >
-      <span className="avatarPlaceholder_initials">{initials}</span>
       {userPhotoURL && (
         <img
           alt={`${userFullName} avatar`}

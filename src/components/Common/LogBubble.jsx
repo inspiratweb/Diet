@@ -2,26 +2,28 @@ import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { logOut } from 'actions/firebase/logOut';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIsUserLoggedOut } from 'selectors/firebase/getIsUserLoggedOut';
+import { getIsUserLoggedIn } from 'selectors/firebase/auth/getIsUserLoggedIn';
 import { Link } from 'react-router-dom';
 import { Url } from 'consts/urls';
 import { ENTER_KEY_CODE } from 'consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
 import { isLoaded } from 'react-redux-firebase';
-import { getUserDataFromFb } from 'selectors/firebase/getUserDataFromFb';
+import { getUserDataFromFb } from 'selectors/firebase/auth/getUserDataFromFb';
 import { AvatarPlaceholder } from './AvatarPlaceholder';
+import { SettingsIcon } from './Icons/SettingsIcon';
+import { LogOutIcon } from './Icons/LogOutIcon';
 
 export const LogBubble = () => {
   const dispatch = useDispatch();
-  const [showLogOut, setShowLogOut] = useState(false);
-  const isUserLoggedOut = useSelector(getIsUserLoggedOut);
-  const useData = useSelector(getUserDataFromFb);
+  const [showLinks, setShowLinks] = useState(false);
+  const isUserLoggedIn = useSelector(getIsUserLoggedIn);
+  const userData = useSelector(getUserDataFromFb);
   const ref = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        setShowLogOut(false);
+        setShowLinks(false);
       }
     };
 
@@ -32,14 +34,14 @@ export const LogBubble = () => {
   }, [ref]);
 
   const onAvatarClick = () => {
-    setShowLogOut(!showLogOut);
+    setShowLinks(!showLinks);
   };
 
-  if (!isLoaded(useData)) {
+  if (!isLoaded(userData)) {
     return null;
   }
 
-  if (isUserLoggedOut) {
+  if (!isUserLoggedIn) {
     return (
       <div className="logBubble logBubble-sign-links">
         <Link to={Url.logIn()}>Log In</Link>
@@ -56,13 +58,23 @@ export const LogBubble = () => {
           (e) => applyKeyboardNavigation(e, ENTER_KEY_CODE, () => onAvatarClick(e))
         }
       />
-      <button
-        className={classNames('logBubble-logOut', { showLogOut })}
-        type="button"
-        onClick={() => dispatch(logOut())}
-      >
-        Log out
-      </button>
+      <div className={classNames('logBubble-links', { showLinks })}>
+        <Link
+          to={Url.settings()}
+          className="logBubble-settings"
+        >
+          <SettingsIcon />
+          <span>Settings</span>
+        </Link>
+        <button
+          className="logBubble-logOut"
+          type="button"
+          onClick={() => dispatch(logOut())}
+        >
+          <LogOutIcon />
+          <span>Log out</span>
+        </button>
+      </div>
     </div>
   );
 };

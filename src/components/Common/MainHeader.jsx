@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Url } from 'consts/urls';
 import { HambugerIcon } from 'components/Common/Icons/HamburgerIcon';
 import { MainLogo } from 'components/Common/Icons/MainLogo';
@@ -8,6 +8,7 @@ import { isPathInUrl } from 'utils/isPathInUrl';
 
 export const MainHeader = () => {
   const { pathname } = useLocation();
+  const history = useHistory();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
   if (isPathInUrl(pathname, Url.auth())) {
@@ -18,6 +19,10 @@ export const MainHeader = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
   };
 
+  const handleClick = () => {
+    history.push(Url.index());
+  };
+
   return (
     <header className="mainHeader">
       <HambugerIcon
@@ -25,6 +30,7 @@ export const MainHeader = () => {
         onIconClick={handleIconToggle}
       />
       <MainLogo
+        onClick={handleClick}
         className="mainHeader-logo"
       />
       <LogBubble />

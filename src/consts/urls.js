@@ -15,6 +15,15 @@ export const Url = withBaseUrl({
   builder: '/diet/builder',
   // Foods
   foods: '/diet/foods',
+  // Settings
+  settings: '/settings',
+  settingsProfile: '/settings/profile',
+  settingsAccount: '/settings/account',
+  settingsDietPlan: '/settings/diet-plan',
+  settingsSecurity: '/settings/security',
+  settingsNotifications: '/settings/notifications',
+  settingsSocial: '/settings/social',
+  settingsIntegrations: '/settings/integrations',
   // Auth
   auth: '/auth',
   signUp: '/auth/sign-up',

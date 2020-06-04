@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { getDietsFromFb } from 'selectors/firebase/getDietsFromFb';
+import { getDietsFromFb } from 'selectors/firebase/data/getDietsFromFb';
 import { useSelector } from 'react-redux';
 import { PageNotFound } from 'components/Common/PageNotFound';
 import { Layout } from 'components/Diet/Layout';
-import { getRouterFromFb } from 'selectors/firebase/getRouterFromFb';
+import { getRouterFromFb } from 'selectors/firebase/data/getRouterFromFb';
 import { isLoaded, useFirebaseConnect } from 'react-redux-firebase';
 import { BlankSlate } from 'components/Common/BlankSlate';
-import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
-import { getSimilarsFromFb } from 'selectors/firebase/getSimilarsFromFb';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/data/getMealsFromFb';
+import { getSimilarsFromFb } from 'selectors/firebase/data/getSimilarsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
 import { Url } from 'consts/urls';
 
 export const DietRoutes = () => {

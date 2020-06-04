@@ -4,8 +4,8 @@ import TouchBackend from 'react-dnd-touch-backend';
 import { Builder } from 'components/Builder/Builder';
 import { isLoaded, useFirebaseConnect } from 'react-redux-firebase';
 import { useSelector } from 'react-redux';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
-import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/data/getMealsFromFb';
 import { BlankSlate } from 'components/Common/BlankSlate';
 
 export const BuilderWrapper = () => {

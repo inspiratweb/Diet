@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
 import { ListBasketItem } from 'components/Diet/ListBasketItem';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
 import { getSelectedDiet } from 'selectors/selectedDiet/getSelectedDiet';
 
 const Basket = ({ className }) => {

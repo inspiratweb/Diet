@@ -8,8 +8,8 @@ import { BlankSlate } from 'components/Common/BlankSlate';
 import { Summary } from 'components/Builder/Summary';
 import { F_KEY_CODE } from 'consts/keyboard-key-codes';
 import { applyKeyboardNavigation } from 'utils/applyKeyboardNavigation';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
-import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/data/getMealsFromFb';
 import { SearchIcon } from 'components/Common/Icons/SearchIcon';
 import { ToggleIcon } from 'components/Common/Icons/ToggleIcon';
 

@@ -4,9 +4,9 @@ import { getOrderedDiet } from 'utils/getOrderedDiet';
 import { ListDietItem } from 'components/Diet/ListDietItem';
 import { getMealFromId } from 'utils/getMealFromId';
 import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
-import { getSimilarsFromFb } from 'selectors/firebase/getSimilarsFromFb';
-import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
+import { getSimilarsFromFb } from 'selectors/firebase/data/getSimilarsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/data/getMealsFromFb';
 import { getSelectedDiet } from 'selectors/selectedDiet/getSelectedDiet';
 
 export const MealsList = () => {

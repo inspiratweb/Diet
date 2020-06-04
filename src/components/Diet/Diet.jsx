@@ -5,8 +5,8 @@ import { MealsList } from 'components/Diet/MealsList';
 import { getRoundedKCal } from 'utils/getRoundedKCal';
 import { getTotalMacros } from 'utils/getTotalMacros';
 import { getOrderedDiet } from 'utils/getOrderedDiet';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
-import { getMealsFromFb } from 'selectors/firebase/getMealsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
+import { getMealsFromFb } from 'selectors/firebase/data/getMealsFromFb';
 import { getSelectedDiet } from 'selectors/selectedDiet/getSelectedDiet';
 
 export const Diet = ({ className }) => {

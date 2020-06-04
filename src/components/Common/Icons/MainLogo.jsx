@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const MainLogo = ({ className }) => (
+export const MainLogo = ({ className, onClick }) => (
   <svg
+    onClick={onClick}
     xmlns="http://www.w3.org/2000/svg"
     width="32"
     viewBox="0 0 1000 1187.198"
@@ -13,9 +14,11 @@ export const MainLogo = ({ className }) => (
 );
 
 MainLogo.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 MainLogo.defaultProps = {
-  className: ''
+  className: '',
+  onClick: () => {}
 };

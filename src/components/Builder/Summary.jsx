@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { getMacrosFromMeal } from 'utils/getMacrosFromMeal';
 import { getRoundedKCal } from 'utils/getRoundedKCal';
 import { getNewDiet } from 'selectors/newDiet/getNewDiet';
-import { getFoodsFromFb } from 'selectors/firebase/getFoodsFromFb';
+import { getFoodsFromFb } from 'selectors/firebase/data/getFoodsFromFb';
 
 export const Summary = () => {
   const newDiet = useSelector(getNewDiet);
