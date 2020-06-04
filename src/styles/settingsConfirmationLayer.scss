@@ -1,0 +1,31 @@
+.settingsConfirmationLayer {
+  &-box {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    flex-direction: column;
+  }
+
+  &-paragraph {
+    font-size: 15px;
+  }
+
+  &-button {
+    padding: 10px 8px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &-confirm {
+    background: tomato;
+  }
+
+  &-reject {
+    background: rgb(73, 163, 0);
+  }
+}

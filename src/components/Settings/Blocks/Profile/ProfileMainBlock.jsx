@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getDisplayNameFromFb } from 'selectors/firebase/profile/getDisplayNameFromFb';
 import { getUserPhotoFromFb } from 'selectors/firebase/profile/getUserPhotoFromFb';
 import { updateUserProfile } from 'actions/firebase/updateUserProfile';
-import { SettingsInputField } from './FormComponents/SettingsInputField';
-import { SettingsChooseFileField } from './FormComponents/SettingsChooseFileField';
+import { SettingsInputField } from 'components/Settings/FormComponents/SettingsInputField';
+import { SettingsChooseFileField } from 'components/Settings/FormComponents/SettingsChooseFileField';
 
 export const ProfileMainBlock = () => {
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ export const ProfileMainBlock = () => {
 
   return (
     <div className="profileForm">
+      <h2 className="profileForm-title">Public Profile</h2>
       <FormContext {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}

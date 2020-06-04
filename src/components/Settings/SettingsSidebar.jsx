@@ -11,14 +11,10 @@ export const SettingsSidebar = ({ selectedSection }) => {
       url: Url.settingsProfile(),
       label: 'Profile'
     },
-    // {
-    //   url: Url.settingsAccount(),
-    //   label: 'Account'
-    // },
-    // {
-    //   url: Url.settingsSecurity(),
-    //   label: 'Security'
-    // },
+    {
+      url: Url.settingsAccount(),
+      label: 'Account'
+    },
     // {
     //   url: Url.settingsDietPlan(),
     //   label: 'Diet Plan'

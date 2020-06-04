@@ -1,14 +1,19 @@
 import { setGlobalError } from 'actions/globalErrors/setGlobalError';
 import { removeGlobalError } from 'actions/globalErrors/removeGlobalError';
 import { sendEmailVerification } from './sendEmailVerification';
-import { updateUserProfile } from './updateUserProfile';
+import { uploadUserProfilePicture } from './uploadUserProfilePicture';
 
 export const signUp = ({ email, password }) => (dispatch, getState, getFirebase) => {
   getFirebase().auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
-      const photoURL = `${process.env.PUBLIC_URL}/assets/images/default-avatar.jpg`;
       dispatch(sendEmailVerification());
-      dispatch(updateUserProfile({ photoURL }));
+
+      const photoURL = `${process.env.PUBLIC_URL}/assets/images/default-avatar.jpg`;
+      fetch(photoURL)
+        .then((res) => res.blob())
+        .then((blob) => {
+          dispatch(uploadUserProfilePicture(blob));
+        });
     })
     .catch((error) => {
       dispatch(setGlobalError(error));

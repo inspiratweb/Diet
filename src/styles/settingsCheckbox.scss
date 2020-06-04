@@ -1,0 +1,16 @@
+.settingsCheckbox {
+  &-label {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &-paragraph {
+    line-height: 1.5;
+    margin: 0 0 20px;
+    cursor: pointer;
+  }
+
+  &-error + .settingsCheckbox-label {
+    text-decoration: underline;
+  }
+}

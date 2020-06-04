@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
-import { ANY_CHARACTER_VALIDATOR } from 'consts/regex-validators';
 
-export const SettingsInputField = ({
+export const SettingsConfirmPassword = ({
   label,
   errorMessage,
   inputClassName,
@@ -11,21 +10,16 @@ export const SettingsInputField = ({
   errorClassName,
   titleClassName,
   maxLength,
-  isRequired,
-  validator,
-  initialValue,
-  type,
+  validateAgainst,
   name
 }) => {
-  const { register, errors } = useFormContext();
-  const [value, setValue] = useState(initialValue);
+  const { register, errors, watch } = useFormContext();
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+  const password = useRef({});
+  password.current = watch(validateAgainst, '');
 
   return (
-    <label className={`settingsInputField-label' ${labelClassName}`} htmlFor={name}>
+    <label className={`settingsInputField-label ${labelClassName}`} htmlFor={name}>
       <div className={`settingsInputField-titleRow ${titleClassName}`}>
         <span>{label}</span>
         <span className={`settingsInputField-error ${errorClassName}`}>
@@ -37,45 +31,33 @@ export const SettingsInputField = ({
         name={name}
         id={name}
         maxLength={maxLength}
-        value={value}
-        type={type}
-        onChange={handleChange}
+        type="password"
         ref={register({
-          required: isRequired && '* Required',
-          pattern: {
-            value: validator,
-            message: errorMessage
-          }
+          required: errorMessage,
+          validate: (val) => val === password.current || 'Your passwords do not match'
         })}
       />
     </label>
   );
 };
 
-SettingsInputField.defaultProps = {
+SettingsConfirmPassword.defaultProps = {
   errorMessage: '',
-  validator: ANY_CHARACTER_VALIDATOR,
   maxLength: 1000,
   labelClassName: '',
   inputClassName: '',
   errorClassName: '',
   titleClassName: '',
-  isRequired: false,
-  initialValue: '',
-  type: 'text',
 };
 
-SettingsInputField.propTypes = {
+SettingsConfirmPassword.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   errorMessage: PropTypes.string,
-  validator: PropTypes.instanceOf(RegExp),
   maxLength: PropTypes.number,
   labelClassName: PropTypes.string,
   inputClassName: PropTypes.string,
   errorClassName: PropTypes.string,
   titleClassName: PropTypes.string,
-  isRequired: PropTypes.bool,
-  initialValue: PropTypes.string,
-  type: PropTypes.string,
+  validateAgainst: PropTypes.string.isRequired,
 };

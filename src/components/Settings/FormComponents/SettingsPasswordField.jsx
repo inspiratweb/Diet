@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import { ANY_CHARACTER_VALIDATOR } from 'consts/regex-validators';
 
-export const SettingsInputField = ({
+export const SettingsPasswordField = ({
   label,
   errorMessage,
   inputClassName,
@@ -13,16 +13,10 @@ export const SettingsInputField = ({
   maxLength,
   isRequired,
   validator,
-  initialValue,
   type,
   name
 }) => {
   const { register, errors } = useFormContext();
-  const [value, setValue] = useState(initialValue);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
 
   return (
     <label className={`settingsInputField-label' ${labelClassName}`} htmlFor={name}>
@@ -37,22 +31,20 @@ export const SettingsInputField = ({
         name={name}
         id={name}
         maxLength={maxLength}
-        value={value}
         type={type}
-        onChange={handleChange}
         ref={register({
           required: isRequired && '* Required',
           pattern: {
             value: validator,
             message: errorMessage
-          }
+          },
         })}
       />
     </label>
   );
 };
 
-SettingsInputField.defaultProps = {
+SettingsPasswordField.defaultProps = {
   errorMessage: '',
   validator: ANY_CHARACTER_VALIDATOR,
   maxLength: 1000,
@@ -61,11 +53,10 @@ SettingsInputField.defaultProps = {
   errorClassName: '',
   titleClassName: '',
   isRequired: false,
-  initialValue: '',
   type: 'text',
 };
 
-SettingsInputField.propTypes = {
+SettingsPasswordField.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   errorMessage: PropTypes.string,
@@ -76,6 +67,5 @@ SettingsInputField.propTypes = {
   errorClassName: PropTypes.string,
   titleClassName: PropTypes.string,
   isRequired: PropTypes.bool,
-  initialValue: PropTypes.string,
   type: PropTypes.string,
 };

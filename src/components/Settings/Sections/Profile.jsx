@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProfileMainBlock } from '../ProfileMainBlock';
-import { ProfilePersonalBlock } from '../ProfilePersonalBlock';
+import { ProfileMainBlock } from 'components/Settings/Blocks/Profile/ProfileMainBlock';
+import { ProfilePersonalBlock } from 'components/Settings/Blocks/Profile/ProfilePersonalBlock';
 
 export const Profile = () => (
   <section className="profile">
