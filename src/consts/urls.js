@@ -19,6 +19,7 @@ export const Url = withBaseUrl({
   settings: '/settings',
   settingsProfile: '/settings/profile',
   settingsAccount: '/settings/account',
+  settingsBilling: '/settings/billing',
   settingsDietPlan: '/settings/diet-plan',
   settingsNotifications: '/settings/notifications',
   settingsSocial: '/settings/social',

@@ -7,7 +7,7 @@ export const uploadUserProfilePicture = (picture) => (dispatch, getState, getFir
   const storage = getFirebase().storage().ref();
   const userId = getUserIdFromFb(getState());
 
-  storage.child(`users/avatars/${userId}/userPhotoUrl`).put(picture)
+  storage.child(`avatars/${userId}/userPhotoUrl`).put(picture)
     .then((snapshot) => {
       snapshot.ref.getDownloadURL().then((photoURL) => {
         dispatch(updateUserProfile({ photoURL }));

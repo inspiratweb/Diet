@@ -3,7 +3,7 @@ import { ProfileMainBlock } from 'components/Settings/Blocks/Profile/ProfileMain
 import { ProfilePersonalBlock } from 'components/Settings/Blocks/Profile/ProfilePersonalBlock';
 
 export const Profile = () => (
-  <section className="profile">
+  <section className="settings-page">
     <h1>Profile Information</h1>
     <ProfileMainBlock />
     <ProfilePersonalBlock />

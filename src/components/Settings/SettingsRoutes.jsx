@@ -27,6 +27,10 @@ export const SettingsRoutes = () => {
           <Account />
         </Route>
         {/*
+        <Route exact path={Url.settingsBilling()}>
+          <SettingsSidebar selectedSection="Billing" />
+          <Billing />
+        </Route>
         <Route exact path={Url.settingsDietPlan()}>
           <SettingsSidebar selectedSection="Diet Plan" />
           <DietPlan />

@@ -16,6 +16,10 @@ export const SettingsSidebar = ({ selectedSection }) => {
       label: 'Account'
     },
     // {
+    //   url: Url.settingsBilling(),
+    //   label: 'Billing'
+    // },
+    // {
     //   url: Url.settingsDietPlan(),
     //   label: 'Diet Plan'
     // },

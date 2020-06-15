@@ -95,16 +95,6 @@
       width: 37px;
       height: 37px;
     }
-    &:after {
-      content: "";
-      position: absolute;
-      left: 17px;
-      top: 17px;
-      border-radius: 50%;
-      width: 23px;
-      height: 23px;
-      background: $white;
-    }
 
     &:first-child:before {
       background-color: $maincolor;

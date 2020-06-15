@@ -2,8 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getCoordinatesForPercent } from 'utils/getCoordinatesForPercent';
+// TODO: Specify a default size + possible sizes
 
-export const Pie = ({ p, ch, f }) => {
+export const PieSizes = {
+  M: '37px'
+};
+
+export const Pie = ({
+  p, ch, f, className, size
+}) => {
   const slices = [
     { percent: p, color: '#EE0D6E' },
     { percent: ch, color: '#8457F7' },
@@ -13,7 +20,7 @@ export const Pie = ({ p, ch, f }) => {
   let cumulativePercent = 0;
 
   return (
-    <svg className="pie" viewBox="-1 -1 2 2">
+    <svg className={`pie ${className}`} height={size} viewBox="-1 -1 2 2">
       { slices.map((slice) => {
         // destructuring assignment sets the two variables at once
         const [startX, startY] = getCoordinatesForPercent(cumulativePercent);
@@ -35,6 +42,7 @@ export const Pie = ({ p, ch, f }) => {
 
         return <path key={slice.color} d={pathData} fill={slice.color} />;
       })}
+      <circle cx="0" cy="0" r=".6" fill="#fff" />
     </svg>
   );
 };
@@ -43,4 +51,11 @@ Pie.propTypes = {
   p: PropTypes.number.isRequired,
   ch: PropTypes.number.isRequired,
   f: PropTypes.number.isRequired,
+  className: PropTypes.string,
+  size: PropTypes.string,
+};
+
+Pie.defaultProps = {
+  className: '',
+  size: PieSizes.M,
 };

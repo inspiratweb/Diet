@@ -4,7 +4,7 @@ import { ChangeEmailBlock } from '../Blocks/Account/ChangeEmailBlock';
 import { ChangePasswordBlock } from '../Blocks/Account/ChangePasswordBlock';
 
 export const Account = () => (
-  <section className="profile">
+  <section className="settings-page">
     <h1>Account Settings</h1>
     <ChangePasswordBlock />
     <ChangeEmailBlock />
